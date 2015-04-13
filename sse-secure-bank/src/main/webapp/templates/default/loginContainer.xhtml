@@ -7,17 +7,35 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <!--                <ui:include src="leftMenu.xhtml" />-->
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">                    
-                <ui:insert name="content" />     
-                Login : Content  2
-                <h:form id="loginForm">
+            <div class="col-sm-5 col-sm-offset-3 col-md-5 col-md-offset-2 main">                    
+                <!--                <ui:insert class="bg-warning" name="content" />     -->
+
+
+                <h3 class="underlined-text">Enter Login Credentials </h3>
+
+
+                <h:form styleClass="form-horizontal">
                     <h:messages style="color:red;margin:8px;" />
-                    Username: <h:inputText value="#{loginUIBean.userId}" />
-                    <br />
-                    Password: <h:inputSecret value="#{loginUIBean.password}" />
-                    <br />
-                    <h:commandButton id="loginButton" value="Login" action="#{loginUIBean.login}" />
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                            <h:inputText value="#{loginUIBean.userId}" styleClass="form-control" ></h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <h:inputSecret value="#{loginUIBean.password}" styleClass="form-control"  ></h:inputSecret>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <h:commandButton  value="Sign in" styleClass="btn btn-default" action="#{loginUIBean.login}"></h:commandButton >
+                        </div>
+                    </div>
                 </h:form>
+
             </div>
         </div>
     </div>
