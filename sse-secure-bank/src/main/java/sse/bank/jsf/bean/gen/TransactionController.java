@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen;
+package sse.bank.jsf.bean.gen;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,8 +17,8 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
-import sse.bank.db.domain.TransferTransaction;
-import sse.bank.jsf.gen.bean.TransferTransactionFacade;
+import sse.bank.db.domain.Transaction;
+import sse.bank.jsf.business.bean.gen.TransactionFacade;
 import sse.bank.jsf.gen.util.JsfUtil;
 import sse.bank.jsf.gen.util.PagingInfo;
 
@@ -26,16 +26,16 @@ import sse.bank.jsf.gen.util.PagingInfo;
  *
  * @author Raghunath
  */
-public class TransferTransactionController {
+public class TransactionController {
 
-    public TransferTransactionController() {
+    public TransactionController() {
         pagingInfo = new PagingInfo();
-        converter = new TransferTransactionConverter();
+        converter = new TransactionConverter();
     }
-    private TransferTransaction transferTransaction = null;
-    private List<TransferTransaction> transferTransactionItems = null;
-    private TransferTransactionFacade jpaController = null;
-    private TransferTransactionConverter converter = null;
+    private Transaction transaction = null;
+    private List<Transaction> transactionItems = null;
+    private TransactionFacade jpaController = null;
+    private TransactionConverter converter = null;
     private PagingInfo pagingInfo = null;
     @Resource
     private UserTransaction utx = null;
@@ -49,41 +49,41 @@ public class TransferTransactionController {
         return pagingInfo;
     }
 
-    public TransferTransactionFacade getJpaController() {
+    public TransactionFacade getJpaController() {
         if (jpaController == null) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            jpaController = (TransferTransactionFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "transferTransactionJpa");
+            jpaController = (TransactionFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "transactionJpa");
         }
         return jpaController;
     }
 
-    public SelectItem[] getTransferTransactionItemsAvailableSelectMany() {
+    public SelectItem[] getTransactionItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), false);
     }
 
-    public SelectItem[] getTransferTransactionItemsAvailableSelectOne() {
+    public SelectItem[] getTransactionItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), true);
     }
 
-    public TransferTransaction getTransferTransaction() {
-        if (transferTransaction == null) {
-            transferTransaction = (TransferTransaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransferTransaction", converter, null);
+    public Transaction getTransaction() {
+        if (transaction == null) {
+            transaction = (Transaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransaction", converter, null);
         }
-        if (transferTransaction == null) {
-            transferTransaction = new TransferTransaction();
+        if (transaction == null) {
+            transaction = new Transaction();
         }
-        return transferTransaction;
+        return transaction;
     }
 
     public String listSetup() {
         reset(true);
-        return "transferTransaction_list";
+        return "transaction_list";
     }
 
     public String createSetup() {
         reset(false);
-        transferTransaction = new TransferTransaction();
-        return "transferTransaction_create";
+        transaction = new Transaction();
+        return "transaction_create";
     }
 
     public String create() {
@@ -93,7 +93,7 @@ public class TransferTransactionController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().create(transferTransaction);
+            getJpaController().create(transaction);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -101,7 +101,7 @@ public class TransferTransactionController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("TransferTransaction was successfully created.");
+                JsfUtil.addSuccessMessage("Transaction was successfully created.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -117,31 +117,31 @@ public class TransferTransactionController {
     }
 
     public String detailSetup() {
-        return scalarSetup("transferTransaction_detail");
+        return scalarSetup("transaction_detail");
     }
 
     public String editSetup() {
-        return scalarSetup("transferTransaction_edit");
+        return scalarSetup("transaction_edit");
     }
 
     private String scalarSetup(String destination) {
         reset(false);
-        transferTransaction = (TransferTransaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransferTransaction", converter, null);
-        if (transferTransaction == null) {
-            String requestTransferTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
-            JsfUtil.addErrorMessage("The transferTransaction with id " + requestTransferTransactionString + " no longer exists.");
+        transaction = (Transaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransaction", converter, null);
+        if (transaction == null) {
+            String requestTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransaction");
+            JsfUtil.addErrorMessage("The transaction with id " + requestTransactionString + " no longer exists.");
             return relatedOrListOutcome();
         }
         return destination;
     }
 
     public String edit() {
-        String transferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transferTransaction);
-        String currentTransferTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
-        if (transferTransactionString == null || transferTransactionString.length() == 0 || !transferTransactionString.equals(currentTransferTransactionString)) {
+        String transactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transaction);
+        String currentTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransaction");
+        if (transactionString == null || transactionString.length() == 0 || !transactionString.equals(currentTransactionString)) {
             String outcome = editSetup();
-            if ("transferTransaction_edit".equals(outcome)) {
-                JsfUtil.addErrorMessage("Could not edit transferTransaction. Try again.");
+            if ("transaction_edit".equals(outcome)) {
+                JsfUtil.addErrorMessage("Could not edit transaction. Try again.");
             }
             return outcome;
         }
@@ -151,7 +151,7 @@ public class TransferTransactionController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().edit(transferTransaction);
+            getJpaController().edit(transaction);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -159,7 +159,7 @@ public class TransferTransactionController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("TransferTransaction was successfully updated.");
+                JsfUtil.addSuccessMessage("Transaction was successfully updated.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -175,7 +175,7 @@ public class TransferTransactionController {
     }
 
     public String remove() {
-        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
+        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentTransaction");
         String id = idAsString;
         try {
             utx.begin();
@@ -191,7 +191,7 @@ public class TransferTransactionController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("TransferTransaction was successfully deleted.");
+                JsfUtil.addSuccessMessage("Transaction was successfully deleted.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -214,24 +214,24 @@ public class TransferTransactionController {
         return listSetup();
     }
 
-    public List<TransferTransaction> getTransferTransactionItems() {
-        if (transferTransactionItems == null) {
+    public List<Transaction> getTransactionItems() {
+        if (transactionItems == null) {
             getPagingInfo();
-            transferTransactionItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
+            transactionItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
         }
-        return transferTransactionItems;
+        return transactionItems;
     }
 
     public String next() {
         reset(false);
         getPagingInfo().nextPage();
-        return "transferTransaction_list";
+        return "transaction_list";
     }
 
     public String prev() {
         reset(false);
         getPagingInfo().previousPage();
-        return "transferTransaction_list";
+        return "transaction_list";
     }
 
     private String relatedControllerOutcome() {
@@ -258,8 +258,8 @@ public class TransferTransactionController {
     }
 
     private void reset(boolean resetFirstItem) {
-        transferTransaction = null;
-        transferTransactionItems = null;
+        transaction = null;
+        transactionItems = null;
         pagingInfo.setItemCount(-1);
         if (resetFirstItem) {
             pagingInfo.setFirstItem(0);
@@ -267,10 +267,10 @@ public class TransferTransactionController {
     }
 
     public void validateCreate(FacesContext facesContext, UIComponent component, Object value) {
-        TransferTransaction newTransferTransaction = new TransferTransaction();
-        String newTransferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, newTransferTransaction);
-        String transferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transferTransaction);
-        if (!newTransferTransactionString.equals(transferTransactionString)) {
+        Transaction newTransaction = new Transaction();
+        String newTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, newTransaction);
+        String transactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transaction);
+        if (!newTransactionString.equals(transactionString)) {
             createSetup();
         }
     }

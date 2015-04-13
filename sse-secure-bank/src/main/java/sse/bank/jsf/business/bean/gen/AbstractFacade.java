@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen.bean;
+package sse.bank.jsf.business.bean.gen;
 
 import java.util.List;
 import javax.persistence.EntityManager;

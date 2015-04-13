@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen;
+package sse.bank.jsf.bean.gen;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import sse.bank.db.domain.Account;
+import sse.bank.db.domain.CheckinAccount;
 
 /**
  *
  * @author Raghunath
  */
-public class AccountConverter implements Converter {
+public class CheckinAccountConverter implements Converter {
 
     public Object getAsObject(FacesContext facesContext, UIComponent component, String string) {
         if (string == null || string.length() == 0) {
             return null;
         }
         String id = string;
-        AccountController controller = (AccountController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "account");
+        CheckinAccountController controller = (CheckinAccountController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "checkinAccount");
         return controller.getJpaController().find(id);
     }
 
@@ -29,11 +29,11 @@ public class AccountConverter implements Converter {
         if (object == null) {
             return null;
         }
-        if (object instanceof Account) {
-            Account o = (Account) object;
+        if (object instanceof CheckinAccount) {
+            CheckinAccount o = (CheckinAccount) object;
             return o.getCustomerId() == null ? "" : o.getCustomerId().toString();
         } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.domain.Account");
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.domain.CheckinAccount");
         }
     }
     

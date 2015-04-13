@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen.bean;
+package sse.bank.jsf.business.bean.gen;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sse.bank.db.domain.CheckinAccount;
+import sse.bank.db.domain.TransferTransaction;
 
 /**
  *
  * @author Raghunath
  */
 @Stateless
-public class CheckinAccountFacade extends AbstractFacade<CheckinAccount> {
+public class TransferTransactionFacade extends AbstractFacade<TransferTransaction> {
     @PersistenceContext(unitName = "org.glassfish-samples_sse-secure-bank_war_4.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class CheckinAccountFacade extends AbstractFacade<CheckinAccount> {
         return em;
     }
 
-    public CheckinAccountFacade() {
-        super(CheckinAccount.class);
+    public TransferTransactionFacade() {
+        super(TransferTransaction.class);
     }
     
 }

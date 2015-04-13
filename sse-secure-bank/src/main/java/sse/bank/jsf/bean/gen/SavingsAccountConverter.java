@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen;
+package sse.bank.jsf.bean.gen;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

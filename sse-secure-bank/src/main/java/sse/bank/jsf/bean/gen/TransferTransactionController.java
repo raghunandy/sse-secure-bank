@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen;
+package sse.bank.jsf.bean.gen;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,8 +17,8 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
-import sse.bank.db.domain.Account;
-import sse.bank.jsf.gen.bean.AccountFacade;
+import sse.bank.db.domain.TransferTransaction;
+import sse.bank.jsf.business.bean.gen.TransferTransactionFacade;
 import sse.bank.jsf.gen.util.JsfUtil;
 import sse.bank.jsf.gen.util.PagingInfo;
 
@@ -26,16 +26,16 @@ import sse.bank.jsf.gen.util.PagingInfo;
  *
  * @author Raghunath
  */
-public class AccountController {
+public class TransferTransactionController {
 
-    public AccountController() {
+    public TransferTransactionController() {
         pagingInfo = new PagingInfo();
-        converter = new AccountConverter();
+        converter = new TransferTransactionConverter();
     }
-    private Account account = null;
-    private List<Account> accountItems = null;
-    private AccountFacade jpaController = null;
-    private AccountConverter converter = null;
+    private TransferTransaction transferTransaction = null;
+    private List<TransferTransaction> transferTransactionItems = null;
+    private TransferTransactionFacade jpaController = null;
+    private TransferTransactionConverter converter = null;
     private PagingInfo pagingInfo = null;
     @Resource
     private UserTransaction utx = null;
@@ -49,41 +49,41 @@ public class AccountController {
         return pagingInfo;
     }
 
-    public AccountFacade getJpaController() {
+    public TransferTransactionFacade getJpaController() {
         if (jpaController == null) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            jpaController = (AccountFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "accountJpa");
+            jpaController = (TransferTransactionFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "transferTransactionJpa");
         }
         return jpaController;
     }
 
-    public SelectItem[] getAccountItemsAvailableSelectMany() {
+    public SelectItem[] getTransferTransactionItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), false);
     }
 
-    public SelectItem[] getAccountItemsAvailableSelectOne() {
+    public SelectItem[] getTransferTransactionItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), true);
     }
 
-    public Account getAccount() {
-        if (account == null) {
-            account = (Account) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentAccount", converter, null);
+    public TransferTransaction getTransferTransaction() {
+        if (transferTransaction == null) {
+            transferTransaction = (TransferTransaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransferTransaction", converter, null);
         }
-        if (account == null) {
-            account = new Account();
+        if (transferTransaction == null) {
+            transferTransaction = new TransferTransaction();
         }
-        return account;
+        return transferTransaction;
     }
 
     public String listSetup() {
         reset(true);
-        return "account_list";
+        return "transferTransaction_list";
     }
 
     public String createSetup() {
         reset(false);
-        account = new Account();
-        return "account_create";
+        transferTransaction = new TransferTransaction();
+        return "transferTransaction_create";
     }
 
     public String create() {
@@ -93,7 +93,7 @@ public class AccountController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().create(account);
+            getJpaController().create(transferTransaction);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -101,7 +101,7 @@ public class AccountController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("Account was successfully created.");
+                JsfUtil.addSuccessMessage("TransferTransaction was successfully created.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -117,31 +117,31 @@ public class AccountController {
     }
 
     public String detailSetup() {
-        return scalarSetup("account_detail");
+        return scalarSetup("transferTransaction_detail");
     }
 
     public String editSetup() {
-        return scalarSetup("account_edit");
+        return scalarSetup("transferTransaction_edit");
     }
 
     private String scalarSetup(String destination) {
         reset(false);
-        account = (Account) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentAccount", converter, null);
-        if (account == null) {
-            String requestAccountString = JsfUtil.getRequestParameter("jsfcrud.currentAccount");
-            JsfUtil.addErrorMessage("The account with id " + requestAccountString + " no longer exists.");
+        transferTransaction = (TransferTransaction) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentTransferTransaction", converter, null);
+        if (transferTransaction == null) {
+            String requestTransferTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
+            JsfUtil.addErrorMessage("The transferTransaction with id " + requestTransferTransactionString + " no longer exists.");
             return relatedOrListOutcome();
         }
         return destination;
     }
 
     public String edit() {
-        String accountString = converter.getAsString(FacesContext.getCurrentInstance(), null, account);
-        String currentAccountString = JsfUtil.getRequestParameter("jsfcrud.currentAccount");
-        if (accountString == null || accountString.length() == 0 || !accountString.equals(currentAccountString)) {
+        String transferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transferTransaction);
+        String currentTransferTransactionString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
+        if (transferTransactionString == null || transferTransactionString.length() == 0 || !transferTransactionString.equals(currentTransferTransactionString)) {
             String outcome = editSetup();
-            if ("account_edit".equals(outcome)) {
-                JsfUtil.addErrorMessage("Could not edit account. Try again.");
+            if ("transferTransaction_edit".equals(outcome)) {
+                JsfUtil.addErrorMessage("Could not edit transferTransaction. Try again.");
             }
             return outcome;
         }
@@ -151,7 +151,7 @@ public class AccountController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().edit(account);
+            getJpaController().edit(transferTransaction);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -159,7 +159,7 @@ public class AccountController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("Account was successfully updated.");
+                JsfUtil.addSuccessMessage("TransferTransaction was successfully updated.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -175,7 +175,7 @@ public class AccountController {
     }
 
     public String remove() {
-        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentAccount");
+        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentTransferTransaction");
         String id = idAsString;
         try {
             utx.begin();
@@ -191,7 +191,7 @@ public class AccountController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("Account was successfully deleted.");
+                JsfUtil.addSuccessMessage("TransferTransaction was successfully deleted.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -214,24 +214,24 @@ public class AccountController {
         return listSetup();
     }
 
-    public List<Account> getAccountItems() {
-        if (accountItems == null) {
+    public List<TransferTransaction> getTransferTransactionItems() {
+        if (transferTransactionItems == null) {
             getPagingInfo();
-            accountItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
+            transferTransactionItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
         }
-        return accountItems;
+        return transferTransactionItems;
     }
 
     public String next() {
         reset(false);
         getPagingInfo().nextPage();
-        return "account_list";
+        return "transferTransaction_list";
     }
 
     public String prev() {
         reset(false);
         getPagingInfo().previousPage();
-        return "account_list";
+        return "transferTransaction_list";
     }
 
     private String relatedControllerOutcome() {
@@ -258,8 +258,8 @@ public class AccountController {
     }
 
     private void reset(boolean resetFirstItem) {
-        account = null;
-        accountItems = null;
+        transferTransaction = null;
+        transferTransactionItems = null;
         pagingInfo.setItemCount(-1);
         if (resetFirstItem) {
             pagingInfo.setFirstItem(0);
@@ -267,10 +267,10 @@ public class AccountController {
     }
 
     public void validateCreate(FacesContext facesContext, UIComponent component, Object value) {
-        Account newAccount = new Account();
-        String newAccountString = converter.getAsString(FacesContext.getCurrentInstance(), null, newAccount);
-        String accountString = converter.getAsString(FacesContext.getCurrentInstance(), null, account);
-        if (!newAccountString.equals(accountString)) {
+        TransferTransaction newTransferTransaction = new TransferTransaction();
+        String newTransferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, newTransferTransaction);
+        String transferTransactionString = converter.getAsString(FacesContext.getCurrentInstance(), null, transferTransaction);
+        if (!newTransferTransactionString.equals(transferTransactionString)) {
             createSetup();
         }
     }

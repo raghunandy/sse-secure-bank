@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.gen;
+package sse.bank.jsf.bean.gen;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.TransferTransaction;
 
 /**
  *
  * @author Raghunath
  */
-public class CustomerConverter implements Converter {
+public class TransferTransactionConverter implements Converter {
 
     public Object getAsObject(FacesContext facesContext, UIComponent component, String string) {
         if (string == null || string.length() == 0) {
             return null;
         }
         String id = string;
-        CustomerController controller = (CustomerController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "customer");
+        TransferTransactionController controller = (TransferTransactionController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "transferTransaction");
         return controller.getJpaController().find(id);
     }
 
@@ -29,11 +29,11 @@ public class CustomerConverter implements Converter {
         if (object == null) {
             return null;
         }
-        if (object instanceof Customer) {
-            Customer o = (Customer) object;
-            return o.getCustomerId() == null ? "" : o.getCustomerId().toString();
+        if (object instanceof TransferTransaction) {
+            TransferTransaction o = (TransferTransaction) object;
+            return o.getTransactionId() == null ? "" : o.getTransactionId().toString();
         } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.domain.Customer");
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.domain.TransferTransaction");
         }
     }
     
