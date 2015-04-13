@@ -7,9 +7,12 @@ package sse.bank.business;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import sse.bank.db.access.bean.gen.AccountFacade;
+import sse.bank.db.access.bean.gen.CustomerFacade;
 import sse.bank.db.domain.Account;
-import sse.bank.jsf.business.bean.gen.AccountFacade;
-import sse.bank.jsf.business.bean.gen.CustomerFacade;
+import sse.bank.db.domain.Customer;
 
 /**
  *
@@ -18,17 +21,24 @@ import sse.bank.jsf.business.bean.gen.CustomerFacade;
 @Stateless
 public class UserAccountBusinessBean {
 
-    
+    @PersistenceContext(unitName = "org.glassfish-samples_sse-secure-bank_war_4.0-SNAPSHOTPU")
+    private EntityManager em;
+
     @EJB
     AccountFacade accountFacade;
-            
+
     @EJB
     CustomerFacade customerFacade;
-    public Account validate(String userId, String password) {
-        
-        customerFacade.
-        
-        
+
+    public Customer validate(String userId, String password) {
+
+        Customer cus = customerFacade.find(userId);
+
+//          Dummy Code for Testing
+        cus = new Customer();
+//           Dummy Code for Testing
+
+        return cus;
     }
-    
+
 }

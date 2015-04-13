@@ -15,17 +15,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>account</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.AccountController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.AccountController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>accountJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.AccountFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.AccountFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.Account</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.AccountConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.AccountConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -57,17 +57,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>checkinAccount</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.CheckinAccountController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.CheckinAccountController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>checkinAccountJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.CheckinAccountFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.CheckinAccountFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.CheckinAccount</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.CheckinAccountConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.CheckinAccountConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -99,17 +99,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>customer</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.CustomerController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.CustomerController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>customerJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.CustomerFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.CustomerFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.Customer</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.CustomerConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.CustomerConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -141,17 +141,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>savingsAccount</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.SavingsAccountController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.SavingsAccountController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>savingsAccountJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.SavingsAccountFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.SavingsAccountFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.SavingsAccount</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.SavingsAccountConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.SavingsAccountConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -183,17 +183,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>transaction</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.TransactionController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.TransactionController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>transactionJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.TransactionFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.TransactionFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.Transaction</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.TransactionConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.TransactionConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -225,17 +225,17 @@
     </navigation-rule>
     <managed-bean>
         <managed-bean-name>transferTransaction</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.bean.gen.TransferTransactionController</managed-bean-class>
+        <managed-bean-class>sse.bank.db.ui.gen.TransferTransactionController</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>transferTransactionJpa</managed-bean-name>
-        <managed-bean-class>sse.bank.jsf.business.bean.gen.TransferTransactionFacade</managed-bean-class>
+        <managed-bean-class>sse.bank.db.access.bean.gen.TransferTransactionFacade</managed-bean-class>
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
         <converter-for-class>sse.bank.db.domain.TransferTransaction</converter-for-class>
-        <converter-class>sse.bank.jsf.bean.gen.TransferTransactionConverter</converter-class>
+        <converter-class>sse.bank.db.ui.gen.TransferTransactionConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -276,4 +276,52 @@
             <to-view-id>/gen-jsf/transferTransaction/Detail.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <application>
+        <el-resolver>sse.bank.jsf.bean.gen.util.JsfCrudELResolver</el-resolver>
+    </application>
+    <managed-bean>
+        <managed-bean-name>transactionLog</managed-bean-name>
+        <managed-bean-class>sse.bank.db.ui.gen.TransactionLogController</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>transactionLogJpa</managed-bean-name>
+        <managed-bean-class>sse.bank.db.access.bean.gen.TransactionLogFacade</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <converter>
+        <converter-for-class>sse.bank.db.domain.TransactionLog</converter-for-class>
+        <converter-class>sse.bank.db.ui.gen.TransactionLogConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>transactionLog_create</from-outcome>
+            <to-view-id>/gen-jsf/transactionLog/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>transactionLog_list</from-outcome>
+            <to-view-id>/gen-jsf/transactionLog/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>transactionLog_edit</from-outcome>
+            <to-view-id>/gen-jsf/transactionLog/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>transactionLog_detail</from-outcome>
+            <to-view-id>/gen-jsf/transactionLog/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <application>
+        <el-resolver>sse.bank.db.ui.gen.util.JsfCrudELResolver</el-resolver>
+    </application>
 </faces-config>

@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -31,7 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Account.findAll", query = "SELECT a FROM Account a"),
-    @NamedQuery(name = "Account.findByCustomerId", query = "SELECT a FROM Account a WHERE a.customerId = :customerId"),
     @NamedQuery(name = "Account.findByAccountNumber", query = "SELECT a FROM Account a WHERE a.accountNumber = :accountNumber"),
     @NamedQuery(name = "Account.findByBalance", query = "SELECT a FROM Account a WHERE a.balance = :balance")})
 public class Account implements Serializable {
@@ -40,9 +41,6 @@ public class Account implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "customerId")
-    private String customerId;
-    @Size(max = 45)
     @Column(name = "accountNumber")
     private String accountNumber;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -50,28 +48,21 @@ public class Account implements Serializable {
     private Float balance;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private CheckinAccount checkinAccount;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromAccount")
-    private Collection<TransferTransaction> transferTransactionCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "toAccount")
+    private Collection<TransferTransaction> transferTransactionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fromAccount")
     private Collection<TransferTransaction> transferTransactionCollection1;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private SavingsAccount savingsAccount;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
-    private Customer customer;
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
+    @ManyToOne(optional = false)
+    private Customer customerId;
 
     public Account() {
     }
 
-    public Account(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public Account(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getAccountNumber() {
@@ -124,18 +115,18 @@ public class Account implements Serializable {
         this.savingsAccount = savingsAccount;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Customer getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Customer customerId) {
+        this.customerId = customerId;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerId != null ? customerId.hashCode() : 0);
+        hash += (accountNumber != null ? accountNumber.hashCode() : 0);
         return hash;
     }
 
@@ -146,7 +137,7 @@ public class Account implements Serializable {
             return false;
         }
         Account other = (Account) object;
-        if ((this.customerId == null && other.customerId != null) || (this.customerId != null && !this.customerId.equals(other.customerId))) {
+        if ((this.accountNumber == null && other.accountNumber != null) || (this.accountNumber != null && !this.accountNumber.equals(other.accountNumber))) {
             return false;
         }
         return true;
@@ -154,7 +145,7 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.domain.Account[ customerId=" + customerId + " ]";
+        return "sse.bank.db.domain.Account[ accountNumber=" + accountNumber + " ]";
     }
     
 }

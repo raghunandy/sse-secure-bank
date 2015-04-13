@@ -76,7 +76,7 @@ public class AuthFilter implements Filter {
                 userAccountUIBean = (UserAccountUIBean) ses.getAttribute("userAccountUIBean");
             }
             if (reqURI.indexOf("/BankHomePage.xhtml") >= 0
-                    || (ses != null && userAccountUIBean != null && userAccountUIBean.getUserAccount() != null)
+                    || (ses != null && userAccountUIBean != null && userAccountUIBean.getCustomer()!= null)
                     || reqURI.indexOf("/public/") >= 0
                     || reqURI.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);

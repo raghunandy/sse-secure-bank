@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CheckinAccount.findAll", query = "SELECT c FROM CheckinAccount c"),
     @NamedQuery(name = "CheckinAccount.findByLastDepositAmount", query = "SELECT c FROM CheckinAccount c WHERE c.lastDepositAmount = :lastDepositAmount"),
-    @NamedQuery(name = "CheckinAccount.findByCustomerId", query = "SELECT c FROM CheckinAccount c WHERE c.customerId = :customerId")})
+    @NamedQuery(name = "CheckinAccount.findByAccountNumber", query = "SELECT c FROM CheckinAccount c WHERE c.accountNumber = :accountNumber")})
 public class CheckinAccount implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -39,17 +39,17 @@ public class CheckinAccount implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "customerId")
-    private String customerId;
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId", insertable = false, updatable = false)
+    @Column(name = "accountNumber")
+    private String accountNumber;
+    @JoinColumn(name = "accountNumber", referencedColumnName = "accountNumber", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Account account;
 
     public CheckinAccount() {
     }
 
-    public CheckinAccount(String customerId) {
-        this.customerId = customerId;
+    public CheckinAccount(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public Float getLastDepositAmount() {
@@ -60,12 +60,12 @@ public class CheckinAccount implements Serializable {
         this.lastDepositAmount = lastDepositAmount;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public Account getAccount() {
@@ -79,7 +79,7 @@ public class CheckinAccount implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerId != null ? customerId.hashCode() : 0);
+        hash += (accountNumber != null ? accountNumber.hashCode() : 0);
         return hash;
     }
 
@@ -90,7 +90,7 @@ public class CheckinAccount implements Serializable {
             return false;
         }
         CheckinAccount other = (CheckinAccount) object;
-        if ((this.customerId == null && other.customerId != null) || (this.customerId != null && !this.customerId.equals(other.customerId))) {
+        if ((this.accountNumber == null && other.accountNumber != null) || (this.accountNumber != null && !this.accountNumber.equals(other.accountNumber))) {
             return false;
         }
         return true;
@@ -98,7 +98,7 @@ public class CheckinAccount implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.domain.CheckinAccount[ customerId=" + customerId + " ]";
+        return "sse.bank.db.domain.CheckinAccount[ accountNumber=" + accountNumber + " ]";
     }
     
 }

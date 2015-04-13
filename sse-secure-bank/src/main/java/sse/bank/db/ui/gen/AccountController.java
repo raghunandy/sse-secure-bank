@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.bean.gen;
+package sse.bank.db.ui.gen;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,10 +17,10 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
+import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.domain.Account;
-import sse.bank.jsf.business.bean.gen.AccountFacade;
-import sse.bank.jsf.gen.util.JsfUtil;
-import sse.bank.jsf.gen.util.PagingInfo;
+import sse.bank.db.ui.gen.util.JsfUtil;
+import sse.bank.db.ui.gen.util.PagingInfo;
 
 /**
  *

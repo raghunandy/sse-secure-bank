@@ -20,6 +20,7 @@ import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.business.util.SessionBeanUtil;
 
 import sse.bank.db.domain.Account;
+import sse.bank.db.domain.Customer;
 
 /**
  *
@@ -43,9 +44,9 @@ public class LoginUIBean {
      
     public String login(){
         System.out.println("Login");
-        Account account=userAccountBean.validate(userId,password);
-        if(account!=null){
-            userAccountUIBean.setUserAccount(account);
+        Customer customer=userAccountBean.validate(userId,password);
+        if(customer!=null){
+            userAccountUIBean.setCustomer(customer);
             return "AccountHomePage";
         }
            return "Error";     

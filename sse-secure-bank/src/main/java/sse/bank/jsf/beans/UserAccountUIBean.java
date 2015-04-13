@@ -19,7 +19,7 @@ import sse.bank.db.domain.Customer;
 @SessionScoped
 public class UserAccountUIBean implements Serializable {
 
-    private Account userAccount;
+    
     private Customer customer;
     
     /**
@@ -28,13 +28,7 @@ public class UserAccountUIBean implements Serializable {
     public UserAccountUIBean() {
     }
 
-    public Account getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(Account userAccount) {
-        this.userAccount = userAccount;
-    }
+   
 
     public Customer getCustomer() {
         return customer;

@@ -32,24 +32,24 @@
                         <h:panelGroup rendered="#{transaction.transaction.transferTransaction != null}">
                             <h:outputText value=" ("/>
                             <h:commandLink value="Show" action="#{transferTransaction.detailSetup}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{transferTransaction.editSetup}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{transferTransaction.destroy}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
@@ -59,18 +59,20 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transaction.remove}" value="Destroy">
-                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{transaction.editSetup}" value="Edit">
-                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{transaction.createSetup}" value="New Transaction" />
                 <br />
                 <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

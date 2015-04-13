@@ -34,16 +34,18 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transaction.edit}" value="Save">
-                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{transaction.detailSetup}" value="Show" immediate="true">
-                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transaction.transaction][transaction.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

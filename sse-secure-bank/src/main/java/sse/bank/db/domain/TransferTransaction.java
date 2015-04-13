@@ -42,15 +42,15 @@ public class TransferTransaction implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "transactionId")
     private String transactionId;
-    @JoinColumn(name = "fromAccount", referencedColumnName = "customerId")
-    @ManyToOne(optional = false)
-    private Account fromAccount;
-    @JoinColumn(name = "toAccount", referencedColumnName = "customerId")
-    @ManyToOne(optional = false)
-    private Account toAccount;
     @JoinColumn(name = "transactionId", referencedColumnName = "transactionId", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Transaction transaction;
+    @JoinColumn(name = "toAccount", referencedColumnName = "accountNumber")
+    @ManyToOne(optional = false)
+    private Account toAccount;
+    @JoinColumn(name = "fromAccount", referencedColumnName = "accountNumber")
+    @ManyToOne(optional = false)
+    private Account fromAccount;
 
     public TransferTransaction() {
     }
@@ -75,12 +75,12 @@ public class TransferTransaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Account getFromAccount() {
-        return fromAccount;
+    public Transaction getTransaction() {
+        return transaction;
     }
 
-    public void setFromAccount(Account fromAccount) {
-        this.fromAccount = fromAccount;
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
     }
 
     public Account getToAccount() {
@@ -91,12 +91,12 @@ public class TransferTransaction implements Serializable {
         this.toAccount = toAccount;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
+    public Account getFromAccount() {
+        return fromAccount;
     }
 
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setFromAccount(Account fromAccount) {
+        this.fromAccount = fromAccount;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class TransferTransaction implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.domain.TransferTransaction[ transactionId=" + transactionId + " ]";
+        return "sse.bank.db.domain.TransferTransaction[ transactionId=" + transactionId + " ]";
     }
     
 }

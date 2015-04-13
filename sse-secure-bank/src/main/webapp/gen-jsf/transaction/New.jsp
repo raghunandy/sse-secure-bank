@@ -39,6 +39,8 @@
                 <br />
                 <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

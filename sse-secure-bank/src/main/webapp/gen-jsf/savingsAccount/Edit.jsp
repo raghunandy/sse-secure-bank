@@ -18,8 +18,8 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="Interest:"/>
                     <h:inputText id="interest" value="#{savingsAccount.savingsAccount.interest}" title="Interest" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:outputText value="#{savingsAccount.savingsAccount.customerId}" title="CustomerId" />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:outputText value="#{savingsAccount.savingsAccount.accountNumber}" title="AccountNumber" />
                     <h:outputText value="Account:"/>
                     <h:selectOneMenu id="account" value="#{savingsAccount.savingsAccount.account}" title="Account" required="true" requiredMessage="The account field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
@@ -28,16 +28,18 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{savingsAccount.edit}" value="Save">
-                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{savingsAccount.detailSetup}" value="Show" immediate="true">
-                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

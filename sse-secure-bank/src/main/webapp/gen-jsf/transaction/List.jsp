@@ -60,15 +60,15 @@
                                 <h:outputText escape="false" value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink value="Show" action="#{transaction.detailSetup}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{transaction.editSetup}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{transaction.remove}">
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                         </h:column>
 
@@ -77,6 +77,8 @@
                 <br />
                 <h:commandLink action="#{transaction.createSetup}" value="New Transaction"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
 
             </h:form>

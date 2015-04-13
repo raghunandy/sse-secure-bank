@@ -25,12 +25,6 @@
                     <h:dataTable value="#{account.accountItems}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="CustomerId"/>
-                            </f:facet>
-                            <h:outputText value="#{item.customerId}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
                                 <h:outputText value="AccountNumber"/>
                             </f:facet>
                             <h:outputText value="#{item.accountNumber}"/>
@@ -55,24 +49,24 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Customer"/>
+                                <h:outputText value="CustomerId"/>
                             </f:facet>
-                            <h:outputText value="#{item.customer}"/>
+                            <h:outputText value="#{item.customerId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText escape="false" value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink value="Show" action="#{account.detailSetup}">
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{account.editSetup}">
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{account.remove}">
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][account.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                         </h:column>
 
@@ -81,6 +75,8 @@
                 <br />
                 <h:commandLink action="#{account.createSetup}" value="New Account"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
 
             </h:form>

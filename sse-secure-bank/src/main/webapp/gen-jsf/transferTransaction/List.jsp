@@ -37,9 +37,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="FromAccount"/>
+                                <h:outputText value="Transaction"/>
                             </f:facet>
-                            <h:outputText value="#{item.fromAccount}"/>
+                            <h:outputText value="#{item.transaction}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -49,24 +49,24 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Transaction"/>
+                                <h:outputText value="FromAccount"/>
                             </f:facet>
-                            <h:outputText value="#{item.transaction}"/>
+                            <h:outputText value="#{item.fromAccount}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText escape="false" value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink value="Show" action="#{transferTransaction.detailSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{transferTransaction.editSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{transferTransaction.remove}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                         </h:column>
 
@@ -75,6 +75,8 @@
                 <br />
                 <h:commandLink action="#{transferTransaction.createSetup}" value="New TransferTransaction"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
 
             </h:form>

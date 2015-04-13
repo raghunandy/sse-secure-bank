@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.bean.gen;
+package sse.bank.db.ui.gen;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.CheckinAccount;
 
 /**
  *
  * @author Raghunath
  */
-public class CustomerConverter implements Converter {
+public class CheckinAccountConverter implements Converter {
 
     public Object getAsObject(FacesContext facesContext, UIComponent component, String string) {
         if (string == null || string.length() == 0) {
             return null;
         }
         String id = string;
-        CustomerController controller = (CustomerController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "customer");
+        CheckinAccountController controller = (CheckinAccountController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "checkinAccount");
         return controller.getJpaController().find(id);
     }
 
@@ -29,11 +29,11 @@ public class CustomerConverter implements Converter {
         if (object == null) {
             return null;
         }
-        if (object instanceof Customer) {
-            Customer o = (Customer) object;
-            return o.getCustomerId() == null ? "" : o.getCustomerId().toString();
+        if (object instanceof CheckinAccount) {
+            CheckinAccount o = (CheckinAccount) object;
+            return o.getAccountNumber() == null ? "" : o.getAccountNumber().toString();
         } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.domain.Customer");
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.db.domain.CheckinAccount");
         }
     }
     

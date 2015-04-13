@@ -19,8 +19,8 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="Interest:"/>
                     <h:inputText id="interest" value="#{savingsAccount.savingsAccount.interest}" title="Interest" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:inputText id="customerId" value="#{savingsAccount.savingsAccount.customerId}" title="CustomerId" required="true" requiredMessage="The customerId field is required." />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:inputText id="accountNumber" value="#{savingsAccount.savingsAccount.accountNumber}" title="AccountNumber" required="true" requiredMessage="The accountNumber field is required." />
                     <h:outputText value="Account:"/>
                     <h:selectOneMenu id="account" value="#{savingsAccount.savingsAccount.account}" title="Account" required="true" requiredMessage="The account field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
@@ -33,6 +33,8 @@
                 <br />
                 <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

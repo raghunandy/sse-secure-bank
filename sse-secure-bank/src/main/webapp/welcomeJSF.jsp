@@ -13,13 +13,17 @@
     <html>
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
-            <title>SSE-Secure-Bank - CRUD Window</title>
+            <title>JSP Page</title>
 <link rel="stylesheet" type="text/css" href="/sse-secure-bank/faces/jsfcrud.css" />
         </head>
         <body>
-            <h1><h:outputText value="SSE-Secure-Bank - CRUD Window"/></h1>
+            <h1><h:outputText value="JavaServer Faces"/></h1>
                 <h:form>
                     <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transactionLog.listSetup}" value="Show All TransactionLog Items"/>
                 </h:form>
 
                 <h:form>

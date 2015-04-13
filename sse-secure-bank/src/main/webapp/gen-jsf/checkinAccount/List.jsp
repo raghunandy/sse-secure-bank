@@ -31,9 +31,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="CustomerId"/>
+                                <h:outputText value="AccountNumber"/>
                             </f:facet>
-                            <h:outputText value="#{item.customerId}"/>
+                            <h:outputText value="#{item.accountNumber}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -46,15 +46,15 @@
                                 <h:outputText escape="false" value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink value="Show" action="#{checkinAccount.detailSetup}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{checkinAccount.editSetup}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{checkinAccount.remove}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][checkinAccount.converter].jsfcrud_invoke}"/>
                             </h:commandLink>
                         </h:column>
 
@@ -63,6 +63,8 @@
                 <br />
                 <h:commandLink action="#{checkinAccount.createSetup}" value="New CheckinAccount"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
 
             </h:form>

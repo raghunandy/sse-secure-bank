@@ -19,8 +19,8 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="LastDepositAmount:"/>
                     <h:inputText id="lastDepositAmount" value="#{checkinAccount.checkinAccount.lastDepositAmount}" title="LastDepositAmount" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:inputText id="customerId" value="#{checkinAccount.checkinAccount.customerId}" title="CustomerId" required="true" requiredMessage="The customerId field is required." />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:inputText id="accountNumber" value="#{checkinAccount.checkinAccount.accountNumber}" title="AccountNumber" required="true" requiredMessage="The accountNumber field is required." />
                     <h:outputText value="Account:"/>
                     <h:selectOneMenu id="account" value="#{checkinAccount.checkinAccount.account}" title="Account" required="true" requiredMessage="The account field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
@@ -33,6 +33,8 @@
                 <br />
                 <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

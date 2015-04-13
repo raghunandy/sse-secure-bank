@@ -18,32 +18,32 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="Interest:"/>
                     <h:outputText value="#{savingsAccount.savingsAccount.interest}" title="Interest" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:outputText value="#{savingsAccount.savingsAccount.customerId}" title="CustomerId" />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:outputText value="#{savingsAccount.savingsAccount.accountNumber}" title="AccountNumber" />
                     <h:outputText value="Account:"/>
                     <h:panelGroup>
                         <h:outputText value="#{savingsAccount.savingsAccount.account}"/>
                         <h:panelGroup rendered="#{savingsAccount.savingsAccount.account != null}">
                             <h:outputText value=" ("/>
                             <h:commandLink value="Show" action="#{account.detailSetup}">
-                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="savingsAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.SavingsAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.SavingsAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{account.editSetup}">
-                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="savingsAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.SavingsAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.SavingsAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{account.destroy}">
-                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="savingsAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.SavingsAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.SavingsAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
@@ -53,18 +53,20 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{savingsAccount.remove}" value="Destroy">
-                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{savingsAccount.editSetup}" value="Edit">
-                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentSavingsAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][savingsAccount.savingsAccount][savingsAccount.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{savingsAccount.createSetup}" value="New SavingsAccount" />
                 <br />
                 <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

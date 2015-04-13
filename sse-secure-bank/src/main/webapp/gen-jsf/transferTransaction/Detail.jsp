@@ -20,30 +20,30 @@
                     <h:outputText value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:outputText value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" />
-                    <h:outputText value="FromAccount:"/>
+                    <h:outputText value="Transaction:"/>
                     <h:panelGroup>
-                        <h:outputText value="#{transferTransaction.transferTransaction.fromAccount}"/>
-                        <h:panelGroup rendered="#{transferTransaction.transferTransaction.fromAccount != null}">
+                        <h:outputText value="#{transferTransaction.transferTransaction.transaction}"/>
+                        <h:panelGroup rendered="#{transferTransaction.transferTransaction.transaction != null}">
                             <h:outputText value=" ("/>
-                            <h:commandLink value="Show" action="#{account.detailSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Show" action="#{transaction.detailSetup}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink value="Edit" action="#{account.editSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Edit" action="#{transaction.editSetup}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink value="Destroy" action="#{account.destroy}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Destroy" action="#{transaction.destroy}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
@@ -54,52 +54,52 @@
                         <h:panelGroup rendered="#{transferTransaction.transferTransaction.toAccount != null}">
                             <h:outputText value=" ("/>
                             <h:commandLink value="Show" action="#{account.detailSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{account.editSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{account.destroy}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.toAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
                     </h:panelGroup>
-                    <h:outputText value="Transaction:"/>
+                    <h:outputText value="FromAccount:"/>
                     <h:panelGroup>
-                        <h:outputText value="#{transferTransaction.transferTransaction.transaction}"/>
-                        <h:panelGroup rendered="#{transferTransaction.transferTransaction.transaction != null}">
+                        <h:outputText value="#{transferTransaction.transferTransaction.fromAccount}"/>
+                        <h:panelGroup rendered="#{transferTransaction.transferTransaction.fromAccount != null}">
                             <h:outputText value=" ("/>
-                            <h:commandLink value="Show" action="#{transaction.detailSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Show" action="#{account.detailSetup}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink value="Edit" action="#{transaction.editSetup}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Edit" action="#{account.editSetup}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
-                            <h:commandLink value="Destroy" action="#{transaction.destroy}">
-                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.transaction][transaction.converter].jsfcrud_invoke}"/>
+                            <h:commandLink value="Destroy" action="#{account.destroy}">
+                                <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction.fromAccount][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="transferTransaction"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.TransferTransactionController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.TransferTransactionController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
@@ -109,18 +109,20 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transferTransaction.remove}" value="Destroy">
-                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{transferTransaction.editSetup}" value="Edit">
-                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{transferTransaction.createSetup}" value="New TransferTransaction" />
                 <br />
                 <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

@@ -20,32 +20,34 @@
                     <h:inputText id="amount" value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:outputText value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" />
-                    <h:outputText value="FromAccount:"/>
-                    <h:selectOneMenu id="fromAccount" value="#{transferTransaction.transferTransaction.fromAccount}" title="FromAccount" required="true" requiredMessage="The fromAccount field is required." >
-                        <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
+                    <h:outputText value="Transaction:"/>
+                    <h:selectOneMenu id="transaction" value="#{transferTransaction.transferTransaction.transaction}" title="Transaction" required="true" requiredMessage="The transaction field is required." >
+                        <f:selectItems value="#{transaction.transactionItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputText value="ToAccount:"/>
                     <h:selectOneMenu id="toAccount" value="#{transferTransaction.transferTransaction.toAccount}" title="ToAccount" required="true" requiredMessage="The toAccount field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
-                    <h:outputText value="Transaction:"/>
-                    <h:selectOneMenu id="transaction" value="#{transferTransaction.transferTransaction.transaction}" title="Transaction" required="true" requiredMessage="The transaction field is required." >
-                        <f:selectItems value="#{transaction.transactionItemsAvailableSelectOne}"/>
+                    <h:outputText value="FromAccount:"/>
+                    <h:selectOneMenu id="fromAccount" value="#{transferTransaction.transferTransaction.fromAccount}" title="FromAccount" required="true" requiredMessage="The fromAccount field is required." >
+                        <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
 
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{transferTransaction.edit}" value="Save">
-                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{transferTransaction.detailSetup}" value="Show" immediate="true">
-                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][transferTransaction.transferTransaction][transferTransaction.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

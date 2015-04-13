@@ -16,36 +16,38 @@
             <h1>Editing Customer</h1>
             <h:form>
                 <h:panelGrid columns="2">
+                    <h:outputText value="CustomerId:"/>
+                    <h:outputText value="#{customer.customer.customerId}" title="CustomerId" />
                     <h:outputText value="CustomerName:"/>
                     <h:inputText id="customerName" value="#{customer.customer.customerName}" title="CustomerName" />
                     <h:outputText value="Password:"/>
                     <h:inputText id="password" value="#{customer.customer.password}" title="Password" />
                     <h:outputText value="Address:"/>
                     <h:inputText id="address" value="#{customer.customer.address}" title="Address" />
-                    <h:outputText value="Phine:"/>
-                    <h:inputText id="phine" value="#{customer.customer.phine}" title="Phine" />
+                    <h:outputText value="Phone:"/>
+                    <h:inputText id="phone" value="#{customer.customer.phone}" title="Phone" />
                     <h:outputText value="Email:"/>
                     <h:inputText id="email" value="#{customer.customer.email}" title="Email" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:outputText value="#{customer.customer.customerId}" title="CustomerId" />
-                    <h:outputText value="Account:"/>
-                    <h:selectOneMenu id="account" value="#{customer.customer.account}" title="Account" required="true" requiredMessage="The account field is required." >
-                        <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    <h:outputText value="AccountCollection:"/>
+                    <h:selectManyListbox id="accountCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].accountCollection}" title="AccountCollection" size="6" converter="#{account.converter}" >
+                        <f:selectItems value="#{account.accountItemsAvailableSelectMany}"/>
+                    </h:selectManyListbox>
 
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{customer.edit}" value="Save">
-                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{customer.detailSetup}" value="Show" immediate="true">
-                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

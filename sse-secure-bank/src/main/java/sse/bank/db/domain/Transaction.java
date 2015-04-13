@@ -123,7 +123,7 @@ public class Transaction implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.domain.Transaction[ transactionId=" + transactionId + " ]";
+        return "sse.bank.db.domain.Transaction[ transactionId=" + transactionId + " ]";
     }
     
 }

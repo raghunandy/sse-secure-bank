@@ -18,32 +18,32 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="LastDepositAmount:"/>
                     <h:outputText value="#{checkinAccount.checkinAccount.lastDepositAmount}" title="LastDepositAmount" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:outputText value="#{checkinAccount.checkinAccount.customerId}" title="CustomerId" />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:outputText value="#{checkinAccount.checkinAccount.accountNumber}" title="AccountNumber" />
                     <h:outputText value="Account:"/>
                     <h:panelGroup>
                         <h:outputText value="#{checkinAccount.checkinAccount.account}"/>
                         <h:panelGroup rendered="#{checkinAccount.checkinAccount.account != null}">
                             <h:outputText value=" ("/>
                             <h:commandLink value="Show" action="#{account.detailSetup}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="checkinAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.CheckinAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CheckinAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Edit" action="#{account.editSetup}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="checkinAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.CheckinAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CheckinAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" "/>
                             <h:commandLink value="Destroy" action="#{account.destroy}">
-                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
-                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount.account][account.converter].jsfcrud_invoke}"/>
                                 <f:param name="jsfcrud.relatedController" value="checkinAccount"/>
-                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.jsf.gen.CheckinAccountController"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CheckinAccountController"/>
                             </h:commandLink>
                             <h:outputText value=" )"/>
                         </h:panelGroup>
@@ -53,18 +53,20 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{checkinAccount.remove}" value="Destroy">
-                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{checkinAccount.editSetup}" value="Edit">
-                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}" />
+                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}" />
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{checkinAccount.createSetup}" value="New CheckinAccount" />
                 <br />
                 <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

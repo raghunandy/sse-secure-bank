@@ -18,8 +18,8 @@
                 <h:panelGrid columns="2">
                     <h:outputText value="LastDepositAmount:"/>
                     <h:inputText id="lastDepositAmount" value="#{checkinAccount.checkinAccount.lastDepositAmount}" title="LastDepositAmount" />
-                    <h:outputText value="CustomerId:"/>
-                    <h:outputText value="#{checkinAccount.checkinAccount.customerId}" title="CustomerId" />
+                    <h:outputText value="AccountNumber:"/>
+                    <h:outputText value="#{checkinAccount.checkinAccount.accountNumber}" title="AccountNumber" />
                     <h:outputText value="Account:"/>
                     <h:selectOneMenu id="account" value="#{checkinAccount.checkinAccount.account}" title="Account" required="true" requiredMessage="The account field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
@@ -28,16 +28,18 @@
                 </h:panelGrid>
                 <br />
                 <h:commandLink action="#{checkinAccount.edit}" value="Save">
-                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <br />
                 <h:commandLink action="#{checkinAccount.detailSetup}" value="Show" immediate="true">
-                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.jsf.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
+                    <f:param name="jsfcrud.currentCheckinAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][checkinAccount.checkinAccount][checkinAccount.converter].jsfcrud_invoke}"/>
                 </h:commandLink>
                 <br />
                 <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items" immediate="true"/>
                 <br />
+                <br />
+                <h:commandLink value="Index" action="welcome" immediate="true" />
 
             </h:form>
         </body>

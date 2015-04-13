@@ -6,18 +6,20 @@
 package sse.bank.db.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,14 +30,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
+    @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId"),
     @NamedQuery(name = "Customer.findByCustomerName", query = "SELECT c FROM Customer c WHERE c.customerName = :customerName"),
     @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password"),
     @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address"),
-    @NamedQuery(name = "Customer.findByPhine", query = "SELECT c FROM Customer c WHERE c.phine = :phine"),
-    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
-    @NamedQuery(name = "Customer.findByCustomerId", query = "SELECT c FROM Customer c WHERE c.customerId = :customerId")})
+    @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone"),
+    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "customerId")
+    private String customerId;
     @Size(max = 99)
     @Column(name = "customerName")
     private String customerName;
@@ -45,27 +53,29 @@ public class Customer implements Serializable {
     @Size(max = 445)
     @Column(name = "address")
     private String address;
+    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
     @Size(max = 15)
-    @Column(name = "phine")
-    private String phine;
+    @Column(name = "phone")
+    private String phone;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 245)
     @Column(name = "email")
     private String email;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "customerId")
-    private String customerId;
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Account account;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private Collection<Account> accountCollection;
 
     public Customer() {
     }
 
     public Customer(String customerId) {
+        this.customerId = customerId;
+    }
+
+    public String getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -93,12 +103,12 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    public String getPhine() {
-        return phine;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhine(String phine) {
-        this.phine = phine;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -109,20 +119,13 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    @XmlTransient
+    public Collection<Account> getAccountCollection() {
+        return accountCollection;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
+    public void setAccountCollection(Collection<Account> accountCollection) {
+        this.accountCollection = accountCollection;
     }
 
     @Override
@@ -147,7 +150,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.domain.Customer[ customerId=" + customerId + " ]";
+        return "sse.bank.db.domain.Customer[ customerId=" + customerId + " ]";
     }
     
 }
