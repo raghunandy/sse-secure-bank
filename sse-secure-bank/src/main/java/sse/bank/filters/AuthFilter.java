@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
+import sse.bank.jsf.beans.UserAccountUIBean;
 
 /**
  *
@@ -41,25 +42,6 @@ public class AuthFilter implements Filter {
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-
-    public AuthFilter() {
-    }
-
-    private void doBeforeProcessing(RequestWrapper request, ResponseWrapper response)
-            throws IOException, ServletException {
-        if (debug) {
-            log("AuthFilter:DoBeforeProcessing");
-        }
-    }
-
-    private void doAfterProcessing(RequestWrapper request, ResponseWrapper response)
-            throws IOException, ServletException {
-        if (debug) {
-            log("AuthFilter:DoAfterProcessing");
-        }
-
-	
-    }
 
     /**
      *
@@ -78,11 +60,8 @@ public class AuthFilter implements Filter {
             log("AuthFilter:doFilter()");
         }
 
-       
         RequestWrapper wrappedRequest = new RequestWrapper((HttpServletRequest) request);
         ResponseWrapper wrappedResponse = new ResponseWrapper((HttpServletResponse) response);
-
-        doBeforeProcessing(wrappedRequest, wrappedResponse);
 
         Throwable problem = null;
 
@@ -90,10 +69,14 @@ public class AuthFilter implements Filter {
         //  allow user to proccede if url is login.xhtml or user logged in or user is accessing any page in //public folder
         String reqURI = wrappedRequest.getRequestURI();
 
+        UserAccountUIBean userAccountUIBean = null;
         try {
 
+            if (ses != null) {
+                userAccountUIBean = (UserAccountUIBean) ses.getAttribute("userAccountUIBean");
+            }
             if (reqURI.indexOf("/BankHomePage.xhtml") >= 0
-                    || (ses != null && ses.getAttribute("username") != null)
+                    || (ses != null && userAccountUIBean != null && userAccountUIBean.getUserAccount() != null)
                     || reqURI.indexOf("/public/") >= 0
                     || reqURI.contains("javax.faces.resource")) {
                 chain.doFilter(request, response);
@@ -101,7 +84,7 @@ public class AuthFilter implements Filter {
             {
                 wrappedResponse.sendRedirect(wrappedRequest.getContextPath() + "/BankHomePage.xhtml");  // Anonymous user. Redirect to login page
             }
-            
+
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
@@ -110,8 +93,6 @@ public class AuthFilter implements Filter {
             problem = t;
             t.printStackTrace();
         }
-
-        doAfterProcessing(wrappedRequest, wrappedResponse);
 
         // If there was a problem, we want to rethrow it if it is
         // a known type, otherwise log it.
