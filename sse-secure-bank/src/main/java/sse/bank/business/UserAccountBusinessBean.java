@@ -5,8 +5,11 @@
  */
 package sse.bank.business;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import sse.bank.db.domain.Account;
+import sse.bank.jsf.business.bean.gen.AccountFacade;
+import sse.bank.jsf.business.bean.gen.CustomerFacade;
 
 /**
  *
@@ -15,8 +18,17 @@ import sse.bank.db.domain.Account;
 @Stateless
 public class UserAccountBusinessBean {
 
+    
+    @EJB
+    AccountFacade accountFacade;
+            
+    @EJB
+    CustomerFacade customerFacade;
     public Account validate(String userId, String password) {
-        return new Account();
+        
+        customerFacade.
+        
+        
     }
     
 }
