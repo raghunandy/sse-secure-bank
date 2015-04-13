@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.business;
+package sse.bank.jsf.bean;
 
 import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -18,11 +19,31 @@ import javax.faces.bean.SessionScoped;
  */
 @Named(value = "loginBean")
 @ManagedBean
-public class LoginService {
+@RequestScoped
+public class LoginBean {
     
-   
+     private String userId;
+     private String password;
     
     public void login(){
         
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
 }
