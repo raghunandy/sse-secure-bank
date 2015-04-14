@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sse.bank.jsf.beans;
+package sse.bank.ui.beans;
 
 import javax.ejb.EJB;
 import javax.ejb.SessionBean;
@@ -11,10 +11,12 @@ import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.business.util.SessionBeanUtil;
@@ -30,26 +32,27 @@ import sse.bank.db.domain.Customer;
 @ManagedBean
 @RequestScoped
 public class LoginUIBean {
-    
-     private String userId;
-     private String password;
-     
-   
-    @ManagedProperty(value="#{userAccountUIBean}")
+
+    private String userId;
+    private String password;
+
+    @ManagedProperty(value = "#{userAccountUIBean}")
     private UserAccountUIBean userAccountUIBean;
 
-     
-     @EJB
-     UserAccountBusinessBean userAccountBean;
-     
-    public String login(){
+    @EJB
+    UserAccountBusinessBean userAccountBean;
+
+    public String login() {
         System.out.println("Login");
-        Customer customer=userAccountBean.validate(userId,password);
-        if(customer!=null){
+        Customer customer = userAccountBean.validate(userId, password);
+        if (customer != null) {
             userAccountUIBean.setCustomer(customer);
             return "AccountHomePage";
         }
-           return "Error";     
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Wrong User Credentials", "Please check username or password");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+
+        return null;
     }
 
     public void setUserId(String userId) {
@@ -60,7 +63,6 @@ public class LoginUIBean {
         return userId;
     }
 
-   
     public String getPassword() {
         return password;
     }
@@ -77,5 +79,4 @@ public class LoginUIBean {
         this.userAccountUIBean = userAccountUIBean;
     }
 
-   
 }
