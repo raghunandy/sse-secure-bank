@@ -50,6 +50,12 @@ public class UserAccountUIBean implements Serializable {
     }
 
     
-  
+   public String switchToTransferPage2() {
+        System.out.println("Switch To Transfer Page");
+
+        setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.FundTransferPage);
+
+        return "AccountCommonPage";
+    }
 
 }

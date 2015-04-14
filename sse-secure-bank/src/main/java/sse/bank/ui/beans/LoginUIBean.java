@@ -58,13 +58,7 @@ public class LoginUIBean {
         return null;
     }
 
-    public String switchToTransferPage2() {
-        System.out.println("Switch To Transfer Page");
-
-        userAccountUIBean.setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.FundTransferPage);
-
-        return "AccountCommonPage";
-    }
+   
 
     public String logout() {
         System.out.println("Switch To Transfer Page");
