@@ -8,6 +8,10 @@ package sse.bank.ui.beans;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.faces.bean.ManagedProperty;
 import sse.bank.db.domain.Account;
 import sse.bank.db.domain.Customer;
 
@@ -19,16 +23,15 @@ import sse.bank.db.domain.Customer;
 @SessionScoped
 public class UserAccountUIBean implements Serializable {
 
-    
     private Customer customer;
-    
-    /**
-     * Creates a new instance of UserAccountUIBean
-     */
-    public UserAccountUIBean() {
-    }
 
-   
+    
+    
+    private  PAGE_SWITCHES USER_SWITCHED_PAGE;
+    
+    public static enum PAGE_SWITCHES {
+        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage;
+    };
 
     public Customer getCustomer() {
         return customer;
@@ -37,7 +40,16 @@ public class UserAccountUIBean implements Serializable {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public PAGE_SWITCHES getUSER_SWITCHED_PAGE() {
+        return USER_SWITCHED_PAGE;
+    }
+
+    public void setUSER_SWITCHED_PAGE(PAGE_SWITCHES USER_SWITCHED_PAGE) {
+        this.USER_SWITCHED_PAGE = USER_SWITCHED_PAGE;
+    }
+
     
-    
-    
+  
+
 }

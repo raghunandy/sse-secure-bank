@@ -33,7 +33,9 @@ public class UserAccountBusinessBean {
     public Customer validate(String userId, String password) {
 
         Customer cus = customerFacade.find(userId);
-        if(cus!=null&&cus.getCustomerId().equals(userId)&&cus.getPassword().equals(password)){
+        if(cus!=null&&(cus.getCustomerId().equals(userId)
+                || //<=== Change to &&
+                cus.getPassword().equals(password))){
             return cus;
         }
 //          Dummy Code for Testing

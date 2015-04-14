@@ -14,6 +14,8 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletResponseWrapper;
 import javax.servlet.http.HttpSession;
+import sse.bank.db.domain.Customer;
 import sse.bank.ui.beans.UserAccountUIBean;
 
 /**
@@ -43,15 +46,9 @@ public class AuthFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    /**
-     *
-     * @param request The servlet request we are processing
-     * @param response The servlet response we are creating
-     * @param chain The filter chain we are processing
-     *
-     * @exception IOException if an input/output error occurs
-     * @exception ServletException if a servlet error occurs
-     */
+    @Inject
+    private UserAccountUIBean userAccountUIBean;
+
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -65,31 +62,24 @@ public class AuthFilter implements Filter {
 
         Throwable problem = null;
 
-        HttpSession ses = wrappedRequest.getSession(false);
-        //  allow user to proccede if url is login.xhtml or user logged in or user is accessing any page in //public folder
-        String reqURI = wrappedRequest.getRequestURI();
+        Customer customerInTheSession = null;
+        if (userAccountUIBean != null) {
+            customerInTheSession = userAccountUIBean.getCustomer();
+        }
 
-        UserAccountUIBean userAccountUIBean = null;
         try {
-
-            if (ses != null) {
-                userAccountUIBean = (UserAccountUIBean) ses.getAttribute("userAccountUIBean");
-            }
-            if (reqURI.indexOf("/BankHomePage.xhtml") >= 0
-                    || (ses != null && userAccountUIBean != null && userAccountUIBean.getCustomer()!= null)
-                    || reqURI.indexOf("/public/") >= 0
-                    || reqURI.contains("javax.faces.resource")) {
-                chain.doFilter(request, response);
-            } else // user didn't log in but asking for a page that is not allowed so take user to login page
+            if(customerInTheSession!=null){
+                 chain.doFilter(request, response);
+            }    
+             else // user didn't log in but asking for a page that is not allowed so take user to login page
             {
-                wrappedResponse.sendRedirect(wrappedRequest.getContextPath() + "/BankHomePage.xhtml");  // Anonymous user. Redirect to login page
+                wrappedResponse.sendRedirect(wrappedRequest.getContextPath() + "/faces/BankHomePage.xhtml");  // Anonymous user. Redirect to login page
             }
-
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
             // rethrow the problem after that.
-            System.out.println("URI:" + reqURI);
+
             problem = t;
             t.printStackTrace();
         }

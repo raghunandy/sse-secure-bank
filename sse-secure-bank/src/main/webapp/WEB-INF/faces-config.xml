@@ -261,8 +261,8 @@
      <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
-            <from-outcome>AccountHomePage</from-outcome>
-            <to-view-id>/banking/AccountHomePage.xhtml</to-view-id>
+            <from-outcome>AccountCommonPage</from-outcome>
+            <to-view-id>/banking/AccountCommonPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
