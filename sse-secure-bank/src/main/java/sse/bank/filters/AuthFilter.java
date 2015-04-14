@@ -66,9 +66,14 @@ public class AuthFilter implements Filter {
         if (userAccountUIBean != null) {
             customerInTheSession = userAccountUIBean.getCustomer();
         }
+        
 
         try {
-            if(customerInTheSession!=null){
+            if(customerInTheSession!=null
+                    ||
+                    wrappedRequest.getRequestURI().contains("/faces/BankHomePage.xhtml")
+                    ||
+                       wrappedRequest.getRequestURI().contains("javax.faces.resource")){
                  chain.doFilter(request, response);
             }    
              else // user didn't log in but asking for a page that is not allowed so take user to login page
