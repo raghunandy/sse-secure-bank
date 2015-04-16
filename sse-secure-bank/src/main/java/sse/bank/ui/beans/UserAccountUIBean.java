@@ -11,7 +11,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
+import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.db.domain.Account;
 import sse.bank.db.domain.Customer;
 
@@ -23,14 +25,16 @@ import sse.bank.db.domain.Customer;
 @SessionScoped
 public class UserAccountUIBean implements Serializable {
 
-    private Customer customer;
+    protected Customer customer;
 
-    
-    
-    private  PAGE_SWITCHES USER_SWITCHED_PAGE;
-    
+    @EJB
+    UserAccountBusinessBean userAccountBean;
+
+    private PAGE_SWITCHES USER_SWITCHED_PAGE;
+
     public static enum PAGE_SWITCHES {
-        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage;
+
+        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage, ResetPasswordPage;
     };
 
     public Customer getCustomer() {
@@ -49,13 +53,15 @@ public class UserAccountUIBean implements Serializable {
         this.USER_SWITCHED_PAGE = USER_SWITCHED_PAGE;
     }
 
-    
-   public String switchToTransferPage2() {
+    public String switchToTransferPage2() {
         System.out.println("Switch To Transfer Page");
 
         setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.FundTransferPage);
 
         return "AccountCommonPage";
     }
+
+   
+    
 
 }

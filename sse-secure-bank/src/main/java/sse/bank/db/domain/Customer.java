@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,7 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password"),
     @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address"),
     @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone"),
-    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email")})
+    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
+    @NamedQuery(name = "Customer.findByResetPasswordToken", query = "SELECT c FROM Customer c WHERE c.resetPasswordToken = :resetPasswordToken")})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,6 +63,13 @@ public class Customer implements Serializable {
     @Size(max = 245)
     @Column(name = "email")
     private String email;
+    @Size(max = 45)
+    @Column(name = "resetPasswordToken")
+    private String resetPasswordToken;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private Collection<OneTimePassword> oneTimePasswordCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    private Collection<CustomerSecurityQuestions> customerSecurityQuestionsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Collection<Account> accountCollection;
 
@@ -117,6 +126,32 @@ public class Customer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getResetPasswordToken() {
+        return resetPasswordToken;
+    }
+
+    public void setResetPasswordToken(String resetPasswordToken) {
+        this.resetPasswordToken = resetPasswordToken;
+    }
+
+    @XmlTransient
+    public Collection<OneTimePassword> getOneTimePasswordCollection() {
+        return oneTimePasswordCollection;
+    }
+
+    public void setOneTimePasswordCollection(Collection<OneTimePassword> oneTimePasswordCollection) {
+        this.oneTimePasswordCollection = oneTimePasswordCollection;
+    }
+
+    @XmlTransient
+    public Collection<CustomerSecurityQuestions> getCustomerSecurityQuestionsCollection() {
+        return customerSecurityQuestionsCollection;
+    }
+
+    public void setCustomerSecurityQuestionsCollection(Collection<CustomerSecurityQuestions> customerSecurityQuestionsCollection) {
+        this.customerSecurityQuestionsCollection = customerSecurityQuestionsCollection;
     }
 
     @XmlTransient

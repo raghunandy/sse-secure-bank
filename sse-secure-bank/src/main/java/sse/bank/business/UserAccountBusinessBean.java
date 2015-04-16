@@ -5,13 +5,17 @@
  */
 package sse.bank.business;
 
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.apache.commons.codec.digest.DigestUtils;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.access.bean.gen.CustomerFacade;
-import sse.bank.db.domain.Account;
 import sse.bank.db.domain.Customer;
 
 /**
@@ -30,17 +34,54 @@ public class UserAccountBusinessBean {
     @EJB
     CustomerFacade customerFacade;
 
+   
+
+    /**
+     * 
+     * @param userId
+     * @param password
+     * @return 
+     */
     public Customer validate(String userId, String password) {
 
         Customer cus = customerFacade.find(userId);
-        if(cus!=null&&(cus.getCustomerId().equals(userId)
-                || //<=== Change to &&
-                cus.getPassword().equals(password))){
-            return cus;
-        }
+        try {
+            if (cus != null && (cus.getCustomerId().equals(userId)
+                    || //<=== Change to &&
+                    cus.getPassword().equals(hashAndSetPassword(password)))) {
+                return cus;
+            }
 //          Dummy Code for Testing
-        
+        } catch (Exception ex) {
+            Logger.getLogger(UserAccountBusinessBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return null;
     }
 
+    public String hashAndSetPassword(String plainPassword) throws Exception {
+        if (plainPassword == null) {
+            throw new Exception("Password not specified");
+        }
+        if (plainPassword.equals("")) {
+            throw new Exception("Password blank");
+        }
+        String hashedPassword = DigestUtils.md5Hex(plainPassword);
+        return hashedPassword;
+    }
+
+    
+    public boolean validateSecurityQuesionts(Customer customer,Map<String,String> securityQuestionIdAndUserAnswer){
+        
+        return true;
+    }
+    
+    @Asynchronous
+    public void sendResetPassword(Customer customer){
+        
+    }
+    public void sendEmail(Customer customer,String text){
+        
+    }
+    
 }
