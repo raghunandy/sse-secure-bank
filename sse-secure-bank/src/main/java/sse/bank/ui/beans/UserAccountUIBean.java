@@ -13,7 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import sse.bank.business.UserAccountBusinessBean;
+import sse.bank.business.util.PageNameContext;
+import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
 import sse.bank.db.domain.Account;
 import sse.bank.db.domain.Customer;
 
@@ -30,12 +33,10 @@ public class UserAccountUIBean implements Serializable {
     @EJB
     UserAccountBusinessBean userAccountBean;
 
-    private PAGE_SWITCHES USER_SWITCHED_PAGE;
-
-    public static enum PAGE_SWITCHES {
-
-        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage, ResetPasswordPage;
-    };
+    
+    @Inject
+    PageNameContext pageNameContext;
+   
 
     public Customer getCustomer() {
         return customer;
@@ -45,18 +46,12 @@ public class UserAccountUIBean implements Serializable {
         this.customer = customer;
     }
 
-    public PAGE_SWITCHES getUSER_SWITCHED_PAGE() {
-        return USER_SWITCHED_PAGE;
-    }
-
-    public void setUSER_SWITCHED_PAGE(PAGE_SWITCHES USER_SWITCHED_PAGE) {
-        this.USER_SWITCHED_PAGE = USER_SWITCHED_PAGE;
-    }
+   
 
     public String switchToTransferPage2() {
         System.out.println("Switch To Transfer Page");
 
-        setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.FundTransferPage);
+        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.FundTransferPage);
 
         return "AccountCommonPage";
     }

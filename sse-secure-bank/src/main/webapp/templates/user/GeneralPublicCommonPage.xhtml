@@ -6,14 +6,11 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:include src="templates/default/metaHeader.xhtml" />
+    <ui:include src="../default/metaHeader.xhtml" />
 
     <h:body>
-        <ui:include src="templates/default/header.xhtml" />
-          <h:form>
-               <h:commandLink value="Login" 
-                              action="#{pageNameContext.loadHome()}"></h:commandLink>
-                 </h:form>
+        <ui:include src="../default/header.xhtml" />
+        <ui:include src="pages/#{pageNameContext.USER_SWITCHED_PAGE}.xhtml"/>
         
     </h:body>
     

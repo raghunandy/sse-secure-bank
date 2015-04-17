@@ -21,6 +21,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import sse.bank.business.UserAccountBusinessBean;
+import sse.bank.business.util.FacesUtil;
+import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.SessionBeanUtil;
 
 import sse.bank.db.domain.Account;
@@ -38,9 +40,12 @@ public class LoginUIBean {
     private String userId;
     private String password;
 
+    
     @Inject
     private UserAccountUIBean userAccountUIBean;
-
+    
+    @Inject 
+    PageNameContext pageNameContext;
     @EJB
     UserAccountBusinessBean userAccountBean;
 
@@ -49,12 +54,13 @@ public class LoginUIBean {
         Customer customer = userAccountBean.validate(userId, password);
         if (customer != null) {
             userAccountUIBean.setCustomer(customer);
-            userAccountUIBean.setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.AccountHomePage);
+            
+            pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.AccountHomePage);
             return "AccountCommonPage";
         }
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Wrong User Credentials", "Please check username or password");
-        FacesContext.getCurrentInstance().addMessage(null, message);
-
+        FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,  "Wrong User Credentials");
+        
+        
         return null;
     }
 
@@ -63,7 +69,8 @@ public class LoginUIBean {
     public String logout() {
         System.out.println("Switch To Transfer Page");
 
-        userAccountUIBean.setUSER_SWITCHED_PAGE(UserAccountUIBean.PAGE_SWITCHES.LogoutPage);
+        pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
+        
 
         return "AccountCommonPage";
     }

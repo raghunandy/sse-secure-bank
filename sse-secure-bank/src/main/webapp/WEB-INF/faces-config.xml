@@ -266,6 +266,14 @@
         </navigation-case>
     </navigation-rule>
     
+     <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>GeneralPublicCommonPage</from-outcome>
+            <to-view-id>/templates/user/GeneralPublicCommonPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     
     <navigation-rule>
         <from-view-id>*</from-view-id>

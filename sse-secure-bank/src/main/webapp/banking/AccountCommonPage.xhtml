@@ -12,6 +12,7 @@
 
     <h:body>
 
+        
         <!--        <ui:include src="../templates/banking/accountSummary.xhtml" />-->
         <ui:include src="components/userHeader.xhtml" />
         <div class="container-fluid">
@@ -21,7 +22,7 @@
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">                    
                
-                  <ui:include src="pages/#{userAccountUIBean.USER_SWITCHED_PAGE}.xhtml"/>
+                <ui:include src="pages/#{pageNameContext.USER_SWITCHED_PAGE}.xhtml"/>
             </div>
         </div>
     </div>
