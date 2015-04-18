@@ -47,7 +47,7 @@ public class UserAccountBusinessBean {
         Customer cus = customerFacade.find(userId);
         try {
             if (cus != null && (cus.getCustomerId().equals(userId)
-                    || //<=== Change to &&
+                    && //<=== Change to &&
                     cus.getPassword().equals(hashAndSetPassword(password)))) {
                 return cus;
             }

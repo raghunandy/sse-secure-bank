@@ -73,7 +73,7 @@ public class AuthFilter implements Filter {
                     ||
                     wrappedRequest.getRequestURI().contains("/faces/BankHomePage.xhtml")
                     ||
-                    wrappedRequest.getRequestURI().contains("GeneralPublicCommonPage")
+                    wrappedRequest.getRequestURI().contains("LaunchPage")
                     ||
                        wrappedRequest.getRequestURI().contains("javax.faces.resource")){
                  chain.doFilter(request, response);

@@ -11,7 +11,7 @@
                 <!--                <ui:insert class="bg-warning" name="content" />     -->
 
 
-                <h3 class="underlined-text">Enter Login Credentials </h3>
+                <h3 class="underlined-text">Enter Login Credentials - Banking User </h3>
 
 
                 <h:form styleClass="form-horizontal">
@@ -32,10 +32,12 @@
                     <div class="form-group">
                         <div class="row">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <h:commandButton  value="Sign in" styleClass="btn btn-default" action="#{loginUIBean.login}"></h:commandButton >
+                            <h:commandButton  value="Sign in" styleClass="btn btn-default" 
+                                              action="#{loginUIBean.login}"></h:commandButton >
                         </div>
                         <div class="col-sm-offset-2 col-sm-10">
-                            <h:commandButton  value="Forgot Password" styleClass="btn btn-default" action="#{forgotPasswordUIBean.switechToResetPassword()}"></h:commandButton >
+                            <h:commandButton  value="Forgot Password" styleClass="btn btn-default" 
+                                              action="#{forgotPasswordUIBean.switechToResetPassword()}"></h:commandButton >
                         </div>
                         </div>
                     </div>

@@ -41,6 +41,9 @@
 
 -->
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <session-config> 
+        <session-timeout>45</session-timeout> 
+    </session-config>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -53,8 +56,12 @@
     <welcome-file-list>
         <welcome-file>faces/index.xhtml</welcome-file>
     </welcome-file-list>
-    <error-page>
+<!--    <error-page>
         <error-code>404</error-code>
         <location>/faces/BankHomePage.xhtml</location>
-    </error-page>
+    </error-page>-->
+    <!--    <error-page>
+        <error-code>500</error-code>
+        <location>/faces/BankHomePage.xhtml</location>
+    </error-page>-->
 </web-app>

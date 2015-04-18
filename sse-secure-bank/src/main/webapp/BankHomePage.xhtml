@@ -10,11 +10,33 @@
 
     <h:body>
         <ui:include src="templates/default/header.xhtml" />
-          <h:form>
-               <h:commandLink value="Login" 
-                              action="#{pageNameContext.loadHome()}"></h:commandLink>
-                 </h:form>
-        
+        <h1 class="page-header">Welcome to SSE Secure Bank</h1>
+        <p class="lead">
+            Bootstrap includes a responsive, mobile first fluid grid system that appropriately scales up to 12 columns as the device or viewport size increases. It includes predefined classes for easy layout options, as well as powerful mixins for generating more semantic layouts.
+
+        </p>
+        <h2>Intorcuction </h2>
+
+        <p class="">
+
+            Grid systems are used for creating page layouts through a series of rows and columns that house your content. Here's how the Bootstrap grid system works:
+
+            Rows must be placed within a .container (fixed-width) or .container-fluid (full-width) for proper alignment and padding.
+            Use rows to create horizontal groups of columns.
+            Content shoul
+        </p>
+        <div class="container-fluid">
+            <div class="row center-block">
+
+                <h:form>
+                    <h:commandLink styleClass="btn btn-primary" value="User Login" 
+                                   action="#{pageNameContext.loadHome()}"></h:commandLink>
+
+                    <h:commandLink styleClass="btn btn-warning" value="Admin Login" 
+                                   action="#{pageNameContext.loadHome()}"></h:commandLink>
+                </h:form>
+            </div>
+        </div>
     </h:body>
-    
+
 </html>

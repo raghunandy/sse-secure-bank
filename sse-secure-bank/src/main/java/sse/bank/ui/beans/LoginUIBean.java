@@ -70,7 +70,6 @@ public class LoginUIBean {
         System.out.println("Switch To Transfer Page");
 
         pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
-        
 
         return "AccountCommonPage";
     }

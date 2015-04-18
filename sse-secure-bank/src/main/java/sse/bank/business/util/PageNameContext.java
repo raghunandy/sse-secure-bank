@@ -24,7 +24,8 @@ public class PageNameContext implements Serializable {
     private PAGE_SWITCHES USER_SWITCHED_PAGE;
 
     public static enum PAGE_SWITCHES {
-        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage, ForgotPasswordPage,LoginPage;
+
+        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage, ForgotPasswordPage, LoginPage;
     };
 
     public PAGE_SWITCHES getUSER_SWITCHED_PAGE() {
@@ -34,16 +35,12 @@ public class PageNameContext implements Serializable {
     public void setUSER_SWITCHED_PAGE(PAGE_SWITCHES USER_SWITCHED_PAGE) {
         this.USER_SWITCHED_PAGE = USER_SWITCHED_PAGE;
     }
-    
-    public String loadHome(){
-       
-            setUSER_SWITCHED_PAGE(PAGE_SWITCHES.LoginPage);
-            
-            
-         
-       
-           return "GeneralPublicCommonPage";
+
+    public String loadHome() {
+
+        setUSER_SWITCHED_PAGE(PAGE_SWITCHES.LoginPage);
+
+        return "LaunchPage";
     }
-    
-    
+
 }
