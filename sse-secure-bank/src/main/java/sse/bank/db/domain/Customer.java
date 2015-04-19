@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -49,7 +49,7 @@ public class Customer implements Serializable {
     @Size(max = 99)
     @Column(name = "customerName")
     private String customerName;
-    @Size(max = 45)
+    @Size(max = 245)
     @Column(name = "password")
     private String password;
     @Size(max = 445)
@@ -63,13 +63,13 @@ public class Customer implements Serializable {
     @Size(max = 245)
     @Column(name = "email")
     private String email;
-    @Size(max = 45)
+    @Size(max = 145)
     @Column(name = "resetPasswordToken")
     private String resetPasswordToken;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Collection<OneTimePassword> oneTimePasswordCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Collection<CustomerSecurityQuestions> customerSecurityQuestionsCollection;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
+    private CustomerSecurityQuestions customerSecurityQuestions;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Collection<Account> accountCollection;
 
@@ -145,13 +145,12 @@ public class Customer implements Serializable {
         this.oneTimePasswordCollection = oneTimePasswordCollection;
     }
 
-    @XmlTransient
-    public Collection<CustomerSecurityQuestions> getCustomerSecurityQuestionsCollection() {
-        return customerSecurityQuestionsCollection;
+    public CustomerSecurityQuestions getCustomerSecurityQuestions() {
+        return customerSecurityQuestions;
     }
 
-    public void setCustomerSecurityQuestionsCollection(Collection<CustomerSecurityQuestions> customerSecurityQuestionsCollection) {
-        this.customerSecurityQuestionsCollection = customerSecurityQuestionsCollection;
+    public void setCustomerSecurityQuestions(CustomerSecurityQuestions customerSecurityQuestions) {
+        this.customerSecurityQuestions = customerSecurityQuestions;
     }
 
     @XmlTransient
@@ -187,6 +186,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "sse.bank.db.domain.Customer[ customerId=" + customerId + " ]";
     }
-    
     
 }

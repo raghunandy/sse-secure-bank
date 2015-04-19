@@ -6,8 +6,13 @@
 package sse.bank.ui.beans;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.enterprise.context.Conversation;
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,6 +23,7 @@ import sse.bank.business.util.FacesUtil;
 import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
 import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.CustomerSecurityQuestions;
 
 /**
  *
@@ -25,59 +31,129 @@ import sse.bank.db.domain.Customer;
  */
 @Named(value = "forgotPasswordUIBean")
 @SessionScoped
-public class ForgotPasswordUIBean implements Serializable{
-    
-    private Map<String, String> securityQuestionIdAndUserAnswer;
-    private String email;
-    
-     protected Customer customer;
+public class ForgotPasswordUIBean implements Serializable {
 
+    private CustomerSecurityQuestions securityQuestionsAndUserAnswer;
+    private CustomerSecurityQuestions securityQuestions;
+
+    private String custId;
+
+    protected Customer customer;
+    private FORGOT_PASSWORD_STAGES currentForgotPasswordStage;
+
+    public static enum FORGOT_PASSWORD_STAGES {
+
+        SEEK_CUSTOMER_ID, SEEK_ANSWERS, SUBMIT_MESSAGE
+    };
     @EJB
     UserAccountBusinessBean userAccountBean;
-    
-    
-    @Inject 
+
+    @Inject
     PageNameContext pageNameContext;
-    
+
+   
+
     public String switechToResetPassword() {
 
         System.out.println("Switch To ForgotPasswordPage");
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.ForgotPasswordPage);
-        return "GeneralPublicCommonPage";
+        setCurrentForgotPasswordStage(FORGOT_PASSWORD_STAGES.SEEK_CUSTOMER_ID);
+        return "LunchPage";
     }
 
-    public String performResetPassword() {
+    public void initConversation() {
+        System.out.println(" -- !");
+    }
 
-        System.out.println("Perform Reset Password.. ");
+    public String kkk() {
+        return null;
+    }
+    
 
-        if (userAccountBean.validateSecurityQuesionts(customer, securityQuestionIdAndUserAnswer)) {
-            userAccountBean.sendResetPassword(customer);
+    public String submit(){
+        if(currentForgotPasswordStage==FORGOT_PASSWORD_STAGES.SEEK_CUSTOMER_ID){
+            return pullQuestions();
+        }else if (currentForgotPasswordStage==FORGOT_PASSWORD_STAGES.SEEK_ANSWERS){
+            return submitAnswers();
+        }
+        return null;
+    }
+    
+    public String pullQuestions() {
+       
+        securityQuestionsAndUserAnswer=new CustomerSecurityQuestions();
+        System.out.println("Switch To ForgotPasswordPage itself");
+        securityQuestions=null;
+        customer = userAccountBean.getCustomerByCustomerId(custId);
+        if (customer == null) {
 
             FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
-                    "Password Sent ! Please check your Email");
+                    "No Customer Found with that Customenr Id");
+        } else if (securityQuestions == null) {
+            securityQuestions = customer.getCustomerSecurityQuestions();
+
+            currentForgotPasswordStage = FORGOT_PASSWORD_STAGES.SEEK_ANSWERS;
+        }
+        return null;
+    }
+
+    public FORGOT_PASSWORD_STAGES getCurrentForgotPasswordStage() {
+        return currentForgotPasswordStage;
+    }
+
+    public void setCurrentForgotPasswordStage(FORGOT_PASSWORD_STAGES currentForgotPasswordStage) {
+        this.currentForgotPasswordStage = currentForgotPasswordStage;
+    }
+
+    public String submitAnswers() {
+
+        if (userAccountBean.validateSecurityQuesionts(securityQuestions, securityQuestionsAndUserAnswer)) {
+
+            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+                    "Please check your email ... ");
 
         } else {
-            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,
-                    "User Verification Failed !");
+
+            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+                    "Wrong answers ... ");
 
         }
-        return "AccountCommonPage";
+        currentForgotPasswordStage = FORGOT_PASSWORD_STAGES.SUBMIT_MESSAGE;
+
+        return null;
     }
 
-    public Map<String, String> getSecurityQuestionIdAndUserAnswer() {
-        return securityQuestionIdAndUserAnswer;
+//    public String performResetPassword() {
+//
+//        System.out.println("Perform Reset Password.. ");
+//
+//        if (userAccountBean.validateSecurityQuesionts(customer, securityQuestionsAndUserAnswer)) {
+//            userAccountBean.sendResetPassword(customer);
+//
+//            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+//                    "Password Sent ! Please check your Email");
+//
+//        } else {
+//            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,
+//                    "User Verification Failed !");
+//
+//        }
+//        return "AccountCommonPage";
+//    }
+    public CustomerSecurityQuestions getSecurityQuestions() {
+        return securityQuestions;
     }
 
-    public void setSecurityQuestionIdAndUserAnswer(Map<String, String> securityQuestionIdAndUserAnswer) {
-        this.securityQuestionIdAndUserAnswer = securityQuestionIdAndUserAnswer;
+    public void setSecurityQuestions(CustomerSecurityQuestions securityQuestions) {
+        this.securityQuestions = securityQuestions;
     }
 
-    public String getEmail() {
-        return email;
+    public String getCustId() {
+        return custId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCustId(String custId) {
+        this.custId = custId;
     }
 
     public void setCustomer(Customer customer) {
@@ -88,7 +164,13 @@ public class ForgotPasswordUIBean implements Serializable{
         return customer;
     }
 
-   
-   
+    public CustomerSecurityQuestions getSecurityQuestionsAndUserAnswer() {
+        return securityQuestionsAndUserAnswer;
+    }
+
+    public void setSecurityQuestionsAndUserAnswer(CustomerSecurityQuestions securityQuestionsAndUserAnswer) {
+        this.securityQuestionsAndUserAnswer = securityQuestionsAndUserAnswer;
+    }
     
+
 }

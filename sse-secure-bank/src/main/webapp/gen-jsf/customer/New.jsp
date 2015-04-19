@@ -7,7 +7,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
             <title>New Customer</title>
-            <link rel="stylesheet" type="text/css" href="/sse-secure-bank/faces/jsfcrud.css" />
+            <link rel="stylesheet" type="text/css" href="/sse-secure-bank-duplicate/faces/jsfcrud.css" />
         </head>
         <body>
             <h:panelGroup id="messagePanel" layout="block">
@@ -29,6 +29,16 @@
                     <h:inputText id="phone" value="#{customer.customer.phone}" title="Phone" />
                     <h:outputText value="Email:"/>
                     <h:inputText id="email" value="#{customer.customer.email}" title="Email" />
+                    <h:outputText value="ResetPasswordToken:"/>
+                    <h:inputText id="resetPasswordToken" value="#{customer.customer.resetPasswordToken}" title="ResetPasswordToken" />
+                    <h:outputText value="OneTimePasswordCollection:"/>
+                    <h:selectManyListbox id="oneTimePasswordCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].oneTimePasswordCollection}" title="OneTimePasswordCollection" size="6" converter="#{oneTimePassword.converter}" >
+                        <f:selectItems value="#{oneTimePassword.oneTimePasswordItemsAvailableSelectMany}"/>
+                    </h:selectManyListbox>
+                    <h:outputText value="CustomerSecurityQuestions:"/>
+                    <h:selectOneMenu id="customerSecurityQuestions" value="#{customer.customer.customerSecurityQuestions}" title="CustomerSecurityQuestions" >
+                        <f:selectItems value="#{customerSecurityQuestions.customerSecurityQuestionsItemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputText value="AccountCollection:"/>
                     <h:selectManyListbox id="accountCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].accountCollection}" title="AccountCollection" size="6" converter="#{account.converter}" >
                         <f:selectItems value="#{account.accountItemsAvailableSelectMany}"/>

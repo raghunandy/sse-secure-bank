@@ -7,7 +7,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
             <title>New Transaction</title>
-            <link rel="stylesheet" type="text/css" href="/sse-secure-bank/faces/jsfcrud.css" />
+            <link rel="stylesheet" type="text/css" href="/sse-secure-bank-duplicate/faces/jsfcrud.css" />
         </head>
         <body>
             <h:panelGroup id="messagePanel" layout="block">

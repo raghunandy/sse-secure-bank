@@ -30,6 +30,34 @@
                     <h:outputText value="#{customer.customer.email}" title="Email" />
                     <h:outputText value="ResetPasswordToken:"/>
                     <h:outputText value="#{customer.customer.resetPasswordToken}" title="ResetPasswordToken" />
+                    <h:outputText value="CustomerSecurityQuestions:"/>
+                    <h:panelGroup>
+                        <h:outputText value="#{customer.customer.customerSecurityQuestions}"/>
+                        <h:panelGroup rendered="#{customer.customer.customerSecurityQuestions != null}">
+                            <h:outputText value=" ("/>
+                            <h:commandLink value="Show" action="#{customerSecurityQuestions.detailSetup}">
+                                <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer.customerSecurityQuestions][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.relatedController" value="customer"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController"/>
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink value="Edit" action="#{customerSecurityQuestions.editSetup}">
+                                <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer.customerSecurityQuestions][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.relatedController" value="customer"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController"/>
+                            </h:commandLink>
+                            <h:outputText value=" "/>
+                            <h:commandLink value="Destroy" action="#{customerSecurityQuestions.destroy}">
+                                <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer.customerSecurityQuestions][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
+                                <f:param name="jsfcrud.relatedController" value="customer"/>
+                                <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController"/>
+                            </h:commandLink>
+                            <h:outputText value=" )"/>
+                        </h:panelGroup>
+                    </h:panelGroup>
 
                     <h:outputText value="OneTimePasswordCollection:" />
                     <h:panelGroup>
@@ -84,63 +112,6 @@
                                 <h:commandLink value="Destroy" action="#{oneTimePassword.destroy}">
                                     <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
                                     <f:param name="jsfcrud.currentOneTimePassword" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][oneTimePassword.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.relatedController" value="customer" />
-                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController" />
-                                </h:commandLink>
-                            </h:column>
-                        </h:dataTable>
-                    </h:panelGroup>
-                    <h:outputText value="CustomerSecurityQuestionsCollection:" />
-                    <h:panelGroup>
-                        <h:outputText rendered="#{empty customer.customer.customerSecurityQuestionsCollection}" value="(No Items)"/>
-                        <h:dataTable value="#{customer.customer.customerSecurityQuestionsCollection}" var="item" 
-                                     border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" 
-                                     rendered="#{not empty customer.customer.customerSecurityQuestionsCollection}">
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="QuestionId"/>
-                                </f:facet>
-                                <h:outputText value="#{item.questionId}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="Question"/>
-                                </f:facet>
-                                <h:outputText value="#{item.question}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="CustomerAnswer"/>
-                                </f:facet>
-                                <h:outputText value="#{item.customerAnswer}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="CustomerId"/>
-                                </f:facet>
-                                <h:outputText value="#{item.customerId}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText escape="false" value="&nbsp;"/>
-                                </f:facet>
-                                <h:commandLink value="Show" action="#{customerSecurityQuestions.detailSetup}">
-                                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.relatedController" value="customer" />
-                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController" />
-                                </h:commandLink>
-                                <h:outputText value=" "/>
-                                <h:commandLink value="Edit" action="#{customerSecurityQuestions.editSetup}">
-                                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.relatedController" value="customer" />
-                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController" />
-                                </h:commandLink>
-                                <h:outputText value=" "/>
-                                <h:commandLink value="Destroy" action="#{customerSecurityQuestions.destroy}">
-                                    <f:param name="jsfcrud.currentCustomer" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][customer.customer][customer.converter].jsfcrud_invoke}"/>
-                                    <f:param name="jsfcrud.currentCustomerSecurityQuestions" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][customerSecurityQuestions.converter].jsfcrud_invoke}"/>
                                     <f:param name="jsfcrud.relatedController" value="customer" />
                                     <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.CustomerController" />
                                 </h:commandLink>

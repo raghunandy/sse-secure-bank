@@ -34,10 +34,10 @@
                     <h:selectManyListbox id="oneTimePasswordCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].oneTimePasswordCollection}" title="OneTimePasswordCollection" size="6" converter="#{oneTimePassword.converter}" >
                         <f:selectItems value="#{oneTimePassword.oneTimePasswordItemsAvailableSelectMany}"/>
                     </h:selectManyListbox>
-                    <h:outputText value="CustomerSecurityQuestionsCollection:"/>
-                    <h:selectManyListbox id="customerSecurityQuestionsCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].customerSecurityQuestionsCollection}" title="CustomerSecurityQuestionsCollection" size="6" converter="#{customerSecurityQuestions.converter}" >
-                        <f:selectItems value="#{customerSecurityQuestions.customerSecurityQuestionsItemsAvailableSelectMany}"/>
-                    </h:selectManyListbox>
+                    <h:outputText value="CustomerSecurityQuestions:"/>
+                    <h:selectOneMenu id="customerSecurityQuestions" value="#{customer.customer.customerSecurityQuestions}" title="CustomerSecurityQuestions" >
+                        <f:selectItems value="#{customerSecurityQuestions.customerSecurityQuestionsItemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
                     <h:outputText value="AccountCollection:"/>
                     <h:selectManyListbox id="accountCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].accountCollection}" title="AccountCollection" size="6" converter="#{account.converter}" >
                         <f:selectItems value="#{account.accountItemsAvailableSelectMany}"/>

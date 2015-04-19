@@ -13,10 +13,12 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.apache.commons.codec.digest.DigestUtils;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.access.bean.gen.CustomerFacade;
 import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.CustomerSecurityQuestions;
 
 /**
  *
@@ -34,13 +36,11 @@ public class UserAccountBusinessBean {
     @EJB
     CustomerFacade customerFacade;
 
-   
-
     /**
-     * 
+     *
      * @param userId
      * @param password
-     * @return 
+     * @return
      */
     public Customer validate(String userId, String password) {
 
@@ -70,18 +70,32 @@ public class UserAccountBusinessBean {
         return hashedPassword;
     }
 
-    
-    public boolean validateSecurityQuesionts(Customer customer,Map<String,String> securityQuestionIdAndUserAnswer){
-        
+    public boolean validateSecurityQuesionts(CustomerSecurityQuestions securityQuestions,
+            CustomerSecurityQuestions securityQuestionIdAndUserAnswer) {
+
         return true;
     }
-    
+
     @Asynchronous
-    public void sendResetPassword(Customer customer){
-        
+    public void sendResetPassword(Customer customer) {
+
     }
-    public void sendEmail(Customer customer,String text){
-        
+
+    public void sendEmail(Customer customer, String text) {
+
     }
-    
+
+    public Customer getCustomerByCustomerId(String custId) {
+        Query q = em.createNamedQuery("Customer.findByCustomerId");
+        q.setParameter("customerId", custId);
+        Customer c = null;
+        try {
+            c = (Customer) q.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return c;
+    }
+
 }

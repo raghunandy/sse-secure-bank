@@ -17,8 +17,8 @@ import javax.faces.model.SelectItem;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
-import sse.bank.db.access.bean.gen.CustomerSecurityQuestionsFacade;
-import sse.bank.db.domain.CustomerSecurityQuestions;
+import sse.bank.db.access.bean.gen.OneTimePasswordFacade;
+import sse.bank.db.domain.OneTimePassword;
 import sse.bank.db.ui.gen.util.JsfUtil;
 import sse.bank.db.ui.gen.util.PagingInfo;
 
@@ -26,16 +26,16 @@ import sse.bank.db.ui.gen.util.PagingInfo;
  *
  * @author Raghunath
  */
-public class CustomerSecurityQuestionsController {
+public class OneTimePasswordController {
 
-    public CustomerSecurityQuestionsController() {
+    public OneTimePasswordController() {
         pagingInfo = new PagingInfo();
-        converter = new CustomerSecurityQuestionsConverter();
+        converter = new OneTimePasswordConverter();
     }
-    private CustomerSecurityQuestions customerSecurityQuestions = null;
-    private List<CustomerSecurityQuestions> customerSecurityQuestionsItems = null;
-    private CustomerSecurityQuestionsFacade jpaController = null;
-    private CustomerSecurityQuestionsConverter converter = null;
+    private OneTimePassword oneTimePassword = null;
+    private List<OneTimePassword> oneTimePasswordItems = null;
+    private OneTimePasswordFacade jpaController = null;
+    private OneTimePasswordConverter converter = null;
     private PagingInfo pagingInfo = null;
     @Resource
     private UserTransaction utx = null;
@@ -49,41 +49,41 @@ public class CustomerSecurityQuestionsController {
         return pagingInfo;
     }
 
-    public CustomerSecurityQuestionsFacade getJpaController() {
+    public OneTimePasswordFacade getJpaController() {
         if (jpaController == null) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            jpaController = (CustomerSecurityQuestionsFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "customerSecurityQuestionsJpa");
+            jpaController = (OneTimePasswordFacade) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "oneTimePasswordJpa");
         }
         return jpaController;
     }
 
-    public SelectItem[] getCustomerSecurityQuestionsItemsAvailableSelectMany() {
+    public SelectItem[] getOneTimePasswordItemsAvailableSelectMany() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), false);
     }
 
-    public SelectItem[] getCustomerSecurityQuestionsItemsAvailableSelectOne() {
+    public SelectItem[] getOneTimePasswordItemsAvailableSelectOne() {
         return JsfUtil.getSelectItems(getJpaController().findAll(), true);
     }
 
-    public CustomerSecurityQuestions getCustomerSecurityQuestions() {
-        if (customerSecurityQuestions == null) {
-            customerSecurityQuestions = (CustomerSecurityQuestions) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentCustomerSecurityQuestions", converter, null);
+    public OneTimePassword getOneTimePassword() {
+        if (oneTimePassword == null) {
+            oneTimePassword = (OneTimePassword) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentOneTimePassword", converter, null);
         }
-        if (customerSecurityQuestions == null) {
-            customerSecurityQuestions = new CustomerSecurityQuestions();
+        if (oneTimePassword == null) {
+            oneTimePassword = new OneTimePassword();
         }
-        return customerSecurityQuestions;
+        return oneTimePassword;
     }
 
     public String listSetup() {
         reset(true);
-        return "customerSecurityQuestions_list";
+        return "oneTimePassword_list";
     }
 
     public String createSetup() {
         reset(false);
-        customerSecurityQuestions = new CustomerSecurityQuestions();
-        return "customerSecurityQuestions_create";
+        oneTimePassword = new OneTimePassword();
+        return "oneTimePassword_create";
     }
 
     public String create() {
@@ -93,7 +93,7 @@ public class CustomerSecurityQuestionsController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().create(customerSecurityQuestions);
+            getJpaController().create(oneTimePassword);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -101,7 +101,7 @@ public class CustomerSecurityQuestionsController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("CustomerSecurityQuestions was successfully created.");
+                JsfUtil.addSuccessMessage("OneTimePassword was successfully created.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -117,31 +117,31 @@ public class CustomerSecurityQuestionsController {
     }
 
     public String detailSetup() {
-        return scalarSetup("customerSecurityQuestions_detail");
+        return scalarSetup("oneTimePassword_detail");
     }
 
     public String editSetup() {
-        return scalarSetup("customerSecurityQuestions_edit");
+        return scalarSetup("oneTimePassword_edit");
     }
 
     private String scalarSetup(String destination) {
         reset(false);
-        customerSecurityQuestions = (CustomerSecurityQuestions) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentCustomerSecurityQuestions", converter, null);
-        if (customerSecurityQuestions == null) {
-            String requestCustomerSecurityQuestionsString = JsfUtil.getRequestParameter("jsfcrud.currentCustomerSecurityQuestions");
-            JsfUtil.addErrorMessage("The customerSecurityQuestions with id " + requestCustomerSecurityQuestionsString + " no longer exists.");
+        oneTimePassword = (OneTimePassword) JsfUtil.getObjectFromRequestParameter("jsfcrud.currentOneTimePassword", converter, null);
+        if (oneTimePassword == null) {
+            String requestOneTimePasswordString = JsfUtil.getRequestParameter("jsfcrud.currentOneTimePassword");
+            JsfUtil.addErrorMessage("The oneTimePassword with id " + requestOneTimePasswordString + " no longer exists.");
             return relatedOrListOutcome();
         }
         return destination;
     }
 
     public String edit() {
-        String customerSecurityQuestionsString = converter.getAsString(FacesContext.getCurrentInstance(), null, customerSecurityQuestions);
-        String currentCustomerSecurityQuestionsString = JsfUtil.getRequestParameter("jsfcrud.currentCustomerSecurityQuestions");
-        if (customerSecurityQuestionsString == null || customerSecurityQuestionsString.length() == 0 || !customerSecurityQuestionsString.equals(currentCustomerSecurityQuestionsString)) {
+        String oneTimePasswordString = converter.getAsString(FacesContext.getCurrentInstance(), null, oneTimePassword);
+        String currentOneTimePasswordString = JsfUtil.getRequestParameter("jsfcrud.currentOneTimePassword");
+        if (oneTimePasswordString == null || oneTimePasswordString.length() == 0 || !oneTimePasswordString.equals(currentOneTimePasswordString)) {
             String outcome = editSetup();
-            if ("customerSecurityQuestions_edit".equals(outcome)) {
-                JsfUtil.addErrorMessage("Could not edit customerSecurityQuestions. Try again.");
+            if ("oneTimePassword_edit".equals(outcome)) {
+                JsfUtil.addErrorMessage("Could not edit oneTimePassword. Try again.");
             }
             return outcome;
         }
@@ -151,7 +151,7 @@ public class CustomerSecurityQuestionsController {
         }
         try {
             Exception transactionException = null;
-            getJpaController().edit(customerSecurityQuestions);
+            getJpaController().edit(oneTimePassword);
             try {
                 utx.commit();
             } catch (javax.transaction.RollbackException ex) {
@@ -159,7 +159,7 @@ public class CustomerSecurityQuestionsController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("CustomerSecurityQuestions was successfully updated.");
+                JsfUtil.addSuccessMessage("OneTimePassword was successfully updated.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -175,8 +175,8 @@ public class CustomerSecurityQuestionsController {
     }
 
     public String remove() {
-        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentCustomerSecurityQuestions");
-        String id = idAsString;
+        String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentOneTimePassword");
+        Integer id = new Integer(idAsString);
         try {
             utx.begin();
         } catch (Exception ex) {
@@ -191,7 +191,7 @@ public class CustomerSecurityQuestionsController {
             } catch (Exception ex) {
             }
             if (transactionException == null) {
-                JsfUtil.addSuccessMessage("CustomerSecurityQuestions was successfully deleted.");
+                JsfUtil.addSuccessMessage("OneTimePassword was successfully deleted.");
             } else {
                 JsfUtil.ensureAddErrorMessage(transactionException, "A persistence error occurred.");
             }
@@ -214,24 +214,24 @@ public class CustomerSecurityQuestionsController {
         return listSetup();
     }
 
-    public List<CustomerSecurityQuestions> getCustomerSecurityQuestionsItems() {
-        if (customerSecurityQuestionsItems == null) {
+    public List<OneTimePassword> getOneTimePasswordItems() {
+        if (oneTimePasswordItems == null) {
             getPagingInfo();
-            customerSecurityQuestionsItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
+            oneTimePasswordItems = getJpaController().findRange(new int[]{pagingInfo.getFirstItem(), pagingInfo.getFirstItem() + pagingInfo.getBatchSize()});
         }
-        return customerSecurityQuestionsItems;
+        return oneTimePasswordItems;
     }
 
     public String next() {
         reset(false);
         getPagingInfo().nextPage();
-        return "customerSecurityQuestions_list";
+        return "oneTimePassword_list";
     }
 
     public String prev() {
         reset(false);
         getPagingInfo().previousPage();
-        return "customerSecurityQuestions_list";
+        return "oneTimePassword_list";
     }
 
     private String relatedControllerOutcome() {
@@ -258,8 +258,8 @@ public class CustomerSecurityQuestionsController {
     }
 
     private void reset(boolean resetFirstItem) {
-        customerSecurityQuestions = null;
-        customerSecurityQuestionsItems = null;
+        oneTimePassword = null;
+        oneTimePasswordItems = null;
         pagingInfo.setItemCount(-1);
         if (resetFirstItem) {
             pagingInfo.setFirstItem(0);
@@ -267,10 +267,10 @@ public class CustomerSecurityQuestionsController {
     }
 
     public void validateCreate(FacesContext facesContext, UIComponent component, Object value) {
-        CustomerSecurityQuestions newCustomerSecurityQuestions = new CustomerSecurityQuestions();
-        String newCustomerSecurityQuestionsString = converter.getAsString(FacesContext.getCurrentInstance(), null, newCustomerSecurityQuestions);
-        String customerSecurityQuestionsString = converter.getAsString(FacesContext.getCurrentInstance(), null, customerSecurityQuestions);
-        if (!newCustomerSecurityQuestionsString.equals(customerSecurityQuestionsString)) {
+        OneTimePassword newOneTimePassword = new OneTimePassword();
+        String newOneTimePasswordString = converter.getAsString(FacesContext.getCurrentInstance(), null, newOneTimePassword);
+        String oneTimePasswordString = converter.getAsString(FacesContext.getCurrentInstance(), null, oneTimePassword);
+        if (!newOneTimePasswordString.equals(oneTimePasswordString)) {
             createSetup();
         }
     }

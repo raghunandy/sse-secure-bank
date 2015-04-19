@@ -67,6 +67,12 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="CustomerSecurityQuestions"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerSecurityQuestions}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText escape="false" value="&nbsp;"/>
                             </f:facet>
                             <h:commandLink value="Show" action="#{customer.detailSetup}">

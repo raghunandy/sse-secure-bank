@@ -8,20 +8,20 @@ package sse.bank.db.ui.gen;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-import sse.bank.db.domain.CustomerSecurityQuestions;
+import sse.bank.db.domain.OneTimePassword;
 
 /**
  *
  * @author Raghunath
  */
-public class CustomerSecurityQuestionsConverter implements Converter {
+public class OneTimePasswordConverter implements Converter {
 
     public Object getAsObject(FacesContext facesContext, UIComponent component, String string) {
         if (string == null || string.length() == 0) {
             return null;
         }
-        String id = string;
-        CustomerSecurityQuestionsController controller = (CustomerSecurityQuestionsController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "customerSecurityQuestions");
+        Integer id = new Integer(string);
+        OneTimePasswordController controller = (OneTimePasswordController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "oneTimePassword");
         return controller.getJpaController().find(id);
     }
 
@@ -29,11 +29,11 @@ public class CustomerSecurityQuestionsConverter implements Converter {
         if (object == null) {
             return null;
         }
-        if (object instanceof CustomerSecurityQuestions) {
-            CustomerSecurityQuestions o = (CustomerSecurityQuestions) object;
-            return o.getCustomerId() == null ? "" : o.getCustomerId().toString();
+        if (object instanceof OneTimePassword) {
+            OneTimePassword o = (OneTimePassword) object;
+            return o.getId() == null ? "" : o.getId().toString();
         } else {
-            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.db.domain.CustomerSecurityQuestions");
+            throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.db.domain.OneTimePassword");
         }
     }
     

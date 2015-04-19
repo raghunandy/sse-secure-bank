@@ -11,9 +11,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -28,69 +28,118 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "CustomerSecurityQuestions.findAll", query = "SELECT c FROM CustomerSecurityQuestions c"),
-    @NamedQuery(name = "CustomerSecurityQuestions.findByQuestionId", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.questionId = :questionId"),
-    @NamedQuery(name = "CustomerSecurityQuestions.findByQuestion", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.question = :question"),
-    @NamedQuery(name = "CustomerSecurityQuestions.findByCustomerAnswer", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.customerAnswer = :customerAnswer")})
+    @NamedQuery(name = "CustomerSecurityQuestions.findByCustomerId", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.customerId = :customerId"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByQuestionOne", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.questionOne = :questionOne"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByAnswerOne", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.answerOne = :answerOne"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByQuestionTwo", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.questionTwo = :questionTwo"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByAnswerTwo", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.answerTwo = :answerTwo"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByQuestionThree", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.questionThree = :questionThree"),
+    @NamedQuery(name = "CustomerSecurityQuestions.findByAnswerThree", query = "SELECT c FROM CustomerSecurityQuestions c WHERE c.answerThree = :answerThree")})
 public class CustomerSecurityQuestions implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Column(name = "questionId")
-    private Integer questionId;
+    @Size(min = 1, max = 45)
+    @Column(name = "customerId")
+    private String customerId;
     @Size(max = 545)
-    @Column(name = "question")
-    private String question;
-    @Size(max = 2445)
-    @Column(name = "customerAnswer")
-    private String customerAnswer;
-    @JoinColumn(name = "customerId", referencedColumnName = "customerId")
-    @ManyToOne(optional = false)
-    private Customer customerId;
+    @Column(name = "questionOne")
+    private String questionOne;
+    @Size(max = 545)
+    @Column(name = "answerOne")
+    private String answerOne;
+    @Size(max = 545)
+    @Column(name = "questionTwo")
+    private String questionTwo;
+    @Size(max = 545)
+    @Column(name = "answerTwo")
+    private String answerTwo;
+    @Size(max = 545)
+    @Column(name = "questionThree")
+    private String questionThree;
+    @Size(max = 45)
+    @Column(name = "answerThree")
+    private String answerThree;
+    @JoinColumn(name = "customerId", referencedColumnName = "customerId", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Customer customer;
 
     public CustomerSecurityQuestions() {
     }
 
-    public CustomerSecurityQuestions(Integer questionId) {
-        this.questionId = questionId;
+    public CustomerSecurityQuestions(String customerId) {
+        this.customerId = customerId;
     }
 
-    public Integer getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Integer questionId) {
-        this.questionId = questionId;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getCustomerAnswer() {
-        return customerAnswer;
-    }
-
-    public void setCustomerAnswer(String customerAnswer) {
-        this.customerAnswer = customerAnswer;
-    }
-
-    public Customer getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Customer customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public String getQuestionOne() {
+        return questionOne;
+    }
+
+    public void setQuestionOne(String questionOne) {
+        this.questionOne = questionOne;
+    }
+
+    public String getAnswerOne() {
+        return answerOne;
+    }
+
+    public void setAnswerOne(String answerOne) {
+        this.answerOne = answerOne;
+    }
+
+    public String getQuestionTwo() {
+        return questionTwo;
+    }
+
+    public void setQuestionTwo(String questionTwo) {
+        this.questionTwo = questionTwo;
+    }
+
+    public String getAnswerTwo() {
+        return answerTwo;
+    }
+
+    public void setAnswerTwo(String answerTwo) {
+        this.answerTwo = answerTwo;
+    }
+
+    public String getQuestionThree() {
+        return questionThree;
+    }
+
+    public void setQuestionThree(String questionThree) {
+        this.questionThree = questionThree;
+    }
+
+    public String getAnswerThree() {
+        return answerThree;
+    }
+
+    public void setAnswerThree(String answerThree) {
+        this.answerThree = answerThree;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (questionId != null ? questionId.hashCode() : 0);
+        hash += (customerId != null ? customerId.hashCode() : 0);
         return hash;
     }
 
@@ -101,7 +150,7 @@ public class CustomerSecurityQuestions implements Serializable {
             return false;
         }
         CustomerSecurityQuestions other = (CustomerSecurityQuestions) object;
-        if ((this.questionId == null && other.questionId != null) || (this.questionId != null && !this.questionId.equals(other.questionId))) {
+        if ((this.customerId == null && other.customerId != null) || (this.customerId != null && !this.customerId.equals(other.customerId))) {
             return false;
         }
         return true;
@@ -109,7 +158,7 @@ public class CustomerSecurityQuestions implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.db.domain.CustomerSecurityQuestions[ questionId=" + questionId + " ]";
+        return "sse.bank.db.domain.CustomerSecurityQuestions[ customerId=" + customerId + " ]";
     }
     
 }

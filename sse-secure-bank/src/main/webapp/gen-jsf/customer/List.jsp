@@ -7,7 +7,7 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
             <title>Listing Customer Items</title>
-            <link rel="stylesheet" type="text/css" href="/sse-secure-bank/faces/jsfcrud.css" />
+            <link rel="stylesheet" type="text/css" href="/sse-secure-bank-duplicate/faces/jsfcrud.css" />
         </head>
         <body>
             <h:panelGroup id="messagePanel" layout="block">
@@ -58,6 +58,18 @@
                                 <h:outputText value="Email"/>
                             </f:facet>
                             <h:outputText value="#{item.email}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="ResetPasswordToken"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resetPasswordToken}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="CustomerSecurityQuestions"/>
+                            </f:facet>
+                            <h:outputText value="#{item.customerSecurityQuestions}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

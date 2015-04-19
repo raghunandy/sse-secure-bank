@@ -72,6 +72,42 @@
                 </h:form>
 
                 <h:form>
+                    <h:commandLink action="#{oneTimePassword.listSetup}" value="Show All OneTimePassword Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customerSecurityQuestions.listSetup}" value="Show All CustomerSecurityQuestions Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{account.listSetup}" value="Show All Account Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transactionLog.listSetup}" value="Show All TransactionLog Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items"/>
+                </h:form>
+
+                <h:form>
                     <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items"/>
                 </h:form>
 
