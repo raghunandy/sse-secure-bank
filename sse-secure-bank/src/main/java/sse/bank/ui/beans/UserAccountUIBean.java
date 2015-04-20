@@ -8,12 +8,17 @@ package sse.bank.ui.beans;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
+import javax.servlet.jsp.PageContext;
 import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
@@ -28,6 +33,12 @@ import sse.bank.db.domain.Customer;
 @SessionScoped
 public class UserAccountUIBean implements Serializable {
 
+    
+    @PostConstruct
+    public void loadTestUser(){
+        setCustomer(userAccountBean.getCustomerByCustomerId("cust001"));
+        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
+    }
     protected Customer customer;
 
     @EJB
@@ -46,7 +57,9 @@ public class UserAccountUIBean implements Serializable {
         this.customer = customer;
     }
 
-   
+   public String getDateString(){
+       return new SimpleDateFormat("MM/dd/YY hh:mm").format(new Date());
+   }
 
     public String switchToTransferPage2() {
         System.out.println("Switch To Transfer Page");
@@ -56,7 +69,14 @@ public class UserAccountUIBean implements Serializable {
         return "AccountCommonPage";
     }
 
-   
+   public float getAccountBalance(){
+       Collection<Account> col=customer.getAccountCollection();
+       float balance=0;
+       for (Account col1 : col) {
+           balance+=col1.getBalance();
+       }
+       return balance;
+   }
     
 
 }

@@ -16,6 +16,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import sse.bank.business.UserAccountBusinessBean;
@@ -30,7 +31,7 @@ import sse.bank.db.domain.CustomerSecurityQuestions;
  * @author Raghunath
  */
 @Named(value = "forgotPasswordUIBean")
-@SessionScoped
+@ViewScoped
 public class ForgotPasswordUIBean implements Serializable {
 
     private CustomerSecurityQuestions securityQuestionsAndUserAnswer;
@@ -65,10 +66,6 @@ public class ForgotPasswordUIBean implements Serializable {
         System.out.println(" -- !");
     }
 
-    public String kkk() {
-        return null;
-    }
-    
 
     public String submit(){
         if(currentForgotPasswordStage==FORGOT_PASSWORD_STAGES.SEEK_CUSTOMER_ID){

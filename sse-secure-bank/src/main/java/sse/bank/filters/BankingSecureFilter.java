@@ -35,9 +35,9 @@ import sse.bank.ui.beans.UserAccountUIBean;
  *
  * @author Raghunath
  */
-@WebFilter(filterName = "AuthFilter", urlPatterns = {"/*"})
-
-public class AuthFilter implements Filter {
+//@WebFilter(filterName = "BankingSecureFilter", urlPatterns = {"/faces/banking/*"})
+@Deprecated
+public class BankingSecureFilter implements Filter {
 
     private static final boolean debug = false;
 
@@ -54,7 +54,7 @@ public class AuthFilter implements Filter {
             throws IOException, ServletException {
 
         if (debug) {
-            log("AuthFilter:doFilter()");
+            log("BankingSecureFilter:doFilter()");
         }
 
         RequestWrapper wrappedRequest = new RequestWrapper((HttpServletRequest) request);
@@ -62,20 +62,10 @@ public class AuthFilter implements Filter {
 
         Throwable problem = null;
 
-        Customer customerInTheSession = null;
-        if (userAccountUIBean != null) {
-            customerInTheSession = userAccountUIBean.getCustomer();
-        }
         
 
         try {
-            if(customerInTheSession!=null
-                    ||
-                    wrappedRequest.getRequestURI().contains("/faces/BankHomePage.xhtml")
-                    ||
-                    wrappedRequest.getRequestURI().contains("LaunchPage")
-                    ||
-                       wrappedRequest.getRequestURI().contains("javax.faces.resource")){
+            if(userAccountUIBean.getCustomer()!=null){
                  chain.doFilter(request, response);
             }    
              else // user didn't log in but asking for a page that is not allowed so take user to login page
@@ -138,20 +128,7 @@ public class AuthFilter implements Filter {
         }
     }
 
-    /**
-     * Return a String representation of this object.
-     */
-    @Override
-    public String toString() {
-        if (filterConfig == null) {
-            return ("AuthFilter()");
-        }
-        StringBuffer sb = new StringBuffer("AuthFilter(");
-        sb.append(filterConfig);
-        sb.append(")");
-        return (sb.toString());
-
-    }
+   
 
     private void sendProcessingError(Throwable t, ServletResponse response) {
         String stackTrace = getStackTrace(t);

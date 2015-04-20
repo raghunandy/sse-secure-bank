@@ -5,27 +5,16 @@
  */
 package sse.bank.ui.beans;
 
+import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.ejb.SessionBean;
-import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.business.util.FacesUtil;
 import sse.bank.business.util.PageNameContext;
-import sse.bank.business.util.SessionBeanUtil;
-
-import sse.bank.db.domain.Account;
 import sse.bank.db.domain.Customer;
 
 /**
@@ -33,12 +22,11 @@ import sse.bank.db.domain.Customer;
  * @author Raghunath
  */
 @Named(value = "loginUIBean")
+@ViewScoped
+public class LoginUIBean implements Serializable{
 
-@RequestScoped
-public class LoginUIBean {
-
-    private String userId;
-    private String password;
+    private String userId="cust001";
+    private String password="hello";
 
     
     @Inject
@@ -56,7 +44,8 @@ public class LoginUIBean {
             userAccountUIBean.setCustomer(customer);
             
             pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.AccountHomePage);
-            return "AccountCommonPage";
+           // return "hello?faces-redirect=true";
+            return "/templates/banking/AccountCommonPage.xhtml?faces-redirect=true";
         }
         FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,  "Wrong User Credentials");
         
