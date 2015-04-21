@@ -34,11 +34,11 @@ import sse.bank.db.domain.Customer;
 public class UserAccountUIBean implements Serializable {
 
     
-    @PostConstruct
-    public void loadTestUser(){
-        setCustomer(userAccountBean.getCustomerByCustomerId("cust001"));
-        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
-    }
+//    @PostConstruct
+//    public void loadTestUser(){
+//        setCustomer(userAccountBean.getCustomerByCustomerId("cust001"));
+//        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
+//    }
     protected Customer customer;
 
     @EJB
@@ -77,6 +77,12 @@ public class UserAccountUIBean implements Serializable {
        }
        return balance;
    }
+   
+   public String logout() {
+        System.out.println("Logout Page");
+        pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
+        return "/templates/public/LaunchPage.xhtml?faces-redirect=true";
+    }
     
 
 }

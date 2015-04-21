@@ -13,7 +13,7 @@
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>faces/BankHomePage.xhtm</welcome-file>
+        <welcome-file>faces/BankHomePage.xhtml</welcome-file>
     </welcome-file-list>
     <!--    <error-page>
         <error-code>404</error-code>
