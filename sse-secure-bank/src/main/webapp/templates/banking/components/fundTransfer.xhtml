@@ -10,7 +10,37 @@
                 <ui:insert name="content" />     
                 <h3>Fund Transfer</h3>
                 
-            
+            <h:form styleClass="form-horizontal">
+                    <h:messages style="color:red;margin:8px;" />
+                    <div class="form-group">
+                        <label for="inputFromAcc" class="col-sm-2 control-label">From Account</label>
+                        <div class="col-sm-10">
+                            <h:inputText   styleClass="form-control" 
+                                          
+                                           ></h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputToAcc" class="col-sm-2 control-label">To Account</label>
+                        <div class="col-sm-10">
+                            <h:inputSecret styleClass="form-control" redisplay="true"></h:inputSecret>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
+                        <div class="col-sm-10">
+                            <h:inputSecret styleClass="form-control" redisplay="true"></h:inputSecret>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <h:commandButton  value="Transfer" styleClass="btn btn-default" 
+                                               ></h:commandButton >
+                        </div>
+                        </div>
+                    </div>
+                </h:form>
         </div>
     </div>
 </ui:composition>
