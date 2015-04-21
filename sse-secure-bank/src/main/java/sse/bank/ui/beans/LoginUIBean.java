@@ -49,7 +49,6 @@ public class LoginUIBean implements Serializable{
         }
         FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,  "Wrong User Credentials");
         
-        
         return null;
     }
     

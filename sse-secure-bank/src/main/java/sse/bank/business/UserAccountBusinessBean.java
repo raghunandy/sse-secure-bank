@@ -98,4 +98,7 @@ public class UserAccountBusinessBean {
         return c;
     }
 
+    public void lockUserAccount(){
+        
+    }
 }
