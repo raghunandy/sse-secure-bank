@@ -66,7 +66,7 @@ public class UserAccountUIBean implements Serializable {
 
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.FundTransferPage);
 
-        return "AccountCommonPage";
+        return null;
     }
 
    public float getAccountBalance(){

@@ -25,7 +25,8 @@ public class PageNameContext implements Serializable {
 
     public static enum PAGE_SWITCHES {
 
-        AccountHomePage, FundTransferPage, AccountDetailsEditPage, LogoutPage, ForgotPasswordPage, LoginPage;
+        AccountHomePage, FundTransferPage, AccountDetailsEditPage,
+        LogoutPage, ForgotPasswordPage, LoginPage;
     };
 
     public PAGE_SWITCHES getUSER_SWITCHED_PAGE() {

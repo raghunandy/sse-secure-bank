@@ -52,15 +52,13 @@ public class LoginUIBean implements Serializable{
         
         return null;
     }
-
    
-
     public String logout() {
         System.out.println("Switch To Transfer Page");
 
         pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
 
-        return "AccountCommonPage";
+        return "faces/templates/public/LaunchPage.xhtml";
     }
 
     public void setUserId(String userId) {
