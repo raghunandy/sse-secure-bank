@@ -37,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address"),
     @NamedQuery(name = "Customer.findByPhone", query = "SELECT c FROM Customer c WHERE c.phone = :phone"),
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
-    @NamedQuery(name = "Customer.findByResetPasswordToken", query = "SELECT c FROM Customer c WHERE c.resetPasswordToken = :resetPasswordToken")})
+    @NamedQuery(name = "Customer.findByResetPasswordToken", query = "SELECT c FROM Customer c WHERE c.resetPasswordToken = :resetPasswordToken"),
+    @NamedQuery(name = "Customer.findByAccountLocked", query = "SELECT c FROM Customer c WHERE c.accountLocked = :accountLocked")})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,6 +67,8 @@ public class Customer implements Serializable {
     @Size(max = 145)
     @Column(name = "resetPasswordToken")
     private String resetPasswordToken;
+    @Column(name = "accountLocked")
+    private Boolean accountLocked;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
     private Collection<OneTimePassword> oneTimePasswordCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
@@ -134,6 +137,14 @@ public class Customer implements Serializable {
 
     public void setResetPasswordToken(String resetPasswordToken) {
         this.resetPasswordToken = resetPasswordToken;
+    }
+
+    public Boolean getAccountLocked() {
+        return accountLocked;
+    }
+
+    public void setAccountLocked(Boolean accountLocked) {
+        this.accountLocked = accountLocked;
     }
 
     @XmlTransient

@@ -5,9 +5,12 @@
  */
 package sse.bank.business;
 
+import java.util.Date;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.OneTimePassword;
 
 /**
  *
@@ -19,7 +22,14 @@ public class OTPGeneratorBean {
     @EJB
     EmailGeneratorBean emailGeneratorBean;
     @Asynchronous
-    public void generateOTP(String email){
+    public void generateOTP(Customer customer){
+        OneTimePassword otp=new OneTimePassword();
+        otp.setCreationDate(new Date());
+        otp.setCustomerId(customer);
+        
+        /**
+         * Pending
+         */
         
     }
     

@@ -39,8 +39,9 @@ public class OneTimePassword implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 99)
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Size(max = 45)
     @Column(name = "otp")
     private String otp;
@@ -54,15 +55,15 @@ public class OneTimePassword implements Serializable {
     public OneTimePassword() {
     }
 
-    public OneTimePassword(Integer id) {
+    public OneTimePassword(String id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

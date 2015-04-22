@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
  *
  * @author Raghunath
  */
+
 public class FacesUtil {
 
     public static void setUINotificationMessage(FacesMessage.Severity severity, String message) {
