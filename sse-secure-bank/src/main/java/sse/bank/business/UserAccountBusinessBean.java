@@ -115,7 +115,13 @@ public class UserAccountBusinessBean {
         cust.setAccountLocked(true);
 
         customerFacade.edit(cust);
-
     }
 
+    
+    public void unlockUserAccount(Customer cust) {
+        cust.setAccountLocked(false);
+
+        customerFacade.edit(cust);
+    }
+    
 }
