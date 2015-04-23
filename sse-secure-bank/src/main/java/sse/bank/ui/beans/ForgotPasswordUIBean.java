@@ -20,11 +20,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import sse.bank.business.UserAccountBusinessBean;
-import sse.bank.business.util.FacesUtil;
+
 import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.CustomerSecurityQuestions;
+import sse.bank.db.ui.gen.util.JsfUtil;
 
 /**
  *
@@ -84,7 +85,7 @@ public class ForgotPasswordUIBean implements Serializable {
         customer = userAccountBean.getCustomerByCustomerId(custId);
         if (customer == null) {
 
-            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+            JsfUtil.addSuccessMessage(
                     "No Customer Found with that Customenr Id");
         } else if (securityQuestions == null) {
             securityQuestions = customer.getCustomerSecurityQuestions();
@@ -106,12 +107,13 @@ public class ForgotPasswordUIBean implements Serializable {
 
         if (userAccountBean.validateSecurityQuesionts(securityQuestions, securityQuestionsAndUserAnswer)) {
 
-            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+            JsfUtil.addSuccessMessage(
                     "Please check your email ... ");
+            userAccountBean.sendResetPassword(customer);
 
         } else {
 
-            FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_INFO,
+            JsfUtil.addErrorMessage(
                     "Wrong answers ... ");
 
         }

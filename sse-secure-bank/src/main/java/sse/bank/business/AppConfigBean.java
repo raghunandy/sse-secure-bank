@@ -15,11 +15,15 @@ import javax.ejb.Singleton;
 public class AppConfigBean {
 
     public String getAdminEmail() {
-        return "sse.securebank@gmail.com";
+        return "sse.securebank";
     }
    
     public String getAdminPassword() {
         return "welcomewelcome";
+    }
+
+    public String getSMTPAddress() {
+        return "smtp.gmail.com";
     }
     
 }

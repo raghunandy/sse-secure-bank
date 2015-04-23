@@ -23,11 +23,23 @@ public class EmailGeneratorBean {
     @EJB
     AppConfigBean appConfigBean;
 
+    /**
+     * Testing purpose
+     * @param appConfigBean 
+     */
+    public EmailGeneratorBean(AppConfigBean appConfigBean) {
+        this.appConfigBean = appConfigBean;
+    }
+
+    
+    public EmailGeneratorBean(){
+        
+    }
     @Asynchronous
     public void sendEmailTo(String email, String subject, String contentHtml) {
         SmtpServer smtpServer;
         smtpServer = SmtpSslServer
-                .create("smtp.gmail.com")
+                .create(appConfigBean.getSMTPAddress())
                 .authenticateWith(appConfigBean.getAdminEmail(), appConfigBean.getAdminPassword());
         SendMailSession session = smtpServer.createSession();
         session.open();

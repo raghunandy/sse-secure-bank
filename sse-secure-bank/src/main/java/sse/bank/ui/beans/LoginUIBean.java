@@ -13,9 +13,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import sse.bank.business.UserAccountBusinessBean;
-import sse.bank.business.util.FacesUtil;
+
 import sse.bank.business.util.PageNameContext;
 import sse.bank.db.domain.Customer;
+import sse.bank.db.ui.gen.util.JsfUtil;
 
 /**
  *
@@ -47,7 +48,7 @@ public class LoginUIBean implements Serializable{
            // return "hello?faces-redirect=true";
             return "/templates/banking/AccountCommonPage.xhtml?faces-redirect=true";
         }
-        FacesUtil.setUINotificationMessage(FacesMessage.SEVERITY_WARN,  "Wrong User Credentials");
+        JsfUtil.addErrorMessage(  "Wrong User Credentials");
         
         return null;
     }

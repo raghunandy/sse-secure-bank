@@ -8,17 +8,20 @@ package sse.bank.business;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.Resource;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.UserTransaction;
 import org.apache.commons.codec.digest.DigestUtils;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.access.bean.gen.CustomerFacade;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.CustomerSecurityQuestions;
+import sse.bank.db.ui.gen.util.JsfUtil;
 
 /**
  *
@@ -35,6 +38,9 @@ public class UserAccountBusinessBean {
 
     @EJB
     CustomerFacade customerFacade;
+
+    @EJB
+    EmailGeneratorBean emailGeneratorBean;
 
     /**
      *
@@ -79,6 +85,13 @@ public class UserAccountBusinessBean {
     @Asynchronous
     public void sendResetPassword(Customer customer) {
 
+        customer.setResetPasswordToken(System.nanoTime() + ""); //Randomnumber
+        customerFacade.edit(customer);
+
+        emailGeneratorBean.sendEmailTo(customer.getEmail(), "Reset Password",
+                "Reset Password Link: <br/>"
+                + customer.getResetPasswordToken());
+
     }
 
     public void sendEmail(Customer customer, String text) {
@@ -98,7 +111,11 @@ public class UserAccountBusinessBean {
         return c;
     }
 
-    public void lockUserAccount(){
-        
+    public void lockUserAccount(Customer cust) {
+        cust.setAccountLocked(true);
+
+        customerFacade.edit(cust);
+
     }
+
 }

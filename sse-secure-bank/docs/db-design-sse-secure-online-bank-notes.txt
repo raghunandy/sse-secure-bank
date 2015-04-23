@@ -3,3 +3,7 @@ sse.bank.db.access.bean.gen
 sse.bank.db.ui.gen
 sse.bank.db.domain
 gen-jsf
+
+Gmail Accounts: 
+
+sse.securebank@gmail.com = welcomewelcome
