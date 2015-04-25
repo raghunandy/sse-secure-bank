@@ -22,6 +22,7 @@ import sse.bank.db.access.bean.gen.CustomerFacade;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.CustomerSecurityQuestions;
 import sse.bank.db.ui.gen.util.JsfUtil;
+import sse.bank.ui.beans.BeanUtil;
 
 /**
  *
@@ -42,6 +43,9 @@ public class UserAccountBusinessBean {
     @EJB
     EmailGeneratorBean emailGeneratorBean;
 
+    @EJB
+    AppConfigBean appConfigBean;
+
     /**
      *
      * @param userId
@@ -54,7 +58,7 @@ public class UserAccountBusinessBean {
         try {
             if (cus != null && (cus.getCustomerId().equals(userId)
                     && //<=== Change to &&
-                    cus.getPassword().equals(hashAndSetPassword(password)))) {
+                    cus.getPassword().equals(BeanUtil.hashAndSetPassword(password)))) {
                 return cus;
             }
 //          Dummy Code for Testing
@@ -63,17 +67,6 @@ public class UserAccountBusinessBean {
         }
 
         return null;
-    }
-
-    public String hashAndSetPassword(String plainPassword) throws Exception {
-        if (plainPassword == null) {
-            throw new Exception("Password not specified");
-        }
-        if (plainPassword.equals("")) {
-            throw new Exception("Password blank");
-        }
-        String hashedPassword = DigestUtils.md5Hex(plainPassword);
-        return hashedPassword;
     }
 
     public boolean validateSecurityQuesionts(CustomerSecurityQuestions securityQuestions,
@@ -88,10 +81,16 @@ public class UserAccountBusinessBean {
         customer.setResetPasswordToken(System.nanoTime() + ""); //Randomnumber
         customerFacade.edit(customer);
 
-        emailGeneratorBean.sendEmailTo(customer.getEmail(), "Reset Password",
-                "Reset Password Link: <br/>"
-                + customer.getResetPasswordToken());
+        emailGeneratorBean.sendEmailTo("Reset Password",
+                "Hello "+customer.getCustomerName()+"<br/>"
+                        + "Reset Password Link: <br/>"
+                + genResetLink(customer.getResetPasswordToken()), customer.getEmail());
 
+    }
+
+    private String genResetLink(String key) {
+        return appConfigBean.getAppBaseUrl()
+                + "/faces/templates/public/ResetPasswordPage.xhtml?resetKey=" + key;
     }
 
     public void sendEmail(Customer customer, String text) {
@@ -117,11 +116,31 @@ public class UserAccountBusinessBean {
         customerFacade.edit(cust);
     }
 
-    
     public void unlockUserAccount(Customer cust) {
         cust.setAccountLocked(false);
 
         customerFacade.edit(cust);
+
     }
-    
+
+    public Customer findUserByResetPasswordKey(String resetKey) {
+
+        Query d = em.createNamedQuery("Customer.findByResetPasswordToken");
+        try {
+            Customer c = (Customer) d.getSingleResult();
+            return c;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
+    public void setUserPassword(String newPassword, String resetKey) throws Exception {
+        Customer cust = findUserByResetPasswordKey(resetKey);
+        cust.setPassword(BeanUtil.hashAndSetPassword(newPassword));
+        customerFacade.edit(cust);
+
+    }
+
 }

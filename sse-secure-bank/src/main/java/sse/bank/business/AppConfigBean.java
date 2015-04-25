@@ -25,5 +25,11 @@ public class AppConfigBean {
     public String getSMTPAddress() {
         return "smtp.gmail.com";
     }
-    
+
+    public String getAppBaseUrl() {
+        return "http://localhost:8080/sse-secure-bank";
+    }
+    public String getDeveloperEmailId(){
+        return "sse.securebank@gmail.com";
+    }
 }

@@ -36,7 +36,7 @@ public class EmailGeneratorBean {
         
     }
     @Asynchronous
-    public void sendEmailTo(String email, String subject, String contentHtml) {
+    public void sendEmailTo( String subject, String contentHtml,String ... toEmails) {
         SmtpServer smtpServer;
         smtpServer = SmtpSslServer
                 .create(appConfigBean.getSMTPAddress())
@@ -46,7 +46,7 @@ public class EmailGeneratorBean {
 
         Email emailPack = Email.create()
                 .from(appConfigBean.getAdminEmail())
-                .to(email)
+                .to(toEmails)
                 .subject(subject)
                 .addHtml(contentHtml);
         session.sendMail(emailPack);

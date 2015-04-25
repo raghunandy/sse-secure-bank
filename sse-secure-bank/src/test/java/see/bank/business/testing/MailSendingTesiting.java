@@ -45,7 +45,7 @@ public class MailSendingTesiting {
          AppConfigBean appConfigBean=new AppConfigBean();
          EmailGeneratorBean g=new EmailGeneratorBean(appConfigBean);
          
-         g.sendEmailTo("visumagic@gmail.com", "Hello", "Content --- <br/> New Line ");
+         g.sendEmailTo( "Hello", "Content --- <br/> New Line ","sse.securebank@gmail.com");
          
      }
     
