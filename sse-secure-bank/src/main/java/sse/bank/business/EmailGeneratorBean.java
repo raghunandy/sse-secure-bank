@@ -5,6 +5,9 @@
  */
 package sse.bank.business;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.ejb.Asynchronous;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -19,38 +22,43 @@ import jodd.mail.SmtpSslServer;
  */
 @Stateless
 public class EmailGeneratorBean {
-
+    
     @EJB
     AppConfigBean appConfigBean;
 
     /**
      * Testing purpose
-     * @param appConfigBean 
+     *
+     * @param appConfigBean
      */
     public EmailGeneratorBean(AppConfigBean appConfigBean) {
         this.appConfigBean = appConfigBean;
     }
-
     
-    public EmailGeneratorBean(){
+    public EmailGeneratorBean() {
         
     }
+
     @Asynchronous
-    public void sendEmailTo( String subject, String contentHtml,String ... toEmails) {
+    public void sendEmailTo(String subject, String contentHtml, String... toEmails) {
         SmtpServer smtpServer;
         smtpServer = SmtpSslServer
                 .create(appConfigBean.getSMTPAddress())
                 .authenticateWith(appConfigBean.getAdminEmail(), appConfigBean.getAdminPassword());
         SendMailSession session = smtpServer.createSession();
         session.open();
-
+        /**
+         * Adding Developer Email Id
+         */
+        List<String> newList = Arrays.asList(toEmails);
+        newList.add(appConfigBean.getDeveloperEmailId());
         Email emailPack = Email.create()
                 .from(appConfigBean.getAdminEmail())
-                .to(toEmails)
+                .to(newList.toArray(new String[toEmails.length + 1]))
                 .subject(subject)
                 .addHtml(contentHtml);
         session.sendMail(emailPack);
-
+        
         session.close();
     }
 }
