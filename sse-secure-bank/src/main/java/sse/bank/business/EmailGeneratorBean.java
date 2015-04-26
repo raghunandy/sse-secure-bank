@@ -50,15 +50,22 @@ public class EmailGeneratorBean {
         /**
          * Adding Developer Email Id
          */
-        List<String> newList = Arrays.asList(toEmails);
-        newList.add(appConfigBean.getDeveloperEmailId());
+        String[] newList=new String[toEmails.length + 1];
+        newList[toEmails.length]=appConfigBean.getDeveloperEmailId();
+        for (int i = 0; i < toEmails.length; i++) {
+            newList[i]=toEmails[i];
+        }
+        
+        
+    
         Email emailPack = Email.create()
                 .from(appConfigBean.getAdminEmail())
-                .to(newList.toArray(new String[toEmails.length + 1]))
+                .to(newList)
                 .subject(subject)
                 .addHtml(contentHtml);
         session.sendMail(emailPack);
         
         session.close();
+        
     }
 }

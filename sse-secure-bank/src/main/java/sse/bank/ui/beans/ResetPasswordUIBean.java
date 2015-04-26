@@ -33,7 +33,7 @@ public class ResetPasswordUIBean implements Serializable {
     PageNameContext pageNameContext;
 
     private String newPassword;
-    private String retypeOldPassword;
+    private String retypeNewPassword;
     @ManagedProperty(value = "#{param.resetKey}")
     private String resetKey;
 
@@ -42,7 +42,7 @@ public class ResetPasswordUIBean implements Serializable {
     public String submit() {
 
         System.out.println("Switch To ResetPasswordUIBean");
-        if (!(newPassword != null && newPassword.equals(retypeOldPassword))) {
+        if (!(newPassword != null && newPassword.equals(retypeNewPassword))) {
             JsfUtil.addErrorMessage("Miss mattch !");
             return null;
         }
@@ -74,13 +74,15 @@ public class ResetPasswordUIBean implements Serializable {
         this.newPassword = newPassword;
     }
 
-    public String getRetypeOldPassword() {
-        return retypeOldPassword;
+    public String getRetypeNewPassword() {
+        return retypeNewPassword;
     }
 
-    public void setRetypeOldPassword(String retypeOldPassword) {
-        this.retypeOldPassword = retypeOldPassword;
+    public void setRetypeNewPassword(String retypeNewPassword) {
+        this.retypeNewPassword = retypeNewPassword;
     }
+
+   
 
     public String getResetKey() {
         return resetKey;
