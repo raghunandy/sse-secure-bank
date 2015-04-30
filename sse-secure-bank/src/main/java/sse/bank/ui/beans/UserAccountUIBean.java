@@ -22,8 +22,11 @@ import javax.servlet.jsp.PageContext;
 import sse.bank.business.UserAccountBusinessBean;
 import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
+import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.domain.Account;
+import sse.bank.db.domain.CheckinAccount;
 import sse.bank.db.domain.Customer;
+import sse.bank.db.domain.SavingsAccount;
 
 /**
  *
@@ -34,20 +37,20 @@ import sse.bank.db.domain.Customer;
 public class UserAccountUIBean implements Serializable {
 
     
-//    @PostConstruct
-//    public void loadTestUser(){
-//        setCustomer(userAccountBean.getCustomerByCustomerId("cust001"));
-//        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
-//    }
     protected Customer customer;
 
     @EJB
-    UserAccountBusinessBean userAccountBean;
+    UserAccountBusinessBean userAccountBusinessBean;
 
+    @EJB
+    AccountFacade accountFacade;
     
     @Inject
     PageNameContext pageNameContext;
    
+    CheckinAccount checkinAccount;
+    SavingsAccount savingsAccount;
+    
 
     public Customer getCustomer() {
         return customer;
@@ -73,7 +76,8 @@ public class UserAccountUIBean implements Serializable {
        Collection<Account> col=customer.getAccountCollection();
        float balance=0;
        for (Account col1 : col) {
-           balance+=col1.getBalance();
+           Account flushedAccount=accountFacade.find(col1.getAccountNumber());
+           balance+=flushedAccount.getBalance();
        }
        return balance;
    }
@@ -83,6 +87,32 @@ public class UserAccountUIBean implements Serializable {
         pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
         return "/templates/public/LaunchPage.xhtml?faces-redirect=true";
     }
+
+    public void initWithCustomer(Customer customer) {
+        setCustomer(customer);
+        checkinAccount=userAccountBusinessBean.getCheckinAccount(customer);
+        savingsAccount=userAccountBusinessBean.getSavingsAccount(customer);
+        
+    }
+
+    public CheckinAccount getCheckinAccount() {
+        return checkinAccount;
+    }
+
+    public SavingsAccount getSavingsAccount() {
+        return savingsAccount;
+    }
+
+    public void setSavingsAccount(SavingsAccount savingsAccount) {
+        this.savingsAccount = savingsAccount;
+    }
+
+    public void setCheckinAccount(CheckinAccount checkinAccount) {
+        this.checkinAccount = checkinAccount;
+    }
     
+    
+    
+   
 
 }

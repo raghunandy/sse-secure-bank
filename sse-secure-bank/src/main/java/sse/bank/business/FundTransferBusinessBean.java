@@ -8,10 +8,12 @@ package sse.bank.business;
 import sse.bank.db.domain.Account;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.transaction.UserTransaction;
+import sse.bank.db.access.bean.gen.AccountFacade;
 
 /**
  *
@@ -20,17 +22,24 @@ import javax.transaction.UserTransaction;
  */
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
-public class FundTransferBean {
+public class FundTransferBusinessBean {
 
+    @EJB
+    UserAccountBusinessBean userAccountBusinessBean;
+    
+    @EJB
+    AccountFacade accountFacade;
     @Resource
     private UserTransaction userTransaction;
 
     public void transferFund(Account fromAccount, float fund,
-            Account toAccount) throws Exception {
+            String toAccountNumber) throws Exception {
 
+        
         try {
             userTransaction.begin();
-
+            Account toAccount=accountFacade.find(toAccountNumber);
+            confirmAccountDetail(toAccount);
             confirmAccountDetail(fromAccount);
             withdrawAmount(fromAccount, fund);
 

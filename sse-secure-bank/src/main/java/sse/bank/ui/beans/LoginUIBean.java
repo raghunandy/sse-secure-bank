@@ -42,7 +42,7 @@ public class LoginUIBean implements Serializable{
         System.out.println("Login");
         Customer customer = userAccountBean.validate(userId, password);
         if (customer != null) {
-            userAccountUIBean.setCustomer(customer);
+            userAccountUIBean.initWithCustomer(customer);
             
             pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.AccountHomePage);
            // return "hello?faces-redirect=true";

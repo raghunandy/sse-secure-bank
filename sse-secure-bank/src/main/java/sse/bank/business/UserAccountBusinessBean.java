@@ -5,6 +5,8 @@
  */
 package sse.bank.business;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +21,11 @@ import javax.transaction.UserTransaction;
 import org.apache.commons.codec.digest.DigestUtils;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.access.bean.gen.CustomerFacade;
+import sse.bank.db.domain.Account;
+import sse.bank.db.domain.CheckinAccount;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.CustomerSecurityQuestions;
+import sse.bank.db.domain.SavingsAccount;
 import sse.bank.db.ui.gen.util.JsfUtil;
 import sse.bank.ui.beans.BeanUtil;
 
@@ -46,6 +51,7 @@ public class UserAccountBusinessBean {
     @EJB
     AppConfigBean appConfigBean;
 
+    
     /**
      *
      * @param userId
@@ -82,8 +88,8 @@ public class UserAccountBusinessBean {
         customerFacade.edit(customer);
 
         emailGeneratorBean.sendEmailTo("Reset Password",
-                "Hello "+customer.getCustomerName()+"<br/>"
-                        + "Reset Password Link: <br/>"
+                "Hello " + customer.getCustomerName() + "<br/>"
+                + "Reset Password Link: <br/>"
                 + genResetLink(customer.getResetPasswordToken()), customer.getEmail());
 
     }
@@ -126,6 +132,7 @@ public class UserAccountBusinessBean {
     public Customer findUserByResetPasswordKey(String resetKey) {
 
         Query d = em.createNamedQuery("Customer.findByResetPasswordToken");
+        d.setParameter("resetPasswordToken", resetKey);
         try {
             Customer c = (Customer) d.getSingleResult();
             return c;
@@ -139,8 +146,33 @@ public class UserAccountBusinessBean {
     public void setUserPassword(String newPassword, String resetKey) throws Exception {
         Customer cust = findUserByResetPasswordKey(resetKey);
         cust.setPassword(BeanUtil.hashAndSetPassword(newPassword));
+        cust.setResetPasswordToken(null);
         customerFacade.edit(cust);
 
     }
+
+    public CheckinAccount getCheckinAccount(Customer customer) {
+        Collection<Account> accList = customer.getAccountCollection();
+        for (Account a : accList) {
+           if(a.getCheckinAccount()!=null){
+               return a.getCheckinAccount();
+           }
+        }
+        return null;
+    }
+
+    public SavingsAccount getSavingsAccount(Customer customer) {
+
+        Collection<Account> accList = customer.getAccountCollection();
+        for (Account a : accList) {
+           if(a.getSavingsAccount()!=null){
+               return a.getSavingsAccount();
+           }
+        }
+        return null;
+
+    }
+    
+
 
 }
