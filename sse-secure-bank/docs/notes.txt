@@ -1,0 +1,9 @@
+1. Login/Logout
+2. Password - MD5
+3. Session Invalidate - 5 min
+4. Fund Transfer
+5. OTP - Passowrd Reset
+6. Secure Questions
+7. Models
+8. DB Design
+

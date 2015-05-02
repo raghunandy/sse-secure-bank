@@ -42,6 +42,9 @@ public class FundTransferBusinessBean {
 
         boolean success = false;
         try {
+            if(fromAccount.getAccountNumber().equals(toAccountNumber)){
+                throw new InvalidAccountException();
+            }
             Account toAccount = accountFacade.find(toAccountNumber);
 
             confirmAccountDetail(toAccount);

@@ -2,31 +2,31 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:form>
-        <ul class="nav nav-sidebar">
-            <li class="active"> <h:commandLink  value="Banking Home" styleClass="btn btn-default" 
+        <ul class="nav nav-sidebar ">
+            <li class="active"> <h:commandLink  value="Banking Home"
                                                   action="#{userAccountUIBean.goToHome()}"
                                                   ></h:commandLink ></li>
-            <li> <h:commandLink  value="Account Details Update" styleClass="btn btn-default" 
+            <li> <h:commandLink  value="Account Details Update"
                                    action="#{userAccountUIBean.goToEditProfile()}"
                                    ></h:commandLink ></li>
-            <li><h:commandLink  value="Fund Transfer" styleClass="btn btn-default" 
-                                  action="#{userAccountUIBean.goToEditProfile()}"
+            <li><h:commandLink  value="Fund Transfer"
+                                action="#{userAccountUIBean.switchToTransferPage()}"
                                   ></h:commandLink ></li>
-            <li><h:commandLink  value="Logout" styleClass="btn btn-default" 
+            <li><h:commandLink  value="Logout"
                                   action="#{userAccountUIBean.logout()}"
                                   ></h:commandLink ></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li class="active"> <h:commandLink  value="Banking Home" styleClass="btn btn-default" 
+            <li class="active"> <h:commandLink  value="Banking Home"
                                                   action="#{userAccountUIBean.goToHome()}"
                                                   ></h:commandLink ></li>
-            <li> <h:commandLink  value="Account Details Update" styleClass="btn btn-default" 
+            <li> <h:commandLink  value="Account Details Update"
                                    action="#{userAccountUIBean.goToEditProfile()}"
                                    ></h:commandLink ></li>
-            <li><h:commandLink  value="Fund Transfer" styleClass="btn btn-default" 
+            <li><h:commandLink  value="Fund Transfer"
                                   action="#{userAccountUIBean.switchToTransferPage()}"
                                   ></h:commandLink ></li>
-            <li><h:commandLink  value="Logout" styleClass="btn btn-default" 
+            <li><h:commandLink  value="Logout"
                                   action="#{userAccountUIBean.logout()}"
                                   ></h:commandLink ></li>
         </ul>

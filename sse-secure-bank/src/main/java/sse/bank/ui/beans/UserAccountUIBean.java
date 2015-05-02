@@ -93,9 +93,8 @@ public class UserAccountUIBean implements Serializable {
 
     public String logout() {
         System.out.println("Logout Page");
-        faces.getExternalContext().invalidateSession();
-        pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
-        return "/templates/public/LaunchPage.xhtml?faces-redirect=true";
+       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+               return "/templates/public/LogoutPage.xhtml?faces-redirect=true";
     }
 
     public void initWithCustomer(Customer customer) {
