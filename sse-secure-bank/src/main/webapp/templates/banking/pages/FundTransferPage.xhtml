@@ -2,11 +2,75 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core">
-    
-    <ui:include src="../components/fundTransfer.xhtml" />
 
-    
-    
+    <div class="container-fluid">
+        <div class="row col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-2 main">
+
+
+            <ui:insert name="content" />     
+            <h3>Fund Transfer</h3>
+
+            <h:form styleClass="form-horizontal ">
+                <h:messages style="color:red;margin:8px;" />
+                <h:panelGroup rendered="#{!fundTransferUIBean.transactionFinished}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">From Account</label>
+                        <div class="col-sm-10">
+                            <label  class="col-sm-10 control-label">
+                                <h:outputText value="#{userAccountUIBean.checkinAccount.accountNumber}"/>
+                                (Available Balance: <h:outputText value="#{userAccountUIBean.accountBalance}"/>)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputToAcc" class="col-sm-2 control-label">To Account</label>
+                        <div class="col-sm-10">
+                            <h:inputText styleClass="form-control" 
+                                         value="#{fundTransferUIBean.toAccount}" 
+                                         ></h:inputText> (Example :002-002-0002)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
+                        <div class="col-sm-10">
+                            <h:inputText styleClass="form-control" 
+                                         value="#{fundTransferUIBean.amount}" 
+                                         ></h:inputText>
+                        </div>
+                    </div>
+                </h:panelGroup>
+                <div class="form-group">
+                    <div class="row">
+                        <h:panelGroup rendered="#{fundTransferUIBean.transactionFinished!=true}">
+                            <div class="col-sm-offset-2 col-sm-10" >
+
+                                <h:commandButton  value="Transfer" action="#{fundTransferUIBean.submit()}" styleClass="btn btn-default" 
+                                                  ></h:commandButton >
+                                <h:commandButton  value="Clear" styleClass="btn btn-default" 
+                                                  ></h:commandButton >
+                                <h:commandButton  value="Cancel" styleClass="btn btn-default" 
+                                                   action="#{fundTransferUIBean.goToHome()}"
+                                                  ></h:commandButton >
+
+                            </div>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{fundTransferUIBean.transactionFinished!=false}">
+                            <div class="col-sm-offset-2 col-sm-10">
+
+                                <h:commandButton  value="Another Transaction" styleClass="btn btn-default" 
+                                                  action="#{fundTransferUIBean.anotherTransaction()}"
+                                                  ></h:commandButton >
+                                  <h:commandButton  value="Account Home Page" styleClass="btn btn-default" 
+                                                    action="#{fundTransferUIBean.goToHome()}"
+                                                  ></h:commandButton >
+
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                </div>
+            </h:form>
+        </div>
+    </div>
 
 </ui:composition>
 

@@ -33,7 +33,7 @@ public class PageNameContext implements Serializable {
         this.USER_SWITCHED_PAGE = USER_SWITCHED_PAGE;
     }
 
-    public String loadHome() {
+    public String goToLoginPage() {
 
         setUSER_SWITCHED_PAGE(PAGE_SWITCHES.LoginPage);
 

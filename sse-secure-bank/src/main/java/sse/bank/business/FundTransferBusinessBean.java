@@ -12,6 +12,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 import sse.bank.db.access.bean.gen.AccountFacade;
 
@@ -26,34 +28,50 @@ public class FundTransferBusinessBean {
 
     @EJB
     UserAccountBusinessBean userAccountBusinessBean;
-    
+
+    @PersistenceContext(unitName = "org.glassfish-samples_sse-secure-bank_war_4.0-SNAPSHOTPU")
+    private EntityManager em;
+
     @EJB
     AccountFacade accountFacade;
     @Resource
     private UserTransaction userTransaction;
 
-    public void transferFund(Account fromAccount, float fund,
+    public boolean transferFund(Account fromAccount, float fund,
             String toAccountNumber) throws Exception {
 
-        
+        boolean success = false;
         try {
-            userTransaction.begin();
-            Account toAccount=accountFacade.find(toAccountNumber);
+            Account toAccount = accountFacade.find(toAccountNumber);
+
             confirmAccountDetail(toAccount);
+
             confirmAccountDetail(fromAccount);
-            withdrawAmount(fromAccount, fund);
+            try {
+                userTransaction.begin();
+                withdrawAmount(fromAccount, fund);
 
-            confirmAccountDetail(toAccount);
-            depositAmount(toAccount, fund);
+                depositAmount(toAccount, fund);
+                em.merge(fromAccount);
+                em.merge(toAccount);
+                userTransaction.commit();
+                success = true;
 
-            userTransaction.commit();
-        } catch (InvalidAccountException exception) {
-            userTransaction.rollback();
-        } catch (InsufficientFundException exception) {
-            userTransaction.rollback();
-        } catch (PaymentException exception) {
-            userTransaction.rollback();
+            } catch (InsufficientFundException exception) {
+                userTransaction.rollback();
+                exception.printStackTrace();
+                throw exception;
+            } catch (PaymentException exception) {
+                userTransaction.rollback();
+                exception.printStackTrace();
+                throw exception;
+            }
+        } catch (InvalidAccountException exception) { 
+            exception.printStackTrace();
+            throw exception;
+          
         }
+        return success;
     }
 
     private void confirmAccountDetail(Account account)

@@ -17,6 +17,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.jsp.PageContext;
 import sse.bank.business.UserAccountBusinessBean;
@@ -36,21 +37,21 @@ import sse.bank.db.domain.SavingsAccount;
 @SessionScoped
 public class UserAccountUIBean implements Serializable {
 
-    
     protected Customer customer;
 
+    @ManagedProperty("#{facesContext}")
+    FacesContext faces;
     @EJB
     UserAccountBusinessBean userAccountBusinessBean;
 
     @EJB
     AccountFacade accountFacade;
-    
+
     @Inject
     PageNameContext pageNameContext;
-   
+
     CheckinAccount checkinAccount;
     SavingsAccount savingsAccount;
-    
 
     public Customer getCustomer() {
         return customer;
@@ -60,39 +61,44 @@ public class UserAccountUIBean implements Serializable {
         this.customer = customer;
     }
 
-   public String getDateString(){
-       return new SimpleDateFormat("MM/dd/YY hh:mm").format(new Date());
-   }
+    public String getDateString() {
+        return new SimpleDateFormat("MM/dd/YY hh:mm").format(new Date());
+    }
 
-    public String switchToTransferPage2() {
+    public String switchToTransferPage() {
         System.out.println("Switch To Transfer Page");
-
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.FundTransferPage);
-
         return null;
     }
 
-   public float getAccountBalance(){
-       Collection<Account> col=customer.getAccountCollection();
-       float balance=0;
-       for (Account col1 : col) {
-           Account flushedAccount=accountFacade.find(col1.getAccountNumber());
-           balance+=flushedAccount.getBalance();
-       }
-       return balance;
-   }
-   
-   public String logout() {
+    public String goToHome() {
+        System.out.println("User Account Home Page");
+        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
+        return null;
+    }
+
+    public float getAccountBalance() {
+        Collection<Account> col = customer.getAccountCollection();
+        float balance = 0;
+        for (Account col1 : col) {
+            Account flushedAccount = accountFacade.find(col1.getAccountNumber());
+            balance += flushedAccount.getBalance();
+        }
+        return balance;
+    }
+
+    public String logout() {
         System.out.println("Logout Page");
+        faces.getExternalContext().invalidateSession();
         pageNameContext.setUSER_SWITCHED_PAGE(PageNameContext.PAGE_SWITCHES.LogoutPage);
         return "/templates/public/LaunchPage.xhtml?faces-redirect=true";
     }
 
     public void initWithCustomer(Customer customer) {
         setCustomer(customer);
-        checkinAccount=userAccountBusinessBean.getCheckinAccount(customer);
-        savingsAccount=userAccountBusinessBean.getSavingsAccount(customer);
-        
+        checkinAccount = userAccountBusinessBean.getCheckinAccount(customer);
+        savingsAccount = userAccountBusinessBean.getSavingsAccount(customer);
+
     }
 
     public CheckinAccount getCheckinAccount() {
@@ -110,9 +116,5 @@ public class UserAccountUIBean implements Serializable {
     public void setCheckinAccount(CheckinAccount checkinAccount) {
         this.checkinAccount = checkinAccount;
     }
-    
-    
-    
-   
 
 }
