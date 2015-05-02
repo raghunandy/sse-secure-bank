@@ -20,9 +20,9 @@
                     <h:inputText id="amount" value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:outputText value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" />
-                    <h:outputText value="Transaction:"/>
-                    <h:selectOneMenu id="transaction" value="#{transferTransaction.transferTransaction.transaction}" title="Transaction" required="true" requiredMessage="The transaction field is required." >
-                        <f:selectItems value="#{transaction.transactionItemsAvailableSelectOne}"/>
+                    <h:outputText value="BankTransaction:"/>
+                    <h:selectOneMenu id="bankTransaction" value="#{transferTransaction.transferTransaction.bankTransaction}" title="BankTransaction" required="true" requiredMessage="The bankTransaction field is required." >
+                        <f:selectItems value="#{bankTransaction.bankTransactionItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                     <h:outputText value="ToAccount:"/>
                     <h:selectOneMenu id="toAccount" value="#{transferTransaction.transferTransaction.toAccount}" title="ToAccount" required="true" requiredMessage="The toAccount field is required." >

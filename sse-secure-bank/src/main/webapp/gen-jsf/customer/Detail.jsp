@@ -30,6 +30,8 @@
                     <h:outputText value="#{customer.customer.email}" title="Email" />
                     <h:outputText value="ResetPasswordToken:"/>
                     <h:outputText value="#{customer.customer.resetPasswordToken}" title="ResetPasswordToken" />
+                    <h:outputText value="AccountLocked:"/>
+                    <h:outputText value="#{customer.customer.accountLocked}" title="AccountLocked" />
                     <h:outputText value="CustomerSecurityQuestions:"/>
                     <h:panelGroup>
                         <h:outputText value="#{customer.customer.customerSecurityQuestions}"/>

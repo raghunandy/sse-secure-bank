@@ -37,9 +37,9 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Transaction"/>
+                                <h:outputText value="BankTransaction"/>
                             </f:facet>
-                            <h:outputText value="#{item.transaction}"/>
+                            <h:outputText value="#{item.bankTransaction}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

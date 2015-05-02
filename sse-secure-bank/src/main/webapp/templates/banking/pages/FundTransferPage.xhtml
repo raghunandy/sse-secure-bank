@@ -26,9 +26,9 @@
                     <div class="form-group">
                         <label for="inputToAcc" class="col-sm-2 control-label">To Account</label>
                         <div class="col-sm-10">
-                            <h:inputText styleClass="form-control" 
-                                         value="#{fundTransferUIBean.toAccount}" 
-                                         ></h:inputText> (Example :002-002-0002)
+                            <input class="form-control" 
+                                   jsf:value="#{fundTransferUIBean.toAccount}" 
+                                   ></input> (Example :002-002-0002)
                         </div>
                     </div>
                     <div class="form-group">
@@ -47,13 +47,13 @@
                         <h:panelGroup rendered="#{fundTransferUIBean.transactionFinished!=true}">
                             <div class="col-sm-offset-2 col-sm-10" >
 
-                                <h:commandButton  value="Transfer" action="#{fundTransferUIBean.submit()}" styleClass="btn btn-default" 
-                                                  ></h:commandButton >
-                                <h:commandButton  value="Clear" styleClass="btn btn-default" 
-                                                  ></h:commandButton >
-                                <h:commandButton  value="Cancel" styleClass="btn btn-default" 
-                                                  action="#{fundTransferUIBean.goToHome()}"
-                                                  ></h:commandButton >
+                                <button jsf:action="#{fundTransferUIBean.submit()}" class="btn btn-default" 
+                                        >Transfer</button >
+                                <button  jsf:action="#{fundTransferUIBean.clear()}" class="btn btn-default" 
+                                         >Clear</button >
+                                <button  class="btn btn-default" 
+                                         jsf:action="#{fundTransferUIBean.goToHome()}"
+                                         >Cancel</button>
 
                             </div>
                         </h:panelGroup>

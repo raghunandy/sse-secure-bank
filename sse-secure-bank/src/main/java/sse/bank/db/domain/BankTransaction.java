@@ -27,15 +27,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Raghunath
  */
 @Entity
-@Table(name = "transaction")
+@Table(name = "bank_transaction")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Transaction.findAll", query = "SELECT t FROM Transaction t"),
-    @NamedQuery(name = "Transaction.findByTransactionId", query = "SELECT t FROM Transaction t WHERE t.transactionId = :transactionId"),
-    @NamedQuery(name = "Transaction.findByTransactionType", query = "SELECT t FROM Transaction t WHERE t.transactionType = :transactionType"),
-    @NamedQuery(name = "Transaction.findByDate", query = "SELECT t FROM Transaction t WHERE t.date = :date"),
-    @NamedQuery(name = "Transaction.findByStatus", query = "SELECT t FROM Transaction t WHERE t.status = :status")})
-public class Transaction implements Serializable {
+    @NamedQuery(name = "BankTransaction.findAll", query = "SELECT b FROM BankTransaction b"),
+    @NamedQuery(name = "BankTransaction.findByTransactionId", query = "SELECT b FROM BankTransaction b WHERE b.transactionId = :transactionId"),
+    @NamedQuery(name = "BankTransaction.findByTransactionType", query = "SELECT b FROM BankTransaction b WHERE b.transactionType = :transactionType"),
+    @NamedQuery(name = "BankTransaction.findByDate", query = "SELECT b FROM BankTransaction b WHERE b.date = :date"),
+    @NamedQuery(name = "BankTransaction.findByStatus", query = "SELECT b FROM BankTransaction b WHERE b.status = :status")})
+public class BankTransaction implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -51,13 +51,13 @@ public class Transaction implements Serializable {
     private Date date;
     @Column(name = "status")
     private Integer status;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "transaction")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bankTransaction")
     private TransferTransaction transferTransaction;
 
-    public Transaction() {
+    public BankTransaction() {
     }
 
-    public Transaction(String transactionId) {
+    public BankTransaction(String transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -111,10 +111,10 @@ public class Transaction implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Transaction)) {
+        if (!(object instanceof BankTransaction)) {
             return false;
         }
-        Transaction other = (Transaction) object;
+        BankTransaction other = (BankTransaction) object;
         if ((this.transactionId == null && other.transactionId != null) || (this.transactionId != null && !this.transactionId.equals(other.transactionId))) {
             return false;
         }
@@ -123,7 +123,7 @@ public class Transaction implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.db.domain.Transaction[ transactionId=" + transactionId + " ]";
+        return "sse.bank.db.domain.BankTransaction[ transactionId=" + transactionId + " ]";
     }
     
 }

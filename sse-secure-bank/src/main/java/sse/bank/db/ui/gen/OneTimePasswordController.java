@@ -176,7 +176,7 @@ public class OneTimePasswordController {
 
     public String remove() {
         String idAsString = JsfUtil.getRequestParameter("jsfcrud.currentOneTimePassword");
-        Integer id = new Integer(idAsString);
+        String id = idAsString;
         try {
             utx.begin();
         } catch (Exception ex) {

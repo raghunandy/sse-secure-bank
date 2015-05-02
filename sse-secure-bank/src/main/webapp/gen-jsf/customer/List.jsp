@@ -67,6 +67,12 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="AccountLocked"/>
+                            </f:facet>
+                            <h:outputText value="#{item.accountLocked}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value="CustomerSecurityQuestions"/>
                             </f:facet>
                             <h:outputText value="#{item.customerSecurityQuestions}"/>

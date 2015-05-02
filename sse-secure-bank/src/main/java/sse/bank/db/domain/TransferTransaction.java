@@ -44,7 +44,7 @@ public class TransferTransaction implements Serializable {
     private String transactionId;
     @JoinColumn(name = "transactionId", referencedColumnName = "transactionId", insertable = false, updatable = false)
     @OneToOne(optional = false)
-    private Transaction transaction;
+    private BankTransaction bankTransaction;
     @JoinColumn(name = "toAccount", referencedColumnName = "accountNumber")
     @ManyToOne(optional = false)
     private Account toAccount;
@@ -75,12 +75,12 @@ public class TransferTransaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public Transaction getTransaction() {
-        return transaction;
+    public BankTransaction getBankTransaction() {
+        return bankTransaction;
     }
 
-    public void setTransaction(Transaction transaction) {
-        this.transaction = transaction;
+    public void setBankTransaction(BankTransaction bankTransaction) {
+        this.bankTransaction = bankTransaction;
     }
 
     public Account getToAccount() {

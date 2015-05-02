@@ -31,6 +31,8 @@
                     <h:inputText id="email" value="#{customer.customer.email}" title="Email" />
                     <h:outputText value="ResetPasswordToken:"/>
                     <h:inputText id="resetPasswordToken" value="#{customer.customer.resetPasswordToken}" title="ResetPasswordToken" />
+                    <h:outputText value="AccountLocked:"/>
+                    <h:inputText id="accountLocked" value="#{customer.customer.accountLocked}" title="AccountLocked" />
                     <h:outputText value="OneTimePasswordCollection:"/>
                     <h:selectManyListbox id="oneTimePasswordCollection" value="#{customer.customer.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].oneTimePasswordCollection}" title="OneTimePasswordCollection" size="6" converter="#{oneTimePassword.converter}" >
                         <f:selectItems value="#{oneTimePassword.oneTimePasswordItemsAvailableSelectMany}"/>

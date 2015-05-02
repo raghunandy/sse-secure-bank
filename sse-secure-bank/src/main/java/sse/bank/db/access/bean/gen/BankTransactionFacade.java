@@ -8,14 +8,14 @@ package sse.bank.db.access.bean.gen;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import sse.bank.db.domain.Transaction;
+import sse.bank.db.domain.BankTransaction;
 
 /**
  *
  * @author Raghunath
  */
 @Stateless
-public class TransactionFacade extends AbstractFacade<Transaction> {
+public class BankTransactionFacade extends AbstractFacade<BankTransaction> {
     @PersistenceContext(unitName = "org.glassfish-samples_sse-secure-bank_war_4.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class TransactionFacade extends AbstractFacade<Transaction> {
         return em;
     }
 
-    public TransactionFacade() {
-        super(Transaction.class);
+    public BankTransactionFacade() {
+        super(BankTransaction.class);
     }
     
 }

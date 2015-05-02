@@ -20,7 +20,7 @@ public class OneTimePasswordConverter implements Converter {
         if (string == null || string.length() == 0) {
             return null;
         }
-        Integer id = new Integer(string);
+        String id = string;
         OneTimePasswordController controller = (OneTimePasswordController) facesContext.getApplication().getELResolver().getValue(facesContext.getELContext(), null, "oneTimePassword");
         return controller.getJpaController().find(id);
     }

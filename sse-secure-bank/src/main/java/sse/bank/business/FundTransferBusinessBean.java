@@ -37,12 +37,15 @@ public class FundTransferBusinessBean {
     @Resource
     private UserTransaction userTransaction;
 
+    @EJB
+    TranscationBusinessBean transcationBusinessBean;
+
     public boolean transferFund(Account fromAccount, float fund,
             String toAccountNumber) throws Exception {
 
         boolean success = false;
         try {
-            if(fromAccount.getAccountNumber().equals(toAccountNumber)){
+            if (fromAccount.getAccountNumber().equals(toAccountNumber)) {
                 throw new InvalidAccountException();
             }
             Account toAccount = accountFacade.find(toAccountNumber);
@@ -57,6 +60,9 @@ public class FundTransferBusinessBean {
                 depositAmount(toAccount, fund);
                 em.merge(fromAccount);
                 em.merge(toAccount);
+                String transactionId = genTransactionId();
+                transcationBusinessBean.saveTransaction(transactionId, fromAccount, toAccount, fund);
+
                 userTransaction.commit();
                 success = true;
 
@@ -69,10 +75,10 @@ public class FundTransferBusinessBean {
                 exception.printStackTrace();
                 throw exception;
             }
-        } catch (InvalidAccountException exception) { 
+        } catch (InvalidAccountException exception) {
             exception.printStackTrace();
             throw exception;
-          
+
         }
         return success;
     }
@@ -93,6 +99,10 @@ public class FundTransferBusinessBean {
 
     private void depositAmount(Account toAccount, float fund) throws PaymentException {
         toAccount.setBalance(toAccount.getBalance() + fund);
+    }
+
+    private String genTransactionId() {
+        return System.nanoTime() + "";
     }
 
     private static class PaymentException extends Exception {

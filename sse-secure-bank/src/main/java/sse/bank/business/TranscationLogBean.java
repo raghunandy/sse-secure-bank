@@ -5,7 +5,9 @@
  */
 package sse.bank.business;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import sse.bank.db.access.bean.gen.TransactionFacade;
 
 /**
  *
@@ -15,6 +17,8 @@ import javax.ejb.Stateless;
 public class TranscationLogBean {
 
     
+    @EJB
+    TransactionFacade transactionFacade;
     
     public void logTransaction(String reason,String messge){
         
