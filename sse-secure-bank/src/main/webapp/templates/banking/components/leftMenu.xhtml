@@ -3,32 +3,32 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:form>
         <ul class="nav nav-sidebar">
-            <li class="active"> <h:commandButton  value="Banking Home" styleClass="btn btn-default" 
+            <li class="active"> <h:commandLink  value="Banking Home" styleClass="btn btn-default" 
                                                   action="#{userAccountUIBean.goToHome()}"
-                                                  ></h:commandButton ></li>
-            <li> <h:commandButton  value="Account Details Update" styleClass="btn btn-default" 
+                                                  ></h:commandLink ></li>
+            <li> <h:commandLink  value="Account Details Update" styleClass="btn btn-default" 
                                    action="#{userAccountUIBean.goToEditProfile()}"
-                                   ></h:commandButton ></li>
-            <li><h:commandButton  value="Fund Transfer" styleClass="btn btn-default" 
+                                   ></h:commandLink ></li>
+            <li><h:commandLink  value="Fund Transfer" styleClass="btn btn-default" 
                                   action="#{userAccountUIBean.goToEditProfile()}"
-                                  ></h:commandButton ></li>
-            <li><h:commandButton  value="Logout" styleClass="btn btn-default" 
+                                  ></h:commandLink ></li>
+            <li><h:commandLink  value="Logout" styleClass="btn btn-default" 
                                   action="#{userAccountUIBean.logout()}"
-                                  ></h:commandButton ></li>
+                                  ></h:commandLink ></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li class="active"> <h:commandButton  value="Banking Home" styleClass="btn btn-default" 
+            <li class="active"> <h:commandLink  value="Banking Home" styleClass="btn btn-default" 
                                                   action="#{userAccountUIBean.goToHome()}"
-                                                  ></h:commandButton ></li>
-            <li> <h:commandButton  value="Account Details Update" styleClass="btn btn-default" 
+                                                  ></h:commandLink ></li>
+            <li> <h:commandLink  value="Account Details Update" styleClass="btn btn-default" 
                                    action="#{userAccountUIBean.goToEditProfile()}"
-                                   ></h:commandButton ></li>
-            <li><h:commandButton  value="Fund Transfer" styleClass="btn btn-default" 
+                                   ></h:commandLink ></li>
+            <li><h:commandLink  value="Fund Transfer" styleClass="btn btn-default" 
                                   action="#{userAccountUIBean.switchToTransferPage()}"
-                                  ></h:commandButton ></li>
-            <li><h:commandButton  value="Logout" styleClass="btn btn-default" 
+                                  ></h:commandLink ></li>
+            <li><h:commandLink  value="Logout" styleClass="btn btn-default" 
                                   action="#{userAccountUIBean.logout()}"
-                                  ></h:commandButton ></li>
+                                  ></h:commandLink ></li>
         </ul>
     </h:form>
 </ui:composition>
