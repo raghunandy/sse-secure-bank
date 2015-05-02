@@ -64,7 +64,11 @@ public class UserAccountUIBean implements Serializable {
     public String getDateString() {
         return new SimpleDateFormat("MM/dd/YY hh:mm").format(new Date());
     }
-
+ public String goToEditProfile() {
+        System.out.println("Switch To Edit Profile");
+        pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.EditProfile);
+        return null;
+    }
     public String switchToTransferPage() {
         System.out.println("Switch To Transfer Page");
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.FundTransferPage);

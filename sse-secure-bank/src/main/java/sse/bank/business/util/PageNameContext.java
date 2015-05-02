@@ -22,7 +22,7 @@ public class PageNameContext implements Serializable {
     public static enum PAGE_SWITCHES {
 
         AccountHomePage, FundTransferPage, AccountDetailsEditPage,
-        LogoutPage, ForgotPasswordPage, LoginPage;
+        LogoutPage, ForgotPasswordPage, LoginPage,EditProfile;
     };
 
     public PAGE_SWITCHES getUSER_SWITCHED_PAGE() {

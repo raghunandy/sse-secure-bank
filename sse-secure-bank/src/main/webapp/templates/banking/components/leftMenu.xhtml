@@ -1,18 +1,35 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
-
-    <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Banking Home</a></li>
-        <li><a href="#">Account Details Update</a></li>
-        <li><a href="#">Fund Transfer</a></li>
-        <li><a href="#">Logout</a></li>
-    </ul>
-    <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Banking Home</a></li>
-        <li><a href="#">Account Details Update</a></li>
-        <li><a href="#">Fund Transfer</a></li>
-        <li><a href="#">Logout</a></li>
-    </ul>
-    
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:form>
+        <ul class="nav nav-sidebar">
+            <li class="active"> <h:commandButton  value="Banking Home" styleClass="btn btn-default" 
+                                                  action="#{userAccountUIBean.goToHome()}"
+                                                  ></h:commandButton ></li>
+            <li> <h:commandButton  value="Account Details Update" styleClass="btn btn-default" 
+                                   action="#{userAccountUIBean.goToEditProfile()}"
+                                   ></h:commandButton ></li>
+            <li><h:commandButton  value="Fund Transfer" styleClass="btn btn-default" 
+                                  action="#{userAccountUIBean.goToEditProfile()}"
+                                  ></h:commandButton ></li>
+            <li><h:commandButton  value="Logout" styleClass="btn btn-default" 
+                                  action="#{userAccountUIBean.logout()}"
+                                  ></h:commandButton ></li>
+        </ul>
+        <ul class="nav nav-sidebar">
+            <li class="active"> <h:commandButton  value="Banking Home" styleClass="btn btn-default" 
+                                                  action="#{userAccountUIBean.goToHome()}"
+                                                  ></h:commandButton ></li>
+            <li> <h:commandButton  value="Account Details Update" styleClass="btn btn-default" 
+                                   action="#{userAccountUIBean.goToEditProfile()}"
+                                   ></h:commandButton ></li>
+            <li><h:commandButton  value="Fund Transfer" styleClass="btn btn-default" 
+                                  action="#{userAccountUIBean.switchToTransferPage()}"
+                                  ></h:commandButton ></li>
+            <li><h:commandButton  value="Logout" styleClass="btn btn-default" 
+                                  action="#{userAccountUIBean.logout()}"
+                                  ></h:commandButton ></li>
+        </ul>
+    </h:form>
 </ui:composition>
 
