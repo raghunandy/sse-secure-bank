@@ -11,7 +11,7 @@
             <to-view-id>/welcomeJSF.jsp</to-view-id>
         </navigation-case>
     </navigation-rule>
-    <managed-bean>
+     <managed-bean>
         <managed-bean-name>account</managed-bean-name>
         <managed-bean-class>sse.bank.db.ui.gen.AccountController</managed-bean-class>
     
@@ -190,8 +190,8 @@
     
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <converter>
-        <converter-for-class>sse.bank.db.domain.Transaction</converter-for-class>
-        <converter-class>sse.bank.db.ui.gen.TransactionConverter</converter-class>
+        <converter-for-class>sse.bank.db.domain.BankTransaction</converter-for-class>
+        <converter-class>sse.bank.db.ui.gen.BankTransactionConverter</converter-class>
     </converter>
     <navigation-rule>
         <from-view-id>*</from-view-id>
@@ -262,15 +262,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>AccountCommonPage</from-outcome>
-            <to-view-id>/templates/banking/AccountCommonPage.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    
-     <navigation-rule>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>LaunchPage</from-outcome>
-            <to-view-id>/templates/public/LaunchPage.xhtml</to-view-id>
+            <to-view-id>/banking/AccountCommonPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -328,4 +320,130 @@
     <application>
         <el-resolver>sse.bank.db.ui.gen.util.JsfCrudELResolver</el-resolver>
     </application>
+    <managed-bean>
+        <managed-bean-name>customerSecurityQuestions</managed-bean-name>
+        <managed-bean-class>sse.bank.db.ui.gen.CustomerSecurityQuestionsController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>customerSecurityQuestionsJpa</managed-bean-name>
+        <managed-bean-class>sse.bank.db.access.bean.gen.CustomerSecurityQuestionsFacade</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>sse.bank.db.domain.CustomerSecurityQuestions</converter-for-class>
+        <converter-class>sse.bank.db.ui.gen.CustomerSecurityQuestionsConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>customerSecurityQuestions_create</from-outcome>
+            <to-view-id>/gen-jsf/customerSecurityQuestions/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>customerSecurityQuestions_list</from-outcome>
+            <to-view-id>/gen-jsf/customerSecurityQuestions/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>customerSecurityQuestions_edit</from-outcome>
+            <to-view-id>/gen-jsf/customerSecurityQuestions/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>customerSecurityQuestions_detail</from-outcome>
+            <to-view-id>/gen-jsf/customerSecurityQuestions/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>oneTimePassword</managed-bean-name>
+        <managed-bean-class>sse.bank.db.ui.gen.OneTimePasswordController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>oneTimePasswordJpa</managed-bean-name>
+        <managed-bean-class>sse.bank.db.access.bean.gen.OneTimePasswordFacade</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>sse.bank.db.domain.OneTimePassword</converter-for-class>
+        <converter-class>sse.bank.db.ui.gen.OneTimePasswordConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>oneTimePassword_create</from-outcome>
+            <to-view-id>/gen-jsf/oneTimePassword/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>oneTimePassword_list</from-outcome>
+            <to-view-id>/gen-jsf/oneTimePassword/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>oneTimePassword_edit</from-outcome>
+            <to-view-id>/gen-jsf/oneTimePassword/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>oneTimePassword_detail</from-outcome>
+            <to-view-id>/gen-jsf/oneTimePassword/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>bankTransaction</managed-bean-name>
+        <managed-bean-class>sse.bank.db.ui.gen.BankTransactionController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>bankTransactionJpa</managed-bean-name>
+        <managed-bean-class>sse.bank.db.access.bean.gen.BankTransactionFacade</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <converter>
+        <converter-for-class>sse.bank.db.domain.BankTransaction</converter-for-class>
+        <converter-class>sse.bank.db.ui.gen.BankTransactionConverter</converter-class>
+    </converter>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>bankTransaction_create</from-outcome>
+            <to-view-id>/gen-jsf/bankTransaction/New.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>bankTransaction_list</from-outcome>
+            <to-view-id>/gen-jsf/bankTransaction/List.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>bankTransaction_edit</from-outcome>
+            <to-view-id>/gen-jsf/bankTransaction/Edit.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>bankTransaction_detail</from-outcome>
+            <to-view-id>/gen-jsf/bankTransaction/Detail.jsp</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>
