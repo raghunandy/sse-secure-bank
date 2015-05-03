@@ -7,7 +7,7 @@ package sse.bank.business;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import sse.bank.db.access.bean.gen.TransactionFacade;
+import sse.bank.db.access.bean.gen.BankTransactionFacade;
 
 /**
  *
@@ -18,7 +18,7 @@ public class TranscationLogBean {
 
     
     @EJB
-    TransactionFacade transactionFacade;
+    BankTransactionFacade bank;
     
     public void logTransaction(String reason,String messge){
         
