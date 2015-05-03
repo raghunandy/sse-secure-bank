@@ -262,10 +262,17 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>AccountCommonPage</from-outcome>
-            <to-view-id>/banking/AccountCommonPage.xhtml</to-view-id>
+            <to-view-id>/templates/banking/AccountCommonPage.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
+     <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>LaunchPage</from-outcome>
+            <to-view-id>/templates/public/LaunchPage.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
     <navigation-rule>
         <from-view-id>*</from-view-id>
