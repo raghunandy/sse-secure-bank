@@ -54,6 +54,8 @@ public class Account implements Serializable {
     private Collection<TransferTransaction> transferTransactionCollection1;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
     private SavingsAccount savingsAccount;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountNumber")
+    private Collection<BankTransaction> bankTransactionCollection;
     @JoinColumn(name = "customerId", referencedColumnName = "customerId")
     @ManyToOne(optional = false)
     private Customer customerId;
@@ -113,6 +115,15 @@ public class Account implements Serializable {
 
     public void setSavingsAccount(SavingsAccount savingsAccount) {
         this.savingsAccount = savingsAccount;
+    }
+
+    @XmlTransient
+    public Collection<BankTransaction> getBankTransactionCollection() {
+        return bankTransactionCollection;
+    }
+
+    public void setBankTransactionCollection(Collection<BankTransaction> bankTransactionCollection) {
+        this.bankTransactionCollection = bankTransactionCollection;
     }
 
     public Customer getCustomerId() {

@@ -25,12 +25,6 @@
                     <h:dataTable value="#{transferTransaction.transferTransactionItems}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="Amount"/>
-                            </f:facet>
-                            <h:outputText value="#{item.amount}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
                                 <h:outputText value="TransactionId"/>
                             </f:facet>
                             <h:outputText value="#{item.transactionId}"/>

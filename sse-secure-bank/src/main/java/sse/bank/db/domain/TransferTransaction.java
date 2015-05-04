@@ -28,13 +28,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TransferTransaction.findAll", query = "SELECT t FROM TransferTransaction t"),
-    @NamedQuery(name = "TransferTransaction.findByAmount", query = "SELECT t FROM TransferTransaction t WHERE t.amount = :amount"),
     @NamedQuery(name = "TransferTransaction.findByTransactionId", query = "SELECT t FROM TransferTransaction t WHERE t.transactionId = :transactionId")})
 public class TransferTransaction implements Serializable {
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "amount")
-    private Float amount;
     @Id
     @Basic(optional = false)
     @NotNull
@@ -56,14 +52,6 @@ public class TransferTransaction implements Serializable {
 
     public TransferTransaction(String transactionId) {
         this.transactionId = transactionId;
-    }
-
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
     }
 
     public String getTransactionId() {

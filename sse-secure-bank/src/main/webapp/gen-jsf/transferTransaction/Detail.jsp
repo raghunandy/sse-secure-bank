@@ -16,8 +16,6 @@
             <h1>TransferTransaction Detail</h1>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="Amount:"/>
-                    <h:outputText value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:outputText value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" />
                     <h:outputText value="ToAccount:"/>

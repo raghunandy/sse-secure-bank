@@ -12,6 +12,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -35,7 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "BankTransaction.findByBankTransactionId", query = "SELECT b FROM BankTransaction b WHERE b.bankTransactionId = :bankTransactionId"),
     @NamedQuery(name = "BankTransaction.findByTransactionType", query = "SELECT b FROM BankTransaction b WHERE b.transactionType = :transactionType"),
     @NamedQuery(name = "BankTransaction.findByDate", query = "SELECT b FROM BankTransaction b WHERE b.date = :date"),
-    @NamedQuery(name = "BankTransaction.findByStatus", query = "SELECT b FROM BankTransaction b WHERE b.status = :status")})
+    @NamedQuery(name = "BankTransaction.findByStatus", query = "SELECT b FROM BankTransaction b WHERE b.status = :status"),
+    @NamedQuery(name = "BankTransaction.findByAmount", query = "SELECT b FROM BankTransaction b WHERE b.amount = :amount")})
 public class BankTransaction implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,8 +55,14 @@ public class BankTransaction implements Serializable {
     private Date date;
     @Column(name = "status")
     private Integer status;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "amount")
+    private Float amount;
     @OneToMany(mappedBy = "bankTransactionId")
     private Collection<TransferTransaction> transferTransactionCollection;
+    @JoinColumn(name = "accountNumber", referencedColumnName = "accountNumber")
+    @ManyToOne(optional = false)
+    private Account accountNumber;
 
     public BankTransaction() {
     }
@@ -94,6 +103,14 @@ public class BankTransaction implements Serializable {
         this.status = status;
     }
 
+    public Float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Float amount) {
+        this.amount = amount;
+    }
+
     @XmlTransient
     public Collection<TransferTransaction> getTransferTransactionCollection() {
         return transferTransactionCollection;
@@ -101,6 +118,14 @@ public class BankTransaction implements Serializable {
 
     public void setTransferTransactionCollection(Collection<TransferTransaction> transferTransactionCollection) {
         this.transferTransactionCollection = transferTransactionCollection;
+    }
+
+    public Account getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(Account accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     @Override

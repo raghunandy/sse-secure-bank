@@ -17,8 +17,6 @@
             <h:form>
                 <h:inputHidden id="validateCreateField" validator="#{transferTransaction.validateCreate}" value="value"/>
                 <h:panelGrid columns="2">
-                    <h:outputText value="Amount:"/>
-                    <h:inputText id="amount" value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:inputText id="transactionId" value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" required="true" requiredMessage="The transactionId field is required." />
                     <h:outputText value="ToAccount:"/>

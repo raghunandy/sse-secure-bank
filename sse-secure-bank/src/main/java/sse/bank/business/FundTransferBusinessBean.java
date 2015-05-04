@@ -5,6 +5,7 @@
  */
 package sse.bank.business;
 
+import java.util.Date;
 import sse.bank.db.domain.Account;
 
 import javax.annotation.Resource;
@@ -15,7 +16,10 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import sse.bank.business.TranscationBusinessBean.TRANSACTION;
 import sse.bank.db.access.bean.gen.AccountFacade;
+import sse.bank.db.domain.BankTransaction;
+import sse.bank.db.domain.TransferTransaction;
 
 /**
  *
@@ -24,7 +28,7 @@ import sse.bank.db.access.bean.gen.AccountFacade;
  */
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
-public class FundTransferBusinessBean {
+public class FundTransferBusinessBean  {
 
     @EJB
     UserAccountBusinessBean userAccountBusinessBean;
@@ -43,7 +47,6 @@ public class FundTransferBusinessBean {
     public boolean transferFund(Account fromAccount, float fund,
             String toAccountNumber) throws Exception {
 
-        
         boolean success = false;
         try {
             if (fromAccount.getAccountNumber().equals(toAccountNumber)) {
@@ -62,8 +65,7 @@ public class FundTransferBusinessBean {
                 em.merge(fromAccount);
                 em.merge(toAccount);
                 String transactionId = genTransactionId();
-                transcationBusinessBean.saveTransaction(transactionId, fromAccount, toAccount, fund);
-
+                saveTransaction(transactionId, fromAccount, toAccount, fund);
                 userTransaction.commit();
                 success = true;
 
@@ -82,6 +84,29 @@ public class FundTransferBusinessBean {
 
         }
         return success;
+    }
+
+    public void saveTransaction(String id, Account fromAccountNumber, Account toAccountNumber, float fund) {
+
+        BankTransaction tran = new BankTransaction();
+        tran.setTransactionType(TRANSACTION.FUND_TRANSFER.name());
+        tran.setDate(new Date());
+        tran.setBankTransactionId(id);
+        tran.setAmount(fund);
+        tran.setAccountNumber(fromAccountNumber);
+        em.persist(tran);
+
+        TransferTransaction transferTransaction = new TransferTransaction();
+
+        
+        transferTransaction.setToAccount(toAccountNumber);
+        transferTransaction.setFromAccount(fromAccountNumber);
+//        transferTransaction.setBankTransaction(tran);
+        transferTransaction.setTransactionId(id);
+        transferTransaction.setBankTransactionId(tran);
+        em.persist(tran);
+        
+
     }
 
     private void confirmAccountDetail(Account account)

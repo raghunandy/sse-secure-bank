@@ -12,6 +12,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
+import javax.persistence.EntityManager;
 import sse.bank.db.access.bean.gen.BankTransactionFacade;
 
 import sse.bank.db.access.bean.gen.TransferTransactionFacade;
@@ -28,8 +29,8 @@ import sse.bank.db.domain.TransferTransaction;
 @TransactionManagement(value = TransactionManagementType.BEAN)
 public class TranscationBusinessBean {
 
-    
     public static enum TRANSACTION{FUND_TRANSFER}
+    
     @EJB
     BankTransactionFacade transactionFacade;
 
@@ -37,28 +38,5 @@ public class TranscationBusinessBean {
     TransferTransactionFacade transferTransactionFacade;
     
     
-    public void saveTransaction(String id,Account fromAccountNumber,Account toAccountNumber, float fund) {
-        
-        
-       
-        
-        BankTransaction tran=new BankTransaction();
-        tran.setTransactionType(TRANSACTION.FUND_TRANSFER.name());
-        tran.setDate(new Date());
-        tran.setBankTransactionId(id);
-        
-        transactionFacade.create(tran);
-        
-        
-         TransferTransaction transferTransaction=new TransferTransaction();
-        
-        transferTransaction.setAmount(fund);
-        transferTransaction.setToAccount(toAccountNumber);
-        transferTransaction.setFromAccount(fromAccountNumber);
-//        transferTransaction.setBankTransaction(tran);
-        transferTransaction.setTransactionId(id);
-        transferTransaction.setBankTransactionId(tran);
-        transferTransactionFacade.create(transferTransaction);
-    }
-    
+   
 }

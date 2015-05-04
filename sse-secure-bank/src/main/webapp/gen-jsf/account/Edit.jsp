@@ -36,6 +36,10 @@
                     <h:selectOneMenu id="savingsAccount" value="#{account.account.savingsAccount}" title="SavingsAccount" >
                         <f:selectItems value="#{savingsAccount.savingsAccountItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    <h:outputText value="BankTransactionCollection:"/>
+                    <h:selectManyListbox id="bankTransactionCollection" value="#{account.account.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].bankTransactionCollection}" title="BankTransactionCollection" size="6" converter="#{bankTransaction.converter}" >
+                        <f:selectItems value="#{bankTransaction.bankTransactionItemsAvailableSelectMany}"/>
+                    </h:selectManyListbox>
                     <h:outputText value="CustomerId:"/>
                     <h:selectOneMenu id="customerId" value="#{account.account.customerId}" title="CustomerId" required="true" requiredMessage="The customerId field is required." >
                         <f:selectItems value="#{customer.customerItemsAvailableSelectOne}"/>

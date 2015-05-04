@@ -26,10 +26,16 @@
                     </h:inputText>
                     <h:outputText value="Status:"/>
                     <h:inputText id="status" value="#{bankTransaction.bankTransaction.status}" title="Status" />
+                    <h:outputText value="Amount:"/>
+                    <h:inputText id="amount" value="#{bankTransaction.bankTransaction.amount}" title="Amount" />
                     <h:outputText value="TransferTransactionCollection:"/>
                     <h:selectManyListbox id="transferTransactionCollection" value="#{bankTransaction.bankTransaction.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].transferTransactionCollection}" title="TransferTransactionCollection" size="6" converter="#{transferTransaction.converter}" >
                         <f:selectItems value="#{transferTransaction.transferTransactionItemsAvailableSelectMany}"/>
                     </h:selectManyListbox>
+                    <h:outputText value="AccountNumber:"/>
+                    <h:selectOneMenu id="accountNumber" value="#{bankTransaction.bankTransaction.accountNumber}" title="AccountNumber" required="true" requiredMessage="The accountNumber field is required." >
+                        <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
 
                 </h:panelGrid>
                 <br />

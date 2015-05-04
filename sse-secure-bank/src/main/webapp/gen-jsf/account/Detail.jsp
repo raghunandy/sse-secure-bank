@@ -113,12 +113,6 @@
                                      rendered="#{not empty account.account.transferTransactionCollection}">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Amount"/>
-                                </f:facet>
-                                <h:outputText value="#{item.amount}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
                                     <h:outputText value="TransactionId"/>
                                 </f:facet>
                                 <h:outputText value="#{item.transactionId}"/>
@@ -176,12 +170,6 @@
                                      rendered="#{not empty account.account.transferTransactionCollection1}">
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="Amount"/>
-                                </f:facet>
-                                <h:outputText value="#{item.amount}"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
                                     <h:outputText value="TransactionId"/>
                                 </f:facet>
                                 <h:outputText value="#{item.transactionId}"/>
@@ -225,6 +213,77 @@
                                 <h:commandLink value="Destroy" action="#{transferTransaction.destroy}">
                                     <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][account.account][account.converter].jsfcrud_invoke}"/>
                                     <f:param name="jsfcrud.currentTransferTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][transferTransaction.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.relatedController" value="account" />
+                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.AccountController" />
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+                    <h:outputText value="BankTransactionCollection:" />
+                    <h:panelGroup>
+                        <h:outputText rendered="#{empty account.account.bankTransactionCollection}" value="(No Items)"/>
+                        <h:dataTable value="#{account.account.bankTransactionCollection}" var="item" 
+                                     border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px" 
+                                     rendered="#{not empty account.account.bankTransactionCollection}">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="BankTransactionId"/>
+                                </f:facet>
+                                <h:outputText value="#{item.bankTransactionId}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="TransactionType"/>
+                                </f:facet>
+                                <h:outputText value="#{item.transactionType}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Date"/>
+                                </f:facet>
+                                <h:outputText value="#{item.date}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Status"/>
+                                </f:facet>
+                                <h:outputText value="#{item.status}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Amount"/>
+                                </f:facet>
+                                <h:outputText value="#{item.amount}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="AccountNumber"/>
+                                </f:facet>
+                                <h:outputText value="#{item.accountNumber}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText escape="false" value="&nbsp;"/>
+                                </f:facet>
+                                <h:commandLink value="Show" action="#{bankTransaction.detailSetup}">
+                                    <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][account.account][account.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.currentBankTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][bankTransaction.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.relatedController" value="account" />
+                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.AccountController" />
+                                </h:commandLink>
+                                <h:outputText value=" "/>
+                                <h:commandLink value="Edit" action="#{bankTransaction.editSetup}">
+                                    <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][account.account][account.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.currentBankTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][bankTransaction.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.relatedController" value="account" />
+                                    <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.AccountController" />
+                                </h:commandLink>
+                                <h:outputText value=" "/>
+                                <h:commandLink value="Destroy" action="#{bankTransaction.destroy}">
+                                    <f:param name="jsfcrud.currentAccount" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][account.account][account.converter].jsfcrud_invoke}"/>
+                                    <f:param name="jsfcrud.currentBankTransaction" value="#{jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method['getAsConvertedString'][item][bankTransaction.converter].jsfcrud_invoke}"/>
                                     <f:param name="jsfcrud.relatedController" value="account" />
                                     <f:param name="jsfcrud.relatedControllerType" value="sse.bank.db.ui.gen.AccountController" />
                                 </h:commandLink>

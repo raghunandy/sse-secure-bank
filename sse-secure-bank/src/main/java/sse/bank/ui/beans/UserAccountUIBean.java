@@ -25,6 +25,7 @@ import sse.bank.business.util.PageNameContext;
 import sse.bank.business.util.PageNameContext.PAGE_SWITCHES;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.domain.Account;
+import sse.bank.db.domain.BankTransaction;
 import sse.bank.db.domain.CheckinAccount;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.SavingsAccount;
@@ -103,6 +104,7 @@ public class UserAccountUIBean implements Serializable {
         savingsAccount = userAccountBusinessBean.getSavingsAccount(customer);
 
     }
+//    public List<BankTransaction> 
 
     public CheckinAccount getCheckinAccount() {
         return checkinAccount;
