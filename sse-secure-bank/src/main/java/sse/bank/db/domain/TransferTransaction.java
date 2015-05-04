@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,18 +38,18 @@ public class TransferTransaction implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 45)
     @Column(name = "transactionId")
     private String transactionId;
-    @JoinColumn(name = "transactionId", referencedColumnName = "transactionId", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private BankTransaction bankTransaction;
     @JoinColumn(name = "toAccount", referencedColumnName = "accountNumber")
     @ManyToOne(optional = false)
     private Account toAccount;
     @JoinColumn(name = "fromAccount", referencedColumnName = "accountNumber")
     @ManyToOne(optional = false)
     private Account fromAccount;
+    @JoinColumn(name = "bankTransactionId", referencedColumnName = "bankTransactionId")
+    @ManyToOne
+    private BankTransaction bankTransactionId;
 
     public TransferTransaction() {
     }
@@ -75,14 +74,6 @@ public class TransferTransaction implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public BankTransaction getBankTransaction() {
-        return bankTransaction;
-    }
-
-    public void setBankTransaction(BankTransaction bankTransaction) {
-        this.bankTransaction = bankTransaction;
-    }
-
     public Account getToAccount() {
         return toAccount;
     }
@@ -97,6 +88,14 @@ public class TransferTransaction implements Serializable {
 
     public void setFromAccount(Account fromAccount) {
         this.fromAccount = fromAccount;
+    }
+
+    public BankTransaction getBankTransactionId() {
+        return bankTransactionId;
+    }
+
+    public void setBankTransactionId(BankTransaction bankTransactionId) {
+        this.bankTransactionId = bankTransactionId;
     }
 
     @Override

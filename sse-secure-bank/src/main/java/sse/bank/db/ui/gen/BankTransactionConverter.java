@@ -31,7 +31,7 @@ public class BankTransactionConverter implements Converter {
         }
         if (object instanceof BankTransaction) {
             BankTransaction o = (BankTransaction) object;
-            return o.getTransactionId() == null ? "" : o.getTransactionId().toString();
+            return o.getBankTransactionId() == null ? "" : o.getBankTransactionId().toString();
         } else {
             throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: sse.bank.db.domain.BankTransaction");
         }

@@ -27,6 +27,7 @@ public class FundTransferUIBean implements Serializable {
 
     private String toAccount;
 
+    private String destAccount;
     private float amount;
     @EJB
     FundTransferBusinessBean fundTransferBusinessBean;
@@ -76,6 +77,17 @@ public class FundTransferUIBean implements Serializable {
         }
     }
 
+    public String getDestAccount() {
+        return destAccount;
+    }
+
+    public void setDestAccount(String destAccount) {
+        this.destAccount = destAccount;
+    }
+
+    
+    
+    
     public String getToAccount() {
         return toAccount;
     }

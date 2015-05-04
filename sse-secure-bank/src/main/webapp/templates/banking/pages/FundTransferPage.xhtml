@@ -11,7 +11,7 @@
             <ui:insert name="content" />     
             <h3>Fund Transfer</h3>
 
-            <h:form styleClass="form-horizontal ">
+            <form class="form-horizontal" jsf:id="fundTransferForm">
                 <h:messages style="color:red;margin:8px;" />
                 <h:panelGroup rendered="#{!fundTransferUIBean.transactionFinished}">
                     <div class="form-group">
@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="inputToAcc" class="col-sm-2 control-label">To Account</label>
                         <div class="col-sm-10">
-                            <input class="form-control" 
+                            <input type="text" class="form-control" 
                                    jsf:value="#{fundTransferUIBean.toAccount}" 
                                    ></input> (Example :002-002-0002)
                         </div>
@@ -35,7 +35,7 @@
                         <label for="inputAmount" class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
 
-                            <input type="number"  jsf:id="lastName"   
+                            <input type="number"  
                                    placeholder="0" pattern="\-?\d+(\.\d{0,})?"
                                    jsf:value="#{fundTransferUIBean.amount}" />
 
@@ -61,18 +61,18 @@
                             rendered="#{fundTransferUIBean.transactionFinished!=false}">
                             <div class="col-sm-offset-2 col-sm-10">
 
-                                <h:commandButton  value="Another Transaction" styleClass="btn btn-default" 
-                                                  action="#{fundTransferUIBean.anotherTransaction()}"
-                                                  ></h:commandButton >
-                                <h:commandButton  value="Account Home Page" styleClass="btn btn-default" 
-                                                  action="#{fundTransferUIBean.goToHome()}"
-                                                  ></h:commandButton >
+                                <button  class="btn btn-default" 
+                                                  jsf:action="#{fundTransferUIBean.anotherTransaction()}"
+                                                  >Another Transaction</button >
+                                <button  class="btn btn-default" 
+                                                  jsf:action="#{fundTransferUIBean.goToHome()}"
+                                                  >Account Home Page</button >
 
                             </div>
                         </h:panelGroup>
                     </div>
                 </div>
-            </h:form>
+            </form>
         </div>
     </div>
 

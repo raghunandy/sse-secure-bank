@@ -37,12 +37,6 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="BankTransaction"/>
-                            </f:facet>
-                            <h:outputText value="#{item.bankTransaction}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
                                 <h:outputText value="ToAccount"/>
                             </f:facet>
                             <h:outputText value="#{item.toAccount}"/>
@@ -52,6 +46,12 @@
                                 <h:outputText value="FromAccount"/>
                             </f:facet>
                             <h:outputText value="#{item.fromAccount}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="BankTransactionId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bankTransactionId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

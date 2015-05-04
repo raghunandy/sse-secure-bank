@@ -38,19 +38,26 @@ public class TranscationBusinessBean {
     
     
     public void saveTransaction(String id,Account fromAccountNumber,Account toAccountNumber, float fund) {
-        BankTransaction tran=new BankTransaction(TRANSACTION.FUND_TRANSFER.name());
         
+        
+       
+        
+        BankTransaction tran=new BankTransaction();
+        tran.setTransactionType(TRANSACTION.FUND_TRANSFER.name());
         tran.setDate(new Date());
-        tran.setTransactionType(id);
+        tran.setBankTransactionId(id);
+        
         transactionFacade.create(tran);
         
-        TransferTransaction transferTransaction=new TransferTransaction();
+        
+         TransferTransaction transferTransaction=new TransferTransaction();
         
         transferTransaction.setAmount(fund);
         transferTransaction.setToAccount(toAccountNumber);
         transferTransaction.setFromAccount(fromAccountNumber);
-        transferTransaction.setBankTransaction(tran);
+//        transferTransaction.setBankTransaction(tran);
         transferTransaction.setTransactionId(id);
+        transferTransaction.setBankTransactionId(tran);
         transferTransactionFacade.create(transferTransaction);
     }
     

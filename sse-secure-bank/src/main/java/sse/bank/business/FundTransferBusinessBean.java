@@ -43,6 +43,7 @@ public class FundTransferBusinessBean {
     public boolean transferFund(Account fromAccount, float fund,
             String toAccountNumber) throws Exception {
 
+        
         boolean success = false;
         try {
             if (fromAccount.getAccountNumber().equals(toAccountNumber)) {

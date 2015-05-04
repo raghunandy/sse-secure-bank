@@ -16,8 +16,8 @@
             <h1>Editing BankTransaction</h1>
             <h:form>
                 <h:panelGrid columns="2">
-                    <h:outputText value="TransactionId:"/>
-                    <h:outputText value="#{bankTransaction.bankTransaction.transactionId}" title="TransactionId" />
+                    <h:outputText value="BankTransactionId:"/>
+                    <h:outputText value="#{bankTransaction.bankTransaction.bankTransactionId}" title="BankTransactionId" />
                     <h:outputText value="TransactionType:"/>
                     <h:inputText id="transactionType" value="#{bankTransaction.bankTransaction.transactionType}" title="TransactionType" />
                     <h:outputText value="Date (MM/dd/yyyy HH:mm:ss):"/>
@@ -26,10 +26,10 @@
                     </h:inputText>
                     <h:outputText value="Status:"/>
                     <h:inputText id="status" value="#{bankTransaction.bankTransaction.status}" title="Status" />
-                    <h:outputText value="TransferTransaction:"/>
-                    <h:selectOneMenu id="transferTransaction" value="#{bankTransaction.bankTransaction.transferTransaction}" title="TransferTransaction" >
-                        <f:selectItems value="#{transferTransaction.transferTransactionItemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    <h:outputText value="TransferTransactionCollection:"/>
+                    <h:selectManyListbox id="transferTransactionCollection" value="#{bankTransaction.bankTransaction.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].transferTransactionCollection}" title="TransferTransactionCollection" size="6" converter="#{transferTransaction.converter}" >
+                        <f:selectItems value="#{transferTransaction.transferTransactionItemsAvailableSelectMany}"/>
+                    </h:selectManyListbox>
 
                 </h:panelGrid>
                 <br />

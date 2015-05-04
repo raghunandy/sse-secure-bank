@@ -25,9 +25,9 @@
                     <h:dataTable value="#{bankTransaction.bankTransactionItems}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
                         <h:column>
                             <f:facet name="header">
-                                <h:outputText value="TransactionId"/>
+                                <h:outputText value="BankTransactionId"/>
                             </f:facet>
-                            <h:outputText value="#{item.transactionId}"/>
+                            <h:outputText value="#{item.bankTransactionId}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">
@@ -48,12 +48,6 @@
                                 <h:outputText value="Status"/>
                             </f:facet>
                             <h:outputText value="#{item.status}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="TransferTransaction"/>
-                            </f:facet>
-                            <h:outputText value="#{item.transferTransaction}"/>
                         </h:column>
                         <h:column>
                             <f:facet name="header">

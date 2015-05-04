@@ -17,8 +17,8 @@
             <h:form>
                 <h:inputHidden id="validateCreateField" validator="#{bankTransaction.validateCreate}" value="value"/>
                 <h:panelGrid columns="2">
-                    <h:outputText value="TransactionId:"/>
-                    <h:inputText id="transactionId" value="#{bankTransaction.bankTransaction.transactionId}" title="TransactionId" required="true" requiredMessage="The transactionId field is required." />
+                    <h:outputText value="BankTransactionId:"/>
+                    <h:inputText id="bankTransactionId" value="#{bankTransaction.bankTransaction.bankTransactionId}" title="BankTransactionId" required="true" requiredMessage="The bankTransactionId field is required." />
                     <h:outputText value="TransactionType:"/>
                     <h:inputText id="transactionType" value="#{bankTransaction.bankTransaction.transactionType}" title="TransactionType" />
                     <h:outputText value="Date (MM/dd/yyyy HH:mm:ss):"/>
@@ -27,10 +27,10 @@
                     </h:inputText>
                     <h:outputText value="Status:"/>
                     <h:inputText id="status" value="#{bankTransaction.bankTransaction.status}" title="Status" />
-                    <h:outputText value="TransferTransaction:"/>
-                    <h:selectOneMenu id="transferTransaction" value="#{bankTransaction.bankTransaction.transferTransaction}" title="TransferTransaction" >
-                        <f:selectItems value="#{transferTransaction.transferTransactionItemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
+                    <h:outputText value="TransferTransactionCollection:"/>
+                    <h:selectManyListbox id="transferTransactionCollection" value="#{bankTransaction.bankTransaction.jsfcrud_transform[jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.collectionToArray][jsfcrud_class['sse.bank.db.ui.gen.util.JsfUtil'].jsfcrud_method.arrayToList].transferTransactionCollection}" title="TransferTransactionCollection" size="6" converter="#{transferTransaction.converter}" >
+                        <f:selectItems value="#{transferTransaction.transferTransactionItemsAvailableSelectMany}"/>
+                    </h:selectManyListbox>
 
                 </h:panelGrid>
                 <br />

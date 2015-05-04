@@ -20,10 +20,6 @@
                     <h:inputText id="amount" value="#{transferTransaction.transferTransaction.amount}" title="Amount" />
                     <h:outputText value="TransactionId:"/>
                     <h:outputText value="#{transferTransaction.transferTransaction.transactionId}" title="TransactionId" />
-                    <h:outputText value="BankTransaction:"/>
-                    <h:selectOneMenu id="bankTransaction" value="#{transferTransaction.transferTransaction.bankTransaction}" title="BankTransaction" required="true" requiredMessage="The bankTransaction field is required." >
-                        <f:selectItems value="#{bankTransaction.bankTransactionItemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
                     <h:outputText value="ToAccount:"/>
                     <h:selectOneMenu id="toAccount" value="#{transferTransaction.transferTransaction.toAccount}" title="ToAccount" required="true" requiredMessage="The toAccount field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
@@ -31,6 +27,10 @@
                     <h:outputText value="FromAccount:"/>
                     <h:selectOneMenu id="fromAccount" value="#{transferTransaction.transferTransaction.fromAccount}" title="FromAccount" required="true" requiredMessage="The fromAccount field is required." >
                         <f:selectItems value="#{account.accountItemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputText value="BankTransactionId:"/>
+                    <h:selectOneMenu id="bankTransactionId" value="#{transferTransaction.transferTransaction.bankTransactionId}" title="BankTransactionId" >
+                        <f:selectItems value="#{bankTransaction.bankTransactionItemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
 
                 </h:panelGrid>

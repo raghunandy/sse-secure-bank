@@ -6,21 +6,22 @@
 package sse.bank.db.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,7 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BankTransaction.findAll", query = "SELECT b FROM BankTransaction b"),
-    @NamedQuery(name = "BankTransaction.findByTransactionId", query = "SELECT b FROM BankTransaction b WHERE b.transactionId = :transactionId"),
+    @NamedQuery(name = "BankTransaction.findByBankTransactionId", query = "SELECT b FROM BankTransaction b WHERE b.bankTransactionId = :bankTransactionId"),
     @NamedQuery(name = "BankTransaction.findByTransactionType", query = "SELECT b FROM BankTransaction b WHERE b.transactionType = :transactionType"),
     @NamedQuery(name = "BankTransaction.findByDate", query = "SELECT b FROM BankTransaction b WHERE b.date = :date"),
     @NamedQuery(name = "BankTransaction.findByStatus", query = "SELECT b FROM BankTransaction b WHERE b.status = :status")})
@@ -41,8 +42,8 @@ public class BankTransaction implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
-    @Column(name = "transactionId")
-    private String transactionId;
+    @Column(name = "bankTransactionId")
+    private String bankTransactionId;
     @Size(max = 45)
     @Column(name = "transactionType")
     private String transactionType;
@@ -51,22 +52,22 @@ public class BankTransaction implements Serializable {
     private Date date;
     @Column(name = "status")
     private Integer status;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "bankTransaction")
-    private TransferTransaction transferTransaction;
+    @OneToMany(mappedBy = "bankTransactionId")
+    private Collection<TransferTransaction> transferTransactionCollection;
 
     public BankTransaction() {
     }
 
-    public BankTransaction(String transactionId) {
-        this.transactionId = transactionId;
+    public BankTransaction(String bankTransactionId) {
+        this.bankTransactionId = bankTransactionId;
     }
 
-    public String getTransactionId() {
-        return transactionId;
+    public String getBankTransactionId() {
+        return bankTransactionId;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void setBankTransactionId(String bankTransactionId) {
+        this.bankTransactionId = bankTransactionId;
     }
 
     public String getTransactionType() {
@@ -93,18 +94,19 @@ public class BankTransaction implements Serializable {
         this.status = status;
     }
 
-    public TransferTransaction getTransferTransaction() {
-        return transferTransaction;
+    @XmlTransient
+    public Collection<TransferTransaction> getTransferTransactionCollection() {
+        return transferTransactionCollection;
     }
 
-    public void setTransferTransaction(TransferTransaction transferTransaction) {
-        this.transferTransaction = transferTransaction;
+    public void setTransferTransactionCollection(Collection<TransferTransaction> transferTransactionCollection) {
+        this.transferTransactionCollection = transferTransactionCollection;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (transactionId != null ? transactionId.hashCode() : 0);
+        hash += (bankTransactionId != null ? bankTransactionId.hashCode() : 0);
         return hash;
     }
 
@@ -115,7 +117,7 @@ public class BankTransaction implements Serializable {
             return false;
         }
         BankTransaction other = (BankTransaction) object;
-        if ((this.transactionId == null && other.transactionId != null) || (this.transactionId != null && !this.transactionId.equals(other.transactionId))) {
+        if ((this.bankTransactionId == null && other.bankTransactionId != null) || (this.bankTransactionId != null && !this.bankTransactionId.equals(other.bankTransactionId))) {
             return false;
         }
         return true;
@@ -123,7 +125,7 @@ public class BankTransaction implements Serializable {
 
     @Override
     public String toString() {
-        return "sse.bank.db.domain.BankTransaction[ transactionId=" + transactionId + " ]";
+        return "sse.bank.db.domain.BankTransaction[ bankTransactionId=" + bankTransactionId + " ]";
     }
     
 }
