@@ -26,8 +26,8 @@ import sse.bank.db.ui.gen.util.JsfUtil;
 @ViewScoped
 public class LoginUIBean implements Serializable{
 
-    private String userId="cust001";
-    private String password="hello";
+    private String userId;//="cust001";
+    private String password;//="hello";
 
     
     @Inject

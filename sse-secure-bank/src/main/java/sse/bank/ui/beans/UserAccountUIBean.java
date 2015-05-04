@@ -54,6 +54,8 @@ public class UserAccountUIBean implements Serializable {
     CheckinAccount checkinAccount;
     SavingsAccount savingsAccount;
 
+    
+    
     public Customer getCustomer() {
         return customer;
     }
@@ -65,11 +67,13 @@ public class UserAccountUIBean implements Serializable {
     public String getDateString() {
         return new SimpleDateFormat("MM/dd/YY hh:mm").format(new Date());
     }
- public String goToEditProfile() {
+
+    public String goToEditProfile() {
         System.out.println("Switch To Edit Profile");
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.EditProfile);
         return null;
     }
+
     public String switchToTransferPage() {
         System.out.println("Switch To Transfer Page");
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.FundTransferPage);
@@ -80,6 +84,10 @@ public class UserAccountUIBean implements Serializable {
         System.out.println("User Account Home Page");
         pageNameContext.setUSER_SWITCHED_PAGE(PAGE_SWITCHES.AccountHomePage);
         return null;
+    }
+    
+    public List<BankTransaction> getBankStatementList(){
+        return userAccountBusinessBean.getTransactionsList(checkinAccount.getAccount());
     }
 
     public float getAccountBalance() {
@@ -94,8 +102,8 @@ public class UserAccountUIBean implements Serializable {
 
     public String logout() {
         System.out.println("Logout Page");
-       FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-               return "/templates/public/LogoutPage.xhtml?faces-redirect=true";
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/templates/public/LogoutPage.xhtml?faces-redirect=true";
     }
 
     public void initWithCustomer(Customer customer) {

@@ -13,8 +13,17 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Account Complete Statement </h3>
                 </div>
+                    
                 <div class="panel-body">
-                    Panel content
+                    Transaction Id | Transaction Type| Date | Amount <br/>
+                    <ui:repeat value="#{userAccountUIBean.bankStatementList}" var="t">
+                        
+                        <h:outputText value="#{t.bankTransactionId}"/>
+                        |<h:outputText value="#{t.transactionType}"/>
+                        | <h:outputText value="#{t.date}"/>
+                        | $ <h:outputText value="#{t.amount}"/><br/>
+                        
+                    </ui:repeat>
                 </div>
             </div>
           

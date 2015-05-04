@@ -22,6 +22,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.access.bean.gen.CustomerFacade;
 import sse.bank.db.domain.Account;
+import sse.bank.db.domain.BankTransaction;
 import sse.bank.db.domain.CheckinAccount;
 import sse.bank.db.domain.Customer;
 import sse.bank.db.domain.CustomerSecurityQuestions;
@@ -171,6 +172,15 @@ public class UserAccountBusinessBean {
         }
         return null;
 
+    }
+
+    public List<BankTransaction> getTransactionsList(Account account) {
+   
+        Query q=em.createQuery("SELECT b FROM BankTransaction b WHERE b.accountNumber = :accountNumber order by b.date desc");
+        q.setParameter("accountNumber", account);
+        List<BankTransaction> list=q.getResultList();
+        
+        return list;
     }
     
 

@@ -55,7 +55,8 @@ public class ResetPasswordUIBean implements Serializable {
         }
         resetSuccess = true;
 
-        return "LunchPage";
+        JsfUtil.addSuccessMessage("Your password reset successful");
+        return null;
     }
 
     public boolean isResetSuccess() {
