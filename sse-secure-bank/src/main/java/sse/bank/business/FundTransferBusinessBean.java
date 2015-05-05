@@ -19,6 +19,7 @@ import javax.transaction.UserTransaction;
 import sse.bank.business.TranscationBusinessBean.TRANSACTION;
 import sse.bank.db.access.bean.gen.AccountFacade;
 import sse.bank.db.domain.BankTransaction;
+import sse.bank.db.domain.TransactionLog;
 import sse.bank.db.domain.TransferTransaction;
 
 /**
@@ -65,14 +66,15 @@ public class FundTransferBusinessBean {
                 em.merge(fromAccount);
                 em.merge(toAccount);
                 String transactionId = genTransactionId();
-                BankTransaction bankTransactionMain=saveBankTransaction(transactionId+"-1", 
-                        fromAccount, 
-                        fund,TRANSACTION.FUND_TRANSFER_DEBIT);
-                BankTransaction bankTransactionRef=saveBankTransaction(transactionId+"-2",
-                                        toAccount, 
-                                        fund,TRANSACTION.FUND_TRANSFER_CREDIT);
-                saveTransaction( transactionId,fromAccount,
+                BankTransaction bankTransactionMain = saveBankTransaction(transactionId + "-1",
+                        fromAccount,
+                        fund, TRANSACTION.FUND_TRANSFER_DEBIT);
+                BankTransaction bankTransactionRef = saveBankTransaction(transactionId + "-2",
+                        toAccount,
+                        fund, TRANSACTION.FUND_TRANSFER_CREDIT);
+                saveTransaction(transactionId, fromAccount,
                         toAccount, bankTransactionMain);
+                logTransaction(transactionId,fund,fromAccount,toAccount);
                 userTransaction.commit();
                 success = true;
 
@@ -94,7 +96,7 @@ public class FundTransferBusinessBean {
     }
 
     public BankTransaction saveBankTransaction(String id, Account account,
-                                             float fund,TRANSACTION type) {
+            float fund, TRANSACTION type) {
 
         BankTransaction tran = new BankTransaction();
         tran.setTransactionType(type.name());
@@ -142,6 +144,17 @@ public class FundTransferBusinessBean {
 
     private String genTransactionId() {
         return System.nanoTime() + "";
+    }
+
+    private void logTransaction(String transactionId, float fund, Account fromAccount, Account toAccount) {
+        TransactionLog l=new TransactionLog();
+        l.setLogId(transactionId+"LOG");
+        StringBuilder sb=new StringBuilder();
+        sb.append(transactionId).append(":").append(fund).append(":").
+                append(fromAccount.getAccountNumber()).append(":").append(toAccount.getAccountNumber());
+        l.setMessage(sb.toString());
+        l.setCreationDate(new Date());
+        em.persist(l);
     }
 
     private static class PaymentException extends Exception {
