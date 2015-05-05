@@ -28,7 +28,7 @@ import sse.bank.db.domain.TransferTransaction;
  */
 @Stateless
 @TransactionManagement(value = TransactionManagementType.BEAN)
-public class FundTransferBusinessBean  {
+public class FundTransferBusinessBean {
 
     @EJB
     UserAccountBusinessBean userAccountBusinessBean;
@@ -65,7 +65,14 @@ public class FundTransferBusinessBean  {
                 em.merge(fromAccount);
                 em.merge(toAccount);
                 String transactionId = genTransactionId();
-                saveTransaction(transactionId, fromAccount, toAccount, fund);
+                BankTransaction bankTransactionMain=saveBankTransaction(transactionId+"-1", 
+                        fromAccount, 
+                        fund,TRANSACTION.FUND_TRANSFER_DEBIT);
+                BankTransaction bankTransactionRef=saveBankTransaction(transactionId+"-2",
+                                        toAccount, 
+                                        fund,TRANSACTION.FUND_TRANSFER_CREDIT);
+                saveTransaction( transactionId,fromAccount,
+                        toAccount, bankTransactionMain);
                 userTransaction.commit();
                 success = true;
 
@@ -86,26 +93,32 @@ public class FundTransferBusinessBean  {
         return success;
     }
 
-    public void saveTransaction(String id, Account fromAccountNumber, Account toAccountNumber, float fund) {
+    public BankTransaction saveBankTransaction(String id, Account account,
+                                             float fund,TRANSACTION type) {
 
         BankTransaction tran = new BankTransaction();
-        tran.setTransactionType(TRANSACTION.FUND_TRANSFER.name());
+        tran.setTransactionType(type.name());
         tran.setDate(new Date());
         tran.setBankTransactionId(id);
         tran.setAmount(fund);
-        tran.setAccountNumber(fromAccountNumber);
+        tran.setAccountNumber(account);
         em.persist(tran);
+
+        return tran;
+
+    }
+
+    public void saveTransaction(String id, Account fromAccountNumber,
+            Account toAccountNumber, BankTransaction intiatedTransaction) {
 
         TransferTransaction transferTransaction = new TransferTransaction();
 
-        
         transferTransaction.setToAccount(toAccountNumber);
         transferTransaction.setFromAccount(fromAccountNumber);
 //        transferTransaction.setBankTransaction(tran);
         transferTransaction.setTransactionId(id);
-        transferTransaction.setBankTransactionId(tran);
-        em.persist(tran);
-        
+        transferTransaction.setBankTransactionId(intiatedTransaction);
+        em.persist(transferTransaction);
 
     }
 

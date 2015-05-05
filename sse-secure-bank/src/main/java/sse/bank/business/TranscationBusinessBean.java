@@ -29,7 +29,7 @@ import sse.bank.db.domain.TransferTransaction;
 @TransactionManagement(value = TransactionManagementType.BEAN)
 public class TranscationBusinessBean {
 
-    public static enum TRANSACTION{FUND_TRANSFER}
+    public static enum TRANSACTION{FUND_TRANSFER_DEBIT,FUND_TRANSFER_CREDIT}
     
     @EJB
     BankTransactionFacade transactionFacade;

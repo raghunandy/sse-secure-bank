@@ -4,29 +4,46 @@
                 xmlns:f="http://java.sun.com/jsf/core">
     <div class="container-fluid">
         <div class="row">
-           
-          
-                <ui:insert name="content" />     
-                <h3>Account Statement</h3>
-                
-                <div class="panel panel-default">
+
+
+            <ui:insert name="content" />     
+            <h3>Account Statement</h3>
+
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Account Complete Statement </h3>
                 </div>
-                    
+
                 <div class="panel-body">
-                    Transaction Id | Transaction Type| Date | Amount <br/>
-                    <ui:repeat value="#{userAccountUIBean.bankStatementList}" var="t">
-                        
-                        <h:outputText value="#{t.bankTransactionId}"/>
-                        |<h:outputText value="#{t.transactionType}"/>
-                        | <h:outputText value="#{t.date}"/>
-                        | $ <h:outputText value="#{t.amount}"/><br/>
-                        
-                    </ui:repeat>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th> Transaction Ref Id</th>
+                                <th>Transaction Type</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ui:repeat value="#{userAccountUIBean.bankStatementList}" var="t">
+                                <tr>
+                                    <th scope="row"> <h:outputText value="#{t.bankTransactionId}"/></th>
+                                    <td><h:outputText value="#{t.transactionType}"/></td>
+                                    <td><h:outputText value="#{t.date}"/></td>
+                                    <td>$ <h:outputText value="#{t.amount}"/><br/></td>
+                                </tr>
+                               
+
+                            </ui:repeat>
+
+
+                        </tbody>
+                    </table>
+
+
                 </div>
             </div>
-          
+
         </div>
     </div>
 </ui:composition>

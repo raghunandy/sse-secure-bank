@@ -14,10 +14,119 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
             <title>JSP Page</title>
+<link rel="stylesheet" type="text/css" href="/sse-secure-bank-duplicate/faces/jsfcrud.css" />
 <link rel="stylesheet" type="text/css" href="/sse-secure-bank/faces/jsfcrud.css" />
         </head>
         <body>
             <h1><h:outputText value="JavaServer Faces"/></h1>
+                <h:form>
+                    <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transactionLog.listSetup}" value="Show All TransactionLog Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{oneTimePassword.listSetup}" value="Show All OneTimePassword Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customerSecurityQuestions.listSetup}" value="Show All CustomerSecurityQuestions Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{bankTransaction.listSetup}" value="Show All BankTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{account.listSetup}" value="Show All Account Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transactionLog.listSetup}" value="Show All TransactionLog Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{oneTimePassword.listSetup}" value="Show All OneTimePassword Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customerSecurityQuestions.listSetup}" value="Show All CustomerSecurityQuestions Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{account.listSetup}" value="Show All Account Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transactionLog.listSetup}" value="Show All TransactionLog Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{transaction.listSetup}" value="Show All Transaction Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{savingsAccount.listSetup}" value="Show All SavingsAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{oneTimePassword.listSetup}" value="Show All OneTimePassword Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customerSecurityQuestions.listSetup}" value="Show All CustomerSecurityQuestions Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{customer.listSetup}" value="Show All Customer Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{checkinAccount.listSetup}" value="Show All CheckinAccount Items"/>
+                </h:form>
+
+                <h:form>
+                    <h:commandLink action="#{account.listSetup}" value="Show All Account Items"/>
+                </h:form>
+
                 <h:form>
                     <h:commandLink action="#{transferTransaction.listSetup}" value="Show All TransferTransaction Items"/>
                 </h:form>
