@@ -1,4 +1,4 @@
-# secure-software-modeling : sse-secure-bank
+#  SSE Secure Bank: Secure Software Modeling Project
 
 sse-secure-bank
 
