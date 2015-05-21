@@ -10,7 +10,7 @@ More details can be found in the documentation:http://goo.gl/KVXyjx
 Technologies Used:
 
 User Interface Styling : Bootstrap 3.x
-Server Technologies: Java 8, JEE 7, JSF 2.2
+Server Technologies: Java 8, JEE 7, JSF 2.2, Maven, Netbeans
 Database : MySQL, MySQL Workbench
 
 Achieved Secure Goals:
