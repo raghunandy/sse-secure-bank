@@ -1,5 +1,5 @@
-# secure-software-software-modeling
-secure-software-software-modeling
+# secure-software-modeling
+secure-software-modeling
 
 Secure Banking is a Template Project for Simple Banking Management System Using JEE infrastructure. 
 This project is developed for acadamic purpose. 
